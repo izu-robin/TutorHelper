@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\icon-group.png" />
+    <None Remove="Images\icon-lesson.png" />
+    <None Remove="Images\icon-overview.png" />
+    <None Remove="Images\icon-power-off.png" />
+    <None Remove="Images\icon-pricing.png" />
+    <None Remove="Images\icon-settings.png" />
+    <None Remove="Images\icon-student.png" />
+    <None Remove="Images\icon-textbook.png" />
+    <None Remove="Images\imgGroups.png" />
+    <None Remove="Images\imgLessons.png" />
+    <None Remove="Images\imgPricing.png" />
+    <None Remove="Images\imgSettings.png" />
+    <None Remove="Images\imgStudents.png" />
+    <None Remove="Images\imgTextbooks.png" />
+    <None Remove="Images\imgView.png" />
+    <None Remove="Images\shutdown_def.png" />
+    <None Remove="Images\shutdown_mo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\icon-group.png" />
+    <Resource Include="Images\icon-lesson.png" />
+    <Resource Include="Images\icon-overview.png" />
+    <Resource Include="Images\icon-power-off.png" />
+    <Resource Include="Images\icon-pricing.png" />
+    <Resource Include="Images\icon-settings.png" />
+    <Resource Include="Images\icon-student.png" />
+    <Resource Include="Images\icon-textbook.png" />
+    <Resource Include="Images\imgGroups.png" />
+    <Resource Include="Images\imgLessons.png" />
+    <Resource Include="Images\imgPricing.png" />
+    <Resource Include="Images\imgSettings.png" />
+    <Resource Include="Images\imgStudents.png" />
+    <Resource Include="Images\imgTextbooks.png" />
+    <Resource Include="Images\imgView.png" />
+    <Resource Include="Images\shutdown_def.png" />
+    <Resource Include="Images\shutdown_mo.png" />
+  </ItemGroup>
+
+</Project>

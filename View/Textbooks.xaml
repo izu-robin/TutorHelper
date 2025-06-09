@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="TutorHelper.View.Textbooks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TutorHelper.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.DataContext>
+        <vm:TextbooksVM />
+    </UserControl.DataContext>
+
+    <Grid>
+
+        <Grid Margin="15">
+
+            <Border CornerRadius="0,20,20,0">
+                <Border.Background>
+                    <ImageBrush ImageSource="/Images/imgSettings.png"
+                            Stretch="Fill" />
+                </Border.Background>
+            </Border>
+
+            <Grid>
+
+                <TextBlock Text="Expected Delivery  :"
+                       Foreground="#DBDBDB"
+                       FontSize="12"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       FontFamily="/Fonts/#Rubik Medium"
+                       Margin="0,0,130,100" />
+
+                <TextBlock Text="{Binding ShipmentTracking}"
+                       Foreground="White"
+                       FontSize="12"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+
+                       Margin="0,0,72,100" />
+
+                <!--FontFamily="/Fonts/#Rubik Medium" //пихнуть в тэг выше чтобы задать шрифт-->
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+    
+</UserControl>

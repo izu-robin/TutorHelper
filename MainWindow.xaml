@@ -1,0 +1,192 @@
+﻿<Window x:Class="TutorHelper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TutorHelper.ViewModel"
+        xmlns:Menu="clr-namespace:TutorHelper.Utilities" 
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600" 
+        Width="850"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+    <!--//вот без строки xmlns:Menu=... не отображалось ничего-->
+    
+    <Window.DataContext>
+        <vm:NavigationVM />
+    </Window.DataContext>
+
+
+    <Grid>
+
+        <!--//Window Border//-->
+
+        <Border Background="#243c70"
+                CornerRadius="20" />
+        
+        
+
+        <Grid>
+            
+            <!--//Base Grid //-->
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228" />
+                <ColumnDefinition Width="622" />
+            </Grid.ColumnDefinitions>
+
+
+            <!--// Navigation Panel //-->
+
+            <Grid HorizontalAlignment="Left"
+                  Width="228">
+
+                <Border Background="#3b63a0"
+                        CornerRadius="20,0,0,20" />
+
+                <StackPanel Height="400"
+                            Width="228">
+
+                    <!--// Home //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding HomeCommand}"
+                              IsChecked="True">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-overview.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Обзор"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Занятия //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding LessonsCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-lesson.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Занятия"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Ученики //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding StudentsCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-student.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Ученики"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Группы //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding GroupsCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-group.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Группы"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Тарифы //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding PricingCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-pricing.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Тарифы"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// УМК //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding TextbooksCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-textbook.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="УМК"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                    <!--// Настройки //-->
+
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding SettingsCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-settings.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Настройки"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+
+            </Grid>
+
+        </Grid>
+
+        <Button x:Name="CloseApp"
+                Style="{StaticResource ExitApp}"
+                Click="CloseApp_Click" />
+
+    </Grid>
+
+</Window>
