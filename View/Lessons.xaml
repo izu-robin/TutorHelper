@@ -22,12 +22,21 @@
             </Border.Background>
         </Border>
 
-        <TextBlock Text="{Binding ProductAvailability}"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--<TextBlock Text="{Binding ProductAvailability}"
                    Foreground="white"
                    FontSize="16"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
-                   Margin="261,0,0,450" />
+                   Margin="261,0,0,450" />-->
         
     </Grid>
     

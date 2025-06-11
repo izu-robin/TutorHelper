@@ -22,7 +22,14 @@
             </Border.Background>
         </Border>
 
-        <Grid>
+        
+        
+        
+        
+        
+        
+        
+        <!--<Grid>
 
             <TextBlock Text="Дата следующего занятия  :"
                        Foreground="#DBDBDB"
@@ -40,8 +47,7 @@
                        FontFamily="/Fonts/#Rubik Medium"
                        Margin="0,53,90,0" />
 
-        </Grid>
-
+        </Grid>-->
 
     </Grid>
     

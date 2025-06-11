@@ -21,8 +21,13 @@
                             Stretch="Fill" />
             </Border.Background>
         </Border>
+        
+        
+        
+        
+        
 
-        <TextBlock Foreground="White"
+        <!--<TextBlock Foreground="White"
                    FontSize="12"
                    TextAlignment="Center"
                    HorizontalAlignment="Right"
@@ -30,7 +35,7 @@
                    
                    Margin="0,270,223,0">
             
-            <!--FontFamily="/Fonts/#Rubik Medium" //в тэге выше чтобы задать шрифт-->
+            
 
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -46,7 +51,7 @@
                 </Style>
             </TextBlock.Style>
 
-        </TextBlock>
+        </TextBlock>-->
 
     </Grid>
 

@@ -22,8 +22,11 @@
                             Stretch="Fill" />
             </Border.Background>
         </Border>
+        
+        
+        
 
-        <TextBlock Text="Номер ученика  :"
+        <!--<TextBlock Text="Номер ученика  :"
                    Foreground="#DBDBDB"
                    FontSize="12"
                    HorizontalAlignment="Left"
@@ -35,7 +38,7 @@
                    FontSize="12"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="160,138,0,0" />
+                   Margin="160,138,0,0" />-->
 
     </Grid>
     

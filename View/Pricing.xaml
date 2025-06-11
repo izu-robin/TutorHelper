@@ -22,7 +22,16 @@
             </Border.Background>
         </Border>
 
-        <Grid>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--<Grid>
 
             <TextBlock Text="Стандартная стоимость академ.часа  :"
                        Foreground="#DBDBDB"
@@ -39,9 +48,9 @@
 
                        Margin="0,300,82,0" />
 
-            <!--FontFamily="/Fonts/#Rubik Medium" // внутри тэга выше отдельной строчкой чтобы задать шрифт-->
+            --><!--FontFamily="/Fonts/#Rubik Medium" // внутри тэга выше отдельной строчкой чтобы задать шрифт--><!--
 
-        </Grid>
+        </Grid>-->
     </Grid>
     
 </UserControl>

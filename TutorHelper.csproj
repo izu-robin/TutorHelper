@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\icon-group.png" />
     <Resource Include="Images\icon-lesson.png" />
     <Resource Include="Images\icon-overview.png" />

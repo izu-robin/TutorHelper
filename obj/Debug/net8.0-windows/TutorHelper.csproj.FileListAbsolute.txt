@@ -39,3 +39,7 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\refint\TutorHelper.
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.pdb
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.genruntimeconfig.cache
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\ref\TutorHelper.dll
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.sourcelink.json
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.csproj.AssemblyReference.cache
+L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHel.FAC657B0.Up2Date

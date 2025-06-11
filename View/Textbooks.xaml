@@ -24,7 +24,17 @@
                 </Border.Background>
             </Border>
 
-            <Grid>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!--sample text-->
+            <!--<Grid>
 
                 <TextBlock Text="Expected Delivery  :"
                        Foreground="#DBDBDB"
@@ -42,9 +52,8 @@
 
                        Margin="0,0,72,100" />
 
-                <!--FontFamily="/Fonts/#Rubik Medium" //пихнуть в тэг выше чтобы задать шрифт-->
-
-            </Grid>
+                --><!--FontFamily="/Fonts/#Rubik Medium" //пихнуть в тэг выше чтобы задать шрифт--> <!--
+            </Grid>-->
 
         </Grid>
 

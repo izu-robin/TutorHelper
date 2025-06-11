@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8BRNrMFZPoM=",
+  "dgSpecHash": "HfPM4bmoH/w=",
   "success": true,
   "projectFilePath": "L:\\Programming\\Codin\\C#\\TutorHelper\\TutorHelper.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Ксения\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\communitytoolkit.mvvm.8.4.0.nupkg.sha512"
+  ],
   "logs": []
 }
