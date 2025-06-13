@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TutorHelper.DataAccess;
 
 namespace TutorHelper;
 
@@ -19,6 +20,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        //var db = new DBDataAccess("THDataBase");
+        //db.TestConnection();
     }
 
     private void CloseApp_Click(object sender, RoutedEventArgs e)

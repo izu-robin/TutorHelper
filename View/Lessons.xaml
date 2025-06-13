@@ -22,15 +22,43 @@
             </Border.Background>
         </Border>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <Grid Margin="15,54,15,15">
+
+            <Grid Height="200"
+       VerticalAlignment="Top">
+                <ListView ItemsSource="{Binding FutureLessonsList}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="№ группы" DisplayMemberBinding="{Binding GroupID}"
+                                 Width="70"/>
+                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"
+                                 Width="80"/>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding Time}"
+                                 Width="80"/>
+                            <GridViewColumn Header="Детали" DisplayMemberBinding="{Binding Notes}"
+                                 Width="200"/>
+                            <GridViewColumn Header="Длительность (мин.)" DisplayMemberBinding="{Binding Duration}"
+                                 Width="120"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+
+                                        <!--Id = reader.GetInt32(0), 
+                                        GroupID = reader.GetInt32(1), 
+                                        Date = reader.GetString(2), 
+                                        Time = reader.GetString(3), 
+                                        Notes = reader.GetString(4), 
+                                        HourAmount = reader.GetInt32(5)-->
+
+
+
+        </Grid>
+
+
+
+
         <!--<TextBlock Text="{Binding ProductAvailability}"
                    Foreground="white"
                    FontSize="16"

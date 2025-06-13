@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +50,12 @@
     <Resource Include="Images\imgView.png" />
     <Resource Include="Images\shutdown_def.png" />
     <Resource Include="Images\shutdown_mo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataAccess\DataAccess.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

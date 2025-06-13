@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TutorHelper": {
+      "commandName": "Project",
+      "workingDirectory": "L:\\Programming\\Codin\\C#\\TutorHelper"
+    }
+  }
+}

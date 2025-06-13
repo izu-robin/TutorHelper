@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using TutorHelper.View;
 using System.Diagnostics.CodeAnalysis;
 using TutorHelper.Model;
@@ -18,15 +16,10 @@ namespace TutorHelper.ViewModel
 {
 
 
-    class HomeVM : ObservableObject
-    // : Utilities.ViewModelBase //почему здесь не надо?
+    class HomeVM : Utilities.ViewModelBase 
     {
-        //а конструктор какой-нибудь.... Надо покопаться в VMMV
 
-        public ObservableCollection<ShortLessons> Lessons { get; set; } = new();
-
-        public DateTime today { get; set; }
-        //public DateOnly tt { get; set; }
+        //public ObservableCollection<ShortLessons> Lessons { get; set; } = new();
         public string DateToday { get; set; }
 
 
@@ -35,6 +28,14 @@ namespace TutorHelper.ViewModel
         public HomeVM()
         {
             DateToday = DateTime.Now.ToString("d") + ", " + RussianDayOfWeek(DateTime.Now.DayOfWeek.ToString());
+            
+
+
+
+
+
+
+            /*
             //а может надо подрубить дату из календаря???? Сейчас с системы читает просто 
 
             //поставить только дату пока не получается, только дату-время англ.формата
@@ -42,8 +43,9 @@ namespace TutorHelper.ViewModel
             //tt = DateOnly.FromDateTime(DateTime.Now);
 
             //создаем пару дамми-заглушек
-            Lessons.Add(new ShortLessons { _time = "12:00", _student = "Саша Хиханькин", _note = "долг по д/з с прошлого занятия" });
-            Lessons.Add(new ShortLessons { _time = "15:00", _student = "Ваня Хаханькин" });
+            //Lessons.Add(new ShortLessons { _time = "12:00", _student = "Саша Хиханькин", _note = "долг по д/з с прошлого занятия" });
+            //Lessons.Add(new ShortLessons { _time = "15:00", _student = "Ваня Хаханькин" });
+            */
         }
 
 

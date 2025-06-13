@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TutorHelper.DataAccess;
+using static TutorHelper.ViewModel.StudentsVM;
+//using static TutorHelper.ViewModel.StudentsVM;
+//using TutorHelper.DataAccess;
 
 namespace TutorHelper.View
 {
@@ -24,5 +28,6 @@ namespace TutorHelper.View
         {
             InitializeComponent();
         }
+
     }
 }

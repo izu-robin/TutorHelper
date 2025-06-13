@@ -22,15 +22,22 @@
             </Border.Background>
         </Border>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <Grid Margin="15,54,15,15">
+
+
+
+
+
+            
+            
+            
+            
+            
+
+
+        </Grid>
+
+
         <!--<Grid>
 
             <TextBlock Text="Стандартная стоимость академ.часа  :"
