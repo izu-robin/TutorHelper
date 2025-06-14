@@ -12,13 +12,13 @@ namespace TutorHelper.Model.Core
 
         public int GroupID { get; set; }
 
-        public string Date { get; set; }
+        public string Date { get; set; } = "01.01.2001";
 
-        public string Time { get; set; }
+        public string Time { get; set; } = "00:00";
 
-        public string? Notes { get; set; } = null;
+        public string? Notes { get; set; } = "-";
 
-        public int Duration { get; set; }
+        public int Duration { get; set; } = 0;
 
 
         //navigation properties

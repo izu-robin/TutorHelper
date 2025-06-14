@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TutorHelper.ViewModel;
 
 namespace TutorHelper.View
 {
@@ -24,5 +25,21 @@ namespace TutorHelper.View
         {
             InitializeComponent();
         }
+
+        //private void HomeViewCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        //{
+            //здесь дата которую отдал календарь
+            //string SelectedDate = HomeViewCalendar.SelectedDate.ToString();
+            //TutorHelper.ViewModel.HomeVM.NewCalendarDateSelected(SelectedDate);
+       //}
+
+
+
+
+
+
+
+
+
     }
 }

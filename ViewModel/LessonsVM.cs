@@ -27,7 +27,7 @@ namespace TutorHelper.ViewModel
        
             LoadFutureLessons();
 
-
+            //все что на старте надо сделать - всё сюда
 
 
 

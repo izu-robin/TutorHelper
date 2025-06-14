@@ -9,17 +9,32 @@ namespace TutorHelper.ViewModel
 {
     class GroupsVM : Utilities.ViewModelBase
     {
-        private readonly PageModel _pageModel;
-        public DateOnly DisplayOrderDate
-        {
-            get { return _pageModel.OrderDate; }
-            set { _pageModel.OrderDate = value; OnPropertyChanged(); }
-        }
+        //private readonly PageModel _pageModel;
+        //public DateOnly DisplayOrderDate
+        //{
+        //    get { return _pageModel.OrderDate; }
+        //    set { _pageModel.OrderDate = value; OnPropertyChanged(); }
+        //}
 
-        public GroupsVM()
-        {
-            _pageModel = new PageModel();
-            DisplayOrderDate = DateOnly.FromDateTime(DateTime.Now);
-        }
+        //public GroupsVM()
+        //{
+        //    _pageModel = new PageModel();
+        //    DisplayOrderDate = DateOnly.FromDateTime(DateTime.Now);
+        //}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 }

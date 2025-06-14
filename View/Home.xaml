@@ -22,14 +22,26 @@
         </Border>
 
         <!--Дату конечно дорабатывать еще много и долго но пока пойдет-->
-        <TextBlock Text="{Binding DateToday}"
+        <TextBlock Name="DateTextBlock" Text="{Binding DateToday}"
                    FontSize="18"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" 
                    Margin="15,15,0,0" Width="254" Foreground="White" FontWeight="Bold" />
 
         <Grid Margin="15,40,15,15">
-            <Calendar HorizontalAlignment="Left" Margin="373,17,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="259*"/>
+            </Grid.ColumnDefinitions>
+            <Calendar Name="HomeViewCalendar" 
+                      HorizontalAlignment="Left" 
+                      Margin="329,17,0,0" 
+                      VerticalAlignment="Top" 
+                      IsTodayHighlighted="True"
+                       Grid.Column="1"
+                      SelectedDate="{Binding SelectedDate, Mode=TwoWay}">
+                <!--SelectedDatesChanged="NewSelectedDate"-->
+
                 <Calendar.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFA3AEB9"/>
@@ -40,7 +52,41 @@
                 </Calendar.BorderBrush>
             </Calendar>
 
-            <DataGrid ItemsSource="{Binding Lessons}"  HorizontalAlignment="Left" 
+            <Grid Height="165"
+                  Width="350"
+                  VerticalAlignment="Top"
+                  Margin="0,20,0,0"
+                  MinWidth="350" 
+                  MinHeight="162" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                  >
+
+                <ListView Name="DatesLessonsTable" ItemsSource="{Binding DatesLessonsList}"
+                          HorizontalAlignment="Center"
+                          >
+                    
+                    <ListView.View>
+                        
+                        <GridView>
+                            
+                            <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding GroupID}"
+                                            Width="60"
+                                            >
+                            </GridViewColumn>
+                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding Time}"
+                                            Width="70"
+                                            TextBlock.TextAlignment="Center"/>
+                            <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Notes}"
+                                            Width="160"
+                                            TextBlock.TextAlignment="Center"/>
+                            <GridViewColumn Header="Длит." DisplayMemberBinding="{Binding Duration}"
+                                            Width="50"
+                                            TextBlock.TextAlignment="Center"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+
+                <!--<DataGrid ItemsSource="{Binding Lessons}"  HorizontalAlignment="Left" 
                       Margin="0, 20, 0, 0" 
                       VerticalAlignment="Top" 
                       Width="350" 
@@ -51,30 +97,47 @@
                       AutoGenerateColumns="True"
                       HeadersVisibility="None"
                       HorizontalGridLinesBrush="#549DC2"
-                      VerticalGridLinesBrush="#549DC2"
-                      >
+                      VerticalGridLinesBrush="#549DC2" Grid.ColumnSpan="2"
+                      >-->
                 <!--// как-то надо задать три колонки максимум, или размеры подогнать //-->
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </DataGrid>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </Grid>
+
+
+          
+            
+            
+            
+            
         </Grid>
 
+        
+        <!--//тестовый лэйбл для проверки возвращаемой даты//-->
+        <Label Name="tester"
+         Height="35"
+         Width="180"
+         Margin="370,100,0,160"
+         Foreground="white"
+         FontSize="20">
+            <TextBlock Text="{Binding ForTester, Mode=OneWay}" />
+        </Label>
+        
     </Grid>
 
 </UserControl>

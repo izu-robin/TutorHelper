@@ -69,7 +69,7 @@ namespace TutorHelper.DataAccess
                 if (!reader.IsDBNull(4))
                     mid.Notes = reader.GetString(4);
                 else
-                    mid.Notes = "";
+                    mid.Notes = "-";
                 if (!reader.IsDBNull(5))
                     mid.Duration = reader.GetInt32(5);
                 else
@@ -78,6 +78,56 @@ namespace TutorHelper.DataAccess
                     lessons.Add(mid);
             }
             return lessons;
+        }
+
+        //загрузка занятий в конкретную дату
+        public static List<Lesson> LoadDatesLessons(string date)
+        {
+            string[] arr = date.Split(' ');
+            string shortRevDate = arr[0];
+
+            string dashDate = DateCorrector(shortRevDate);
+
+            var lessons = new List<Lesson>();
+
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate +"'";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Lesson mid = new Lesson();
+                mid.Id = reader.GetInt32(0);
+                mid.GroupID = reader.GetInt32(1);
+                mid.Date = reader.GetString(2);
+                mid.Time = reader.GetString(3);
+
+                if (!reader.IsDBNull(4))
+                    mid.Notes = reader.GetString(4);
+                else
+                    mid.Notes = "-";
+                if (!reader.IsDBNull(5))
+                    mid.Duration = reader.GetInt32(5);
+                else
+                    mid.Duration = 60;
+
+                lessons.Add(mid);
+            }
+            return lessons;
+
+        }
+
+        public static string DateCorrector(string date)
+        {
+            // 06.05.2025 -> 2025/05/06
+
+            string[] arr = date.Split('.');
+            string answ = arr[2] + "/" + arr[1] + "/" + arr[0];
+            return answ;
         }
 
 
@@ -94,8 +144,6 @@ namespace TutorHelper.DataAccess
 
 
 
-
-        
 
 
 

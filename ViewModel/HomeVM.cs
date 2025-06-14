@@ -9,18 +9,70 @@ using System.Collections.ObjectModel;
 using TutorHelper.View;
 using System.Diagnostics.CodeAnalysis;
 using TutorHelper.Model;
-
+using System.Xml.Linq;
+using TutorHelper.DataAccess;
+using TutorHelper.Model.Core;
 // using TutorHelper.Model; //почему здесь не надо? Может потому что он пустой? 
 
 namespace TutorHelper.ViewModel
 {
 
 
-    class HomeVM : Utilities.ViewModelBase 
+    public class HomeVM : Utilities.ViewModelBase 
     {
+        //список уроков в выбранную дату
+        public ObservableCollection<Lesson> DatesLessonsList { get; } = new();
+   
+        public static string? DateToday { get; set; }
 
-        //public ObservableCollection<ShortLessons> Lessons { get; set; } = new();
-        public string DateToday { get; set; }
+
+
+
+        public string? _forTester ="empty";
+        public string? ForTester
+        {
+            get => _forTester;
+            set => SetField(ref _forTester, value ?? throw new ArgumentNullException(nameof(value)));
+
+        }
+
+        //свойство сохраняющее выбранную в календаре дату
+        private DateTime? _selectedDate = DateTime.Today;
+        public DateTime? SelectedDate
+        {
+            get => _selectedDate;
+            set
+            {
+                if(SetField( ref _selectedDate, value)) //если удачно сохранилась новая дата
+                {
+                    DatesLessonsList.Clear();
+                    // здесь с этой датой что-то происходит
+                    OnDateSelected();
+                }
+            }
+        }
+
+        // и что с этой датой делается
+        private void OnDateSelected()
+        {
+            //вспомогательное для дебага
+            ForTester = SelectedDate.ToString();
+            
+            foreach(var dLes in DataBase.LoadDatesLessons(ForTester))
+            {
+                DatesLessonsList.Add(dLes);
+            }
+            
+            
+            
+            
+            
+            
+            //LoadDatesLessons(ForTester);
+        }
+
+
+
 
 
         private readonly PageModel _pageModel;
@@ -28,7 +80,7 @@ namespace TutorHelper.ViewModel
         public HomeVM()
         {
             DateToday = DateTime.Now.ToString("d") + ", " + RussianDayOfWeek(DateTime.Now.DayOfWeek.ToString());
-            
+            OnDateSelected();
 
 
 
@@ -74,6 +126,16 @@ namespace TutorHelper.ViewModel
                 return "Воскресенье";
 
             return "Ошибка";
+        }
+
+        public void NewCalendarDateSelected(string selectedDate)
+        {
+            //обновляет заглавную дату и запускает обновление списка уроков в таблице
+
+
+            DateToday = selectedDate;
+            ForTester = selectedDate;
+
         }
 
 
