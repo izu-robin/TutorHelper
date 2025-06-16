@@ -9,6 +9,8 @@
              d:DesignWidth="622"
              Style="{StaticResource Page_Style}">
 
+
+
     <UserControl.DataContext>
         <vm:LessonsVM />
     </UserControl.DataContext>
@@ -22,42 +24,252 @@
             </Border.Background>
         </Border>
 
+        <TextBlock Text="{Binding TableStatus, Mode=TwoWay}"
+                   FontSize="20"
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   Width="254"
+                   Height="30"
+                   Margin="15,45,0,495" 
+                   FontWeight="Bold"/>
+
+
         <Grid Margin="15,54,15,15">
 
-            <Grid Height="200"
-       VerticalAlignment="Top">
-                <ListView ItemsSource="{Binding FutureLessonsList}">
+            <ToggleButton x:Name="DataToggleBtn"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Width="281"
+                              Height="30"
+                              Content="Прошедшие/предстоящие занятия за месяц"
+                              Margin="281,-9,0,0"
+                              Command="{Binding LoadDataToggleCommand}">
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding Background}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                        <Setter Property="Background"
+                                Value="#549DC2"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Content" Value="Вернуться к предстоящим занятиям"/>
+                                <Setter Property="Background"
+                                        Value="#80ABD8"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
+
+            <Grid Height="200  "
+                  VerticalAlignment="Top">
+
+                <ListView ItemsSource="{Binding FutureLessonsList}" 
+                          SelectedItem="{Binding SelectedLesson}"
+                          Margin="0,32,0,-32"  >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="№ группы" DisplayMemberBinding="{Binding GroupID}"
-                                 Width="70"/>
-                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"
-                                 Width="80"/>
-                            <GridViewColumn Header="Время" DisplayMemberBinding="{Binding Time}"
-                                 Width="80"/>
-                            <GridViewColumn Header="Детали" DisplayMemberBinding="{Binding Notes}"
-                                 Width="200"/>
-                            <GridViewColumn Header="Длительность (мин.)" DisplayMemberBinding="{Binding Duration}"
-                                 Width="120"/>
+                            <GridViewColumn Header="№ группы" 
+                                            DisplayMemberBinding="{Binding GroupID}"
+                                            Width="70"/>
+
+                            <GridViewColumn Header="Дата" 
+                                            DisplayMemberBinding="{Binding Date}"
+                                            Width="80"/>
+
+                            <GridViewColumn Header="Время" 
+                                            DisplayMemberBinding="{Binding Time}"
+                                            Width="80"/>
+
+                            <GridViewColumn Header="Детали" 
+                                            DisplayMemberBinding="{Binding Notes}"
+                                            Width="200"/>
+
+                            <GridViewColumn Header="Длит. (мин.)" DisplayMemberBinding="{Binding Duration}"
+                                 Width="105"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<ListView Height="250"
+                          Width="130"
+                          HorizontalAlignment="Left"
+                          Grid.Column="0"
+                          VerticalAlignment="Bottom"
+                          />-->
+
+                <Border Grid.Column="0"
+                        Height="200"
+                        Width="125"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                         
+                        Padding="10"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2" Margin="5,0,0,50">
+                    <StackPanel>
+                        <!--редактор ID-->
+                        <Label Content="ID занятия:" 
+                               Foreground="White"
+                               />
+                        <TextBox Text="3" 
+                                 Margin="0,0,0,10"
+                                 IsEnabled="False"/>
+                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+
+                        <!--редактор группы-->
+                        <Label Content="ID группы:" 
+                               Foreground="White"/>
+                        <TextBox Text="6" 
+                                 Margin="0,0,0,10"/>
+
+                        <!--редактор длительности-->
+                        <Label Content="Длительность:" 
+                               Foreground="White"/>
+                        <TextBox Text="60" 
+                                 Margin="0,0,0,10"/>
+
+                    </StackPanel>
+                </Border>
+
+                <Border
+                        Grid.Column="1"
+                        Height="200"
+                        Width="130"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+ 
+                        Padding="10"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2" Margin="0,0,0,50" 
+                        >
+
+                    <StackPanel>
+                        <!--редактор времени-->
+                        <Label Content="Время:" 
+                               Foreground="White"/>
+                        <TextBox Text="0:00" 
+                                 Margin="0,0,0,10"/>
+                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+
+                        <!--редактор даты-->
+                        <Label Content="Дата:" 
+                               Foreground="White"/>
+                        <TextBox Text="2025/12/31" 
+                                 Margin="0,0,0,10"/>
+                        <!--редактор заметок-->
+                        <Label Content="Заметки:" 
+                               Foreground="White"/>
+                        <TextBox Text="60" 
+                                 Margin="0,0,0,10"
+                                 TextWrapping="Wrap" 
+                                 Height="40"/>
+
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2"
+                        Height="155"
+                        Width="268"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Padding="10"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2" Margin="6,252,0,0">
+
+                    <StackPanel>
+                        <Label Content="Присутствие: "
+                               Foreground="White"/>
+                        <ListView Height="105" >
+                            <ListView.View>
+                                <GridView >
+                                    <!--DisplayMemberBinding="{Binding Date}"-->
+                                    <GridViewColumn Header="Ученик"
+                                                    Width="110"/>
+                                    <GridViewColumn Header="Присутст."
+                                                    Width="70"
+                                                    />
+                                    <GridViewColumn Header="Оплачено"
+                                                    Width="60"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>   
+
+
+
+                    </StackPanel>
+                </Border>
+
+
+
+
+                <!--Command="{Binding SaveLessonsCommand}"-->
+
+                <Button Content="Сохранить изменения"
+                            
+                            Padding="10,5"
+                            Height="30"
+                            Width="268" 
+                            Background="#A5CCE4"    
+                            Margin="6,421,7,50" Grid.Column="2"/>
+
+                <Button Content="Добавить занятие"
+                        Padding="10,5"
+                        Height="30"
+                        Width="268" 
+                        Background="#A5CCE4"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="3,467,0,0" Grid.ColumnSpan="2"/>
+
+
+                <Button Content="Удалить занятие"
+                        Padding="10,5"
+                        Height="30"
+                        Width="268" 
+                        Background="#A5CCE4"
+                        Grid.Column="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="5,467,0,0"/>
+
+
             </Grid>
 
 
-                                        <!--Id = reader.GetInt32(0), 
-                                        GroupID = reader.GetInt32(1), 
-                                        Date = reader.GetString(2), 
-                                        Time = reader.GetString(3), 
-                                        Notes = reader.GetString(4), 
-                                        HourAmount = reader.GetInt32(5)-->
+
+
+
+
+
+
+
+
+
 
 
 
         </Grid>
-
-
-
 
         <!--<TextBlock Text="{Binding ProductAvailability}"
                    Foreground="white"
@@ -65,7 +277,9 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    Margin="261,0,0,450" />-->
-        
+
     </Grid>
-    
+
+
+
 </UserControl>

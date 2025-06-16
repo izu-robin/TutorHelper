@@ -14,6 +14,10 @@ namespace TutorHelper.Model.Core
 
         public string? Surname { get; set; }
 
+        //для списка учеников на занятии
+        public bool Paid { get; set; } = false;
+        public bool Present { get; set; } = false;
+
 
 
 

@@ -11,17 +11,9 @@ namespace TutorHelper.ViewModel
     {
 
         private readonly PageModel _pageModel;
-        public decimal TransactionAmount
-        {
-            get { return _pageModel.TransactionValue; }
-            set { _pageModel.TransactionValue = value; OnPropertyChanged(); }
-        }
+         
 
-        public PricingVM()
-        {
-            _pageModel = new PageModel();
-            TransactionAmount = 100;
-        }
+        
 
     }
 }

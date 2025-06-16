@@ -95,7 +95,7 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate +"'";
+            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate +"'"+ " ORDER BY Lesson.Time ASC";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())

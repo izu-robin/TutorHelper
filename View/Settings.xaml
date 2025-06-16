@@ -22,18 +22,220 @@
             </Border.Background>
         </Border>
 
+        <TextBlock Text="Удаление данных: "
+                   FontSize="20"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" 
+                   Margin="15,15,0,0" 
+                   Width="254" 
+                   Foreground="White" 
+                   FontWeight="Bold" />
+
+
         <Grid Margin="15,54,15,15">
 
+            <Grid Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <!--// УЧЕНИК //-->
+                <StackPanel Grid.Row="0">
+                    
+                    <TextBlock Text="Удаление ученика: "
+                   FontSize="16"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" 
+                   Margin="15,15,0,0" 
+                   Width="254" 
+                   Foreground="White" 
+                   FontWeight="Bold" />
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Width="200"
+                             HorizontalAlignment="Left"
+                             Margin="15,15,0,0"/>
+
+                        <CheckBox Content="Удалить вместе с занятиями"
+                                  Margin="15,18,0,0"
+                                  Foreground="White"
+                                  FontSize="14"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Удалить"
+                            Background="#A5CCE4" 
+                            Width="200"
+                            Margin="15,18,0,0"
+                            HorizontalAlignment="Left" />
+                    
+                    <TextBlock Text="(повлияет на финансовый отчет, если он еще не сформирован) "
+                                   FontSize="14"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top" 
+                                   Margin="50,0,0,0" 
+                                   Width="254" 
+                                   Foreground="#A5CCE4" 
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+
+                    <!--// ГРУППА //-->
+                    <TextBlock Text="Удаление группы: "
+                                FontSize="16"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                   Margin="15,15,0,0" 
+                                   Width="254" 
+                                   Foreground="White" 
+                                   FontWeight="Bold" />
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Width="200"
+                                  HorizontalAlignment="Left"
+                                  Margin="15,15,0,0"/>
+
+                        <CheckBox Content="Удалить вместе с занятиями"
+                                    Margin="15,18,0,0"
+                                    Foreground="White"
+                                    FontSize="14"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Удалить"
+                                Background="#A5CCE4" 
+                                Width="200"
+                                Margin="15,18,0,0"
+                                HorizontalAlignment="Left" />
+
+                        <TextBlock Text="(повлияет на финансовый отчет, если он еще не сформирован) "
+                                    FontSize="14"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top" 
+                                    Margin="50,0,0,0" 
+                                    Width="254" 
+                                    Foreground="#A5CCE4" 
+                                    TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="2">
+
+                    <!--// ЗАНЯТИЕ //-->
+                    <TextBlock Text="Удаление занятия: "
+                                FontSize="16"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                Margin="15,15,0,0" 
+                                Width="254" 
+                                Foreground="White" 
+                                FontWeight="Bold" />
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Width="300"
+                                    HorizontalAlignment="Left"
+                                    Margin="15,10,0,0"/>
+                        
+                        <Button Content="Удалить"
+                                Background="#A5CCE4" 
+                                Width="200"
+                                Margin="15,10,0,0"
+                                HorizontalAlignment="Left" />
+
+                    </StackPanel>
+
+                     
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="3">
+
+                    <!--// ЗАНЯТИЕ //-->
+                    <TextBlock Text="Удаление тарифа: "
+                                FontSize="16"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                Margin="15,15,0,0" 
+                                Width="254" 
+                                Foreground="White" 
+                                FontWeight="Bold" />
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Width="300"
+                                    HorizontalAlignment="Left"
+                                    Margin="15,10,0,0"/>
+
+                        <Button Content="Удалить"
+                                Background="#A5CCE4" 
+                                Width="200"
+                                Margin="15,10,0,0"
+                                HorizontalAlignment="Left" />
+
+                    </StackPanel>
+
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="4">
+
+                    <!--// ЗАНЯТИЕ //-->
+                    <TextBlock Text="Удаление УМК: "
+                                FontSize="16"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" 
+                                Margin="15,15,0,0" 
+                                Width="254" 
+                                Foreground="White" 
+                                FontWeight="Bold" />
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Width="300"
+                                    HorizontalAlignment="Left"
+                                    Margin="15,10,0,0"/>
+
+                        <Button Content="Удалить"
+                                Background="#A5CCE4" 
+                                Width="200"
+                                Margin="15,10,0,0"
+                                HorizontalAlignment="Left" />
+
+                    </StackPanel>
+
+
+
+                </StackPanel>
 
 
 
 
 
-            
-            
-            
-            
-            
+
+
+
+            </Grid>
+
+
+
+
+
+
+
+
+
 
         </Grid>
 
@@ -64,5 +266,6 @@
         </TextBlock>-->
 
     </Grid>
+
 
 </UserControl>

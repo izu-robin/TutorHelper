@@ -20,6 +20,8 @@ namespace TutorHelper.Model.Core
 
         public int Duration { get; set; } = 0;
 
+        public List<Student> GroupStudents = new List<Student>();
+
 
         //navigation properties
 

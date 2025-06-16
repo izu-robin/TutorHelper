@@ -14,8 +14,12 @@
     </UserControl.DataContext>
 
     <Grid Margin="15">
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="139*"/>
+            <ColumnDefinition Width="453*"/>
+        </Grid.ColumnDefinitions>-->
 
-        <Border CornerRadius="0,20,20,0" >
+        <Border CornerRadius="0,20,20,0" Grid.ColumnSpan="2" >
 
             <Image Source="/Images/imgView.png"
                    Stretch="Fill" />
@@ -23,22 +27,17 @@
 
         <!--Дату конечно дорабатывать еще много и долго но пока пойдет-->
         <TextBlock Name="DateTextBlock" Text="{Binding DateToday}"
-                   FontSize="18"
+                   FontSize="20"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" 
-                   Margin="15,15,0,0" Width="254" Foreground="White" FontWeight="Bold" />
+                   Margin="15,15,0,0" Width="254" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2" />
 
-        <Grid Margin="15,40,15,15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="22*"/>
-                <ColumnDefinition Width="259*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Margin="15,40,15,15" >
             <Calendar Name="HomeViewCalendar" 
                       HorizontalAlignment="Left" 
-                      Margin="329,17,0,0" 
+                      Margin="374,17,0,0" 
                       VerticalAlignment="Top" 
                       IsTodayHighlighted="True"
-                       Grid.Column="1"
                       SelectedDate="{Binding SelectedDate, Mode=TwoWay}">
                 <!--SelectedDatesChanged="NewSelectedDate"-->
 
@@ -60,14 +59,16 @@
                   MinHeight="162" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                   >
 
-                <ListView Name="DatesLessonsTable" ItemsSource="{Binding DatesLessonsList}"
+                <ListView Name="DatesLessonsTable" 
+                          ItemsSource="{Binding DatesLessonsList}"
                           HorizontalAlignment="Center"
+                          Width="350"
                           >
-                    
+
                     <ListView.View>
-                        
-                        <GridView>
-                            
+
+                        <GridView >
+
                             <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding GroupID}"
                                             Width="60"
                                             >
@@ -76,15 +77,15 @@
                                             Width="70"
                                             TextBlock.TextAlignment="Center"/>
                             <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Notes}"
-                                            Width="160"
-                                            TextBlock.TextAlignment="Center"/>
-                            <GridViewColumn Header="Длит." DisplayMemberBinding="{Binding Duration}"
-                                            Width="50"
-                                            TextBlock.TextAlignment="Center"/>
+                                            Width="215"
+                                            />
+                            <!--<GridViewColumn Header="Длит." DisplayMemberBinding="{Binding Duration}"
+                                            Width="55"
+                                            TextBlock.TextAlignment="Center"/>-->
                         </GridView>
                     </ListView.View>
                 </ListView>
-                
+
 
                 <!--<DataGrid ItemsSource="{Binding Lessons}"  HorizontalAlignment="Left" 
                       Margin="0, 20, 0, 0" 
@@ -99,45 +100,152 @@
                       HorizontalGridLinesBrush="#549DC2"
                       VerticalGridLinesBrush="#549DC2" Grid.ColumnSpan="2"
                       >-->
-                <!--// как-то надо задать три колонки максимум, или размеры подогнать //-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              
 
 
 
             </Grid>
 
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+            
 
-          
+                <StackPanel Grid.Row="1"
+                            Margin="20">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text= "Время:" 
+                                   FontSize="14"
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="102"
+                                    FontWeight="Bold"
+                                    Margin="0,0,20,10"
+                                    HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="12:00" 
+                                 Width="130"
+                                 Height="20"
+                                 VerticalAlignment="Top"
+                                 Foreground="White"
+                                   FontSize="14"
+                                   
+                                 />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,0">
+                        <TextBlock Text= "Дата:" 
+                                   FontSize="14"
+                                Foreground="White"
+                                TextWrapping="Wrap" 
+                                Width="102"
+                                FontWeight="Bold"
+                                Margin="0,0,20,10"
+                                HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"/>
+                        <TextBlock Text="2025/07/18" 
+                                    Width="130"
+                                    Height="20"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    FontSize="14"
+         />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"  
+                                Margin="0,0,0,0">
+                        <TextBlock Text= "Длительность (мин):" 
+                                   FontSize="14"
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="102"
+                                    FontWeight="Bold"
+                                    Margin="0,0,20,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                        <TextBlock Text="60" 
+                                    Width="130"
+                                    Height="20"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    FontSize="14"
+         />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"  
+                       Margin="0,0,0,0">
+                        <TextBlock Text= "Состав группы:"
+                                   FontSize="14"
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="102"
+                                    FontWeight="Bold"
+                                    Margin="0,0,20,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                        <TextBlock Text="Хиханькин, Хаханькин" 
+                                    Width="258"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    FontSize="14" Height="47"
+                                    TextWrapping="Wrap"
+/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"  
+                       Margin="0,0,0,0">
+                        <TextBlock Text= "Заметки:" 
+                                   FontSize="14"
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="102"
+                                    FontWeight="Bold"
+                                    Margin="0,0,20,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                        <TextBlock Text="Подготовка к тесту по модулю" 
+                                    Width="258"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    FontSize="14"   
+                                    Height="58"
+                                    TextWrapping="Wrap"
+/>
+
+                    </StackPanel>
+
+
+                </StackPanel>
+                
+                
+                
+            </Grid>
             
-            
-            
-            
+
+
+
+
+
+
         </Grid>
 
-        
+
         <!--//тестовый лэйбл для проверки возвращаемой даты//-->
         <Label Name="tester"
          Height="35"
          Width="180"
-         Margin="370,100,0,160"
+         Margin="380,238,21,298"
          Foreground="white"
-         FontSize="20">
+         FontSize="20" Grid.Column="1">
             <TextBlock Text="{Binding ForTester, Mode=OneWay}" />
         </Label>
-        
+
     </Grid>
 
 </UserControl>

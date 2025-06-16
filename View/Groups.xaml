@@ -12,7 +12,7 @@
     <UserControl.DataContext>
         <vm:GroupsVM />
     </UserControl.DataContext>
-   
+
     <Grid Margin="15">
 
         <Border CornerRadius="0,20,20,0">
@@ -22,23 +22,369 @@
             </Border.Background>
         </Border>
 
+
+        <TextBlock Text="Активные группы: "
+           FontSize="20"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Top" 
+           Margin="15,15,0,0" 
+           Width="254" 
+           Foreground="White" 
+           FontWeight="Bold" />
+
         <Grid Margin="15,54,15,15">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Height="155" 
+                      Grid.Row="0"
+                      VerticalAlignment="Top"
+                      Margin="0,0,0,10">
+
+                <StackPanel Orientation="Horizontal">
+                <ListView ItemsSource="{Binding GroupsList}"
+                          Width="415">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" 
+                                                DisplayMemberBinding="{Binding Id}"
+                                                Width="42"/>
+                            <GridViewColumn Header="Состав группы" 
+                                                DisplayMemberBinding="{Binding Name}"
+                                                Width="220"/>
+
+                                <GridViewColumn Header="УМК" 
+                                                DisplayMemberBinding="{Binding группы}"
+                                                Width="150"/>
+
+                            </GridView>
+                    </ListView.View>
+                </ListView>
+
+                    <StackPanel >
+                        <Grid Margin="0"
+                              Height="160"
+                              Width="145">
+
+                            <StackPanel>
+
+                                <TextBlock Text= "Показать:" 
+                                            Foreground="White"
+                                            TextWrapping="Wrap"
+                                            FontWeight="Bold"
+                                            FontSize="14"
+                                            HorizontalAlignment="Center"
+                                            Margin="15,0,0,0" 
+                                            Height="20" 
+                                            Width="72"/>
+
+
+                                <Button x:Name="eeee"
+                                Content="Все занятия"
+                                Margin="16,5,0,5"
+                                Height="20"
+                                Width="128"
+                                Background="#A5CCE4"
+                                VerticalAlignment="Top">
+
+                                </Button>
+
+                                <Button x:Name="wwww"
+                                    Content="Будущие занятия"
+                                    Margin="16,5,0,5"
+                                    Height="20"
+                                    Width="128"
+                                    Background="#A5CCE4">
+
+                                </Button>
+
+                                <Button x:Name="kkkk"
+                                        Content="Прошедшие занятия"
+                                        Margin="16,5,0,5"
+                                        Height="20"
+                                        Width="128"
+                                        Background="#A5CCE4">
+
+                                </Button>
+
+                                <Button x:Name="qqqqe"
+                                        Content="Редактировать группу"
+                                        Margin="16,24,0,5"
+                                        Height="20"
+                                        Width="128"
+                                        Background="#A5CCE4">
+
+                                </Button>
+
+
+                            </StackPanel>
+
+
+                        </Grid>
+                    </StackPanel>
+
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Height="160"
+                        Width="275"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Padding="5,5,0,5"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2" 
+                        Margin="0,0,0,0"
+                        >
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text= "Редактировать группу:" 
+                                    Foreground="White"
+                                   
+                                    TextWrapping="Wrap"
+                                    FontWeight="Bold"
+                                    Margin="0,0,0,0" 
+                                    Height="20" Width="138"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text= "Добавить ученика: " 
+                            Foreground="White"
+                            TextWrapping="Wrap"
+                            FontWeight="Bold"
+                            Margin="0,0,0,0" 
+                            Height="20" Width="125"/>
+
+                            <ComboBox x:Name="hoho"
+                                        Height="20"
+                                        Width="130"
+                                        SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5">
+                            <TextBlock Text= "Удалить ученика: " 
+                            Foreground="White"
+                            TextWrapping="Wrap"
+                            FontWeight="Bold"
+                            Margin="0,0,0,0" 
+                            Height="20" Width="125"/>
+
+                            <ComboBox x:Name="hehe"
+                                        Height="20"
+                                        Width="130"
+                                        SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0">
+                            <TextBlock Text= "УМК: " 
+                                       Foreground="White"
+                                       TextWrapping="Wrap"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,0" 
+                                       Height="20" Width="125"/>
+
+                            <ComboBox x:Name="hihi"
+                                      Height="20"
+                                      Width="130"
+                                      SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5,0,0">
+                            <TextBlock Text= "Тариф: " 
+                                    Foreground="White"
+                                    TextWrapping="Wrap"
+                                    FontWeight="Bold"
+                                    Margin="0,0,0,0" 
+                                    Height="20" 
+                                    Width="125"/>
+
+                            <ComboBox x:Name="haha"
+                                   Height="20"
+                                   Width="130"
+                                   SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <Button x:Name="SaveChanges"
+                                Content="Сохранить изменения"
+                                Margin="0,7,0,0"
+                                Width="140"
+                                Background="#A5CCE4">
+
+                        </Button>
+
+
+                    </StackPanel>
+
+                </Border>
+
+                
+                
+                
+                
+                
+                <Border Grid.Column="1"
+                        Height="160"
+                        Width="275"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Padding="4,0,0,0"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2" 
+                        Margin="5,0,0,0">
+
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text= "Создать группу:" 
+                                    Foreground="White"
+                                    TextWrapping="Wrap"
+                                    FontWeight="Bold"
+                                    Margin="0,0,0,0" 
+                                    Height="20" 
+                                   Width="138"/>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text= "Добавить ученика: " 
+                                        Foreground="White"
+                                        TextWrapping="Wrap"
+                                        FontWeight="Bold"
+                                        Margin="0,0,0,0" 
+                                        Height="20" Width="125"/>
+
+                            <ComboBox x:Name="oooooo"
+                                        Height="20"
+                                        Width="130"
+                                        SelectedItem="0"/>
+
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,5">
+                            <TextBlock Text= "УМК: " 
+                                       Foreground="White"
+                                       TextWrapping="Wrap"
+                                       FontWeight="Bold"
+                                       Margin="0,5,0,0" 
+                                       Height="20" Width="125"/>
+
+                            <ComboBox x:Name="ooo"
+                                      Height="20"
+                                      Width="130"
+                                      SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                            <TextBlock Text= "Тариф: " 
+                                    Foreground="White"
+                                    TextWrapping="Wrap"
+                                    FontWeight="Bold"
+                                    Margin="0,0,0,0" 
+                                    Height="20" 
+                                    Width="125"/>
+
+                            <ComboBox x:Name="eee"
+                                   Height="20"
+                                   Width="130"
+                                   SelectedItem="0"/>
+
+                        </StackPanel>
+
+                        <Button x:Name="Sqq"
+                                Content="Сохранить изменения"
+                                Margin="0,30,0,0"
+                                Width="140"
+                                Background="#A5CCE4">
+
+                        </Button>
+
+
+                    </StackPanel>
+
+                </Border>
 
 
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+            </Grid>
+
+
+            <Grid Grid.Row="2"
+                  VerticalAlignment="Top"
+                  Margin="0,5,0,0">
+
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>-->
+
+                <ListView Height="150">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"
+                                            DisplayMemberBinding="{Binding Id}"
+                                            Width="50"/>
+                            <GridViewColumn Header="Дата" 
+                                            DisplayMemberBinding="{Binding Name}"
+                                            Width="80"/>
+
+                            <GridViewColumn Header="Время" 
+                                            DisplayMemberBinding="{Binding группы}"
+                                            Width="80"/>
+                            <GridViewColumn Header="Заметки" 
+                                            DisplayMemberBinding="{Binding долги}"
+                                            Width="150"/>
+                            <GridViewColumn Header="Следующее занятие" 
+                                            DisplayMemberBinding="{Binding долги}"
+                                            Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+
+
+
+
+
+
+
+            </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,5 +411,5 @@
         </Grid>-->
 
     </Grid>
-    
+
 </UserControl>

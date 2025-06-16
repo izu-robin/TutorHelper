@@ -11,16 +11,11 @@ namespace TutorHelper.ViewModel
     {
 
         private readonly PageModel _pageModel;
-        public bool Settings
-        {
-            get { return _pageModel.LocationStatus; }
-            set { _pageModel.LocationStatus = value; OnPropertyChanged(); }
-        }
+        
 
         public SettingsVM()
         {
-            _pageModel = new PageModel();
-            Settings = true;
+            
         }
 
     }

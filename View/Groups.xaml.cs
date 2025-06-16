@@ -24,5 +24,6 @@ namespace TutorHelper.View
         {
             InitializeComponent();
         }
+
     }
 }

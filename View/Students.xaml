@@ -12,17 +12,30 @@
     <UserControl.DataContext>
         <vm:StudentsVM />
     </UserControl.DataContext>
-    
+
 
     <Grid Margin="15">
 
+
+        
         <Border CornerRadius="0,20,20,0">
             <Border.Background>
                 <ImageBrush ImageSource="/Images/imgStudents.png"
                             Stretch="Fill" />
             </Border.Background>
-             
+
         </Border>
+
+        <Grid Grid.Row="0">
+        <TextBlock Text="Все ученики: "
+                   FontSize="20"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" 
+                   Margin="15,20,0,0" 
+                   Width="254" 
+                   Foreground="White" 
+                   FontWeight="Bold" />
+        </Grid>
 
         <Grid Margin="15,54,15,15">
 
@@ -31,23 +44,204 @@
                 <ListView ItemsSource="{Binding StudentsList}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"
+                            <GridViewColumn Header="ID" 
+                                            DisplayMemberBinding="{Binding Id}"
+                                            Width="42"/>
+                            <GridViewColumn Header="Имя" 
+                                            DisplayMemberBinding="{Binding Name}"
                                             Width="100"/>
-                            <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"
-                                            Width="200"/>
-                            <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Surname}"
-                                            Width="200"/>
+                            <GridViewColumn Header="Фамилия" 
+                                            DisplayMemberBinding="{Binding Surname}"
+                                            Width="110"/>
+                            <GridViewColumn Header="Группы" 
+                                            DisplayMemberBinding="{Binding группы}"
+                                            Width="150"/>
+                            <GridViewColumn Header="Неопл. занятия" 
+                                            DisplayMemberBinding="{Binding долги}"
+                                            Width="150"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </Grid>
+
+            
+            <!--//  Нижняя панель вся //-->
+            <Grid Margin="0,220,0,187"
+                  Width="335"
+                  HorizontalAlignment="Left">
+
+                <Border HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="95"
+                        Width="335"
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2"
+                        Padding="10">
+
+                    <TextBlock Text= "Найти все занятия ученика:" 
+                                Foreground="White"
+                                TextWrapping="Wrap" 
+                                Width="180"
+                                FontWeight="Bold"
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Left"/>
+
+                </Border>
+                <StackPanel Orientation="Horizontal">
+
+                    <CheckBox Content="Оплаченные"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="10,0,0,0"
+                              Foreground="White"
+                              FontSize="12"/>
+
+                    <CheckBox Content="Оплаченные"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="10,0,0,0"
+                              Foreground="White"
+                              FontSize="12"/>
+
+                    <CheckBox Content="Посещенные"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="10,0,0,0"
+                              Foreground="White"
+                              FontSize="12"/>
+
+                </StackPanel>
+
+                <Button Content="Найти"
+                        Height="20"
+                        Margin="10,60,10,10"
+                        Background="#A5CCE4"/>
+
+
+            </Grid>
+
+            
+
+            <Grid Margin=" 0,330,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--//  Нижняя таблица //-->
+                <ListView x:Name="StudentsLessonsView"
+                          ItemsSource="{Binding Lessons}"
+                          SelectionMode="Single">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID зан."
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="42">
+                            </GridViewColumn>
+                            <GridViewColumn Header="Дата"
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="47"/>
+                            <GridViewColumn Header="Время"
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="47"/>
+                            <GridViewColumn Header="Группа"
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="50"/>
+                            <GridViewColumn Header="Присутствие"
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="75"/>
+                            <GridViewColumn Header="Оплачено"
+                                        DisplayMemberBinding="{Binding Id}"
+                                        Width="70"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
 
 
+            <!--// коробка с кнопками //-->
+            <Border
+                        Height="281"
+                        Width="205"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom" 
+                        BorderBrush="#A5CCE4"
+                        BorderThickness="2"
+                        Padding="10">
+                <StackPanel>
+                    <StackPanel>
+                        
+                        <TextBlock Text= "Добавить/редактировать ученика:" 
+                                   Foreground="White"
+                                   TextWrapping="Wrap" 
+                                   Width="180"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock Text= "Имя" 
+                                   Foreground="White"
+                                   Width="180"
+                                   Margin="5"/>
+                        <TextBox Text="Имя" 
+                                 Margin="0"/>
+                        
+                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
 
+                        <TextBlock Text= "Фамилия" 
+                                   Foreground="White"
+                                   Width="180"
+                                   Margin="5,7"/>
+                        
+                        <TextBox    Text="Фамилия" 
+                                    Margin="0"/>
+
+                        <TextBlock Text= "Добавить в группу или создать новую"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"
+                                   Width="180"
+                                   Margin="5,10"/>
+                        <ComboBox x:Name="GroupNumberOrNew"
+                                  Height="20"
+                                  SelectedItem="0"/>
+
+                        <Button x:Name="SaveChanges"
+                                Content="Сохранить изменения"
+                                Margin="0,15,0,0"
+                                Background="#A5CCE4">
+
+                        </Button>
+                        
+                    </StackPanel>
+
+
+
+                     
+
+                     
+
+
+                    
+
+                    
+                    
+
+
+                    <!--<Button x:Name="ShowAttended"
+                            Content="Показать посещенные"
+                            Margin="5,10,5,3"
+                            Background="#A5CCE4">
+
+                    </Button>-->
+
+                </StackPanel>
+                
+            </Border>
 
         </Grid>
-        
+
 
         <!--<TextBlock Text="Номер ученика  :"
                    Foreground="#DBDBDB"
@@ -64,5 +258,5 @@
                    Margin="160,138,0,0" />-->
 
     </Grid>
-    
+
 </UserControl>

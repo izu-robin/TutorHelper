@@ -9,12 +9,10 @@
         Title="MainWindow" 
         Height="600" 
         Width="850"
-        AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
-        Background="Transparent">
+        Background="Transparent" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
     <!--//вот без строки xmlns:Menu=... не отображалось ничего-->
-    
+
     <Window.DataContext>
         <vm:NavigationVM />
     </Window.DataContext>
@@ -26,11 +24,11 @@
 
         <Border Background="#243c70"
                 CornerRadius="20" />
-        
-        
+
+
 
         <Grid>
-            
+
             <!--//Base Grid //-->
 
             <Grid.ColumnDefinitions>
