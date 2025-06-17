@@ -70,11 +70,18 @@
 
                 <Grid Grid.Row="1"
                       VerticalAlignment="Top"
-                      Margin="5,5,0,0" Height="160">
+                      Margin="0" Height="160">
 
-                    <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Padding="5"
+                                BorderBrush="#A5CCE4"
+                                BorderThickness="2" Width="277" >
+                            <StackPanel Width="270">
 
-                        <TextBlock Text= "Добавить/редактировать УМК:" 
+
+
+
+                                <TextBlock Text= "Редактировать УМК:" 
                                    Foreground="White"
                                    TextWrapping="Wrap" 
                                    Width="281"
@@ -82,50 +89,118 @@
                                    HorizontalAlignment="Left"
                                    Margin="0,0,0,10"/>
 
-                        <StackPanel Orientation="Horizontal" >
+                                <StackPanel Orientation="Horizontal" >
 
-                            <TextBlock Text= "Название: " 
+                                    <TextBlock Text= "Название: " 
                                            Foreground="White"
                                            TextWrapping="Wrap" 
-                                           Width="115"
+                                           Width="84"
                                            FontWeight="Bold"
                                            VerticalAlignment="Center" 
                                            Margin="0,8,0,10"/>
 
-                            <TextBox    Text="Spotlight" 
+                                    <TextBox    Text="Spotlight" 
                                         Margin="0"
                                         Height="20"
-                                        Width="180"
-                                        HorizontalAlignment="Left"/>
+                                        Width="171"/>
 
-                        </StackPanel>
+                                </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" >
+                                <StackPanel Orientation="Horizontal" >
 
-                            <TextBlock Text= "Уровень: " 
+                                    <TextBlock Text= "Уровень: " 
                                        Foreground="White"
                                        TextWrapping="Wrap" 
-                                       Width="115"
+                                       Width="85"
                                        FontWeight="Bold"
                                        VerticalAlignment="Center" 
                                        Margin="0,8,0,10"/>
 
-                            <TextBox    Text="Pre-Intermediate" 
+                                    <TextBox    Text="Pre-Intermediate" 
                                         Margin="0"
                                         Height="20"
-                                        Width="180"
-                                        HorizontalAlignment="Left"/>
+                                        Width="171"/>
 
-                        </StackPanel>
+                                </StackPanel>
 
-                        <Button x:Name="SaveTextbook"
-                                Content="Сохранить УМК"
-                                Width="295"
+                                <Button x:Name="SaveRedactedTextbook"
+                                Content="Сохранить редактированный УМК"
+                                Width="258"
                                 Height="20"
                                 Margin="0,15,0,0"
                                 HorizontalAlignment="Left"
                                 Background="#A5CCE4"/>
 
+
+
+                            </StackPanel>
+                        </Border>
+
+                        <Border Padding="5"
+                                BorderBrush="#A5CCE4"
+                                BorderThickness="2" 
+                                Width="275" 
+                                Margin="10,0,0,0">
+                            <StackPanel Width="270">
+
+                                <TextBlock Text= "Добавить УМК:" 
+                                           Foreground="White"
+                                           TextWrapping="Wrap" 
+                                           Width="281"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Left"
+                                           Margin="0,0,0,10"/>
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock Text= "Название: " 
+                                               Foreground="White"
+                                               TextWrapping="Wrap" 
+                                               Width="84"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Center" 
+                                               Margin="0,8,0,10"/>
+
+                                    <TextBox    Text="Spotlight" 
+                                                Margin="0"
+                                                Height="20"
+                                                Width="171"/>
+
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock Text= "Уровень: " 
+                                               Foreground="White"
+                                               TextWrapping="Wrap" 
+                                               Width="85"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Center" 
+                                               Margin="0,8,0,10"/>
+
+                                    <TextBox    Text="Pre-Intermediate" 
+                                                Margin="0"
+                                                Height="20"
+                                                Width="171"/>
+
+                                </StackPanel>
+
+                                <Button x:Name="SaveNewTextbook"
+                                        Content="Сохранить новый УМК"
+                                        Width="258"
+                                        Height="20"
+                                        Margin="0,15,0,0"
+                                        HorizontalAlignment="Left"
+                                        Background="#A5CCE4"/>
+
+
+
+
+
+
+
+                            </StackPanel>
+                        </Border>
 
 
                     </StackPanel>

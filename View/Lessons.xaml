@@ -189,18 +189,18 @@
                 </Border>
 
                 <Border Grid.Column="2"
-                        Height="155"
+                        Height="199"
                         Width="268"
-                        HorizontalAlignment="Left"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         Padding="10"
                         BorderBrush="#A5CCE4"
-                        BorderThickness="2" Margin="6,252,0,0">
+                        BorderThickness="2" Margin="0,252,0,0">
 
                     <StackPanel>
                         <Label Content="Присутствие: "
                                Foreground="White"/>
-                        <ListView Height="105" >
+                        <ListView Height="150" >
                             <ListView.View>
                                 <GridView >
                                     <!--DisplayMemberBinding="{Binding Date}"-->
@@ -213,7 +213,7 @@
                                                     Width="60"/>
                                 </GridView>
                             </ListView.View>
-                        </ListView>   
+                        </ListView>
 
 
 
@@ -225,15 +225,9 @@
 
                 <!--Command="{Binding SaveLessonsCommand}"-->
 
-                <Button Content="Сохранить изменения"
-                            
-                            Padding="10,5"
-                            Height="30"
-                            Width="268" 
-                            Background="#A5CCE4"    
-                            Margin="6,421,7,50" Grid.Column="2"/>
 
-                <Button Content="Добавить занятие"
+
+                <Button Content="Сохранить изменения"
                         Padding="10,5"
                         Height="30"
                         Width="268" 

@@ -100,7 +100,7 @@
                       HorizontalGridLinesBrush="#549DC2"
                       VerticalGridLinesBrush="#549DC2" Grid.ColumnSpan="2"
                       >-->
-              
+
 
 
 
@@ -111,12 +111,20 @@
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
-            
 
-                <StackPanel Grid.Row="1"
-                            Margin="20">
-                    <StackPanel Orientation="Horizontal" >
-                        <TextBlock Text= "Время:" 
+
+
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1" >
+
+
+                    <StackPanel  
+                                 Margin="5,5,0,5"
+                                 Width="342"
+                                 HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text= "Время:" 
                                    FontSize="14"
                                     Foreground="White"
                                     TextWrapping="Wrap" 
@@ -126,7 +134,7 @@
                                     HorizontalAlignment="Left"
                                    VerticalAlignment="Center"/>
 
-                        <TextBlock Text="12:00" 
+                            <TextBlock Text="12:00" 
                                  Width="130"
                                  Height="20"
                                  VerticalAlignment="Top"
@@ -134,11 +142,11 @@
                                    FontSize="14"
                                    
                                  />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 Margin="0,0,0,0">
-                        <TextBlock Text= "Дата:" 
+                            <TextBlock Text= "Дата:" 
                                    FontSize="14"
                                 Foreground="White"
                                 TextWrapping="Wrap" 
@@ -147,18 +155,18 @@
                                 Margin="0,0,20,10"
                                 HorizontalAlignment="Left"
                                    VerticalAlignment="Top"/>
-                        <TextBlock Text="2025/07/18" 
+                            <TextBlock Text="2025/07/18" 
                                     Width="130"
                                     Height="20"
                                     VerticalAlignment="Top"
                                     Foreground="White"
                                     FontSize="14"
          />
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"  
+                        <StackPanel Orientation="Horizontal"  
                                 Margin="0,0,0,0">
-                        <TextBlock Text= "Длительность (мин):" 
+                            <TextBlock Text= "Длительность (мин):" 
                                    FontSize="14"
                                     Foreground="White"
                                     TextWrapping="Wrap" 
@@ -167,7 +175,7 @@
                                     Margin="0,0,20,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"/>
-                        <TextBlock Text="60" 
+                            <TextBlock Text="60" 
                                     Width="130"
                                     Height="20"
                                     VerticalAlignment="Top"
@@ -175,11 +183,11 @@
                                     FontSize="14"
          />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"  
+                        <StackPanel Orientation="Horizontal"  
                        Margin="0,0,0,0">
-                        <TextBlock Text= "Состав группы:"
+                            <TextBlock Text= "Состав группы:"
                                    FontSize="14"
                                     Foreground="White"
                                     TextWrapping="Wrap" 
@@ -188,19 +196,19 @@
                                     Margin="0,0,20,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"/>
-                        <TextBlock Text="Хиханькин, Хаханькин" 
-                                    Width="258"
+                            <TextBlock Text="Хиханькин, Хаханькин" 
+                                    Width="202"
                                     VerticalAlignment="Top"
                                     Foreground="White"
                                     FontSize="14" Height="47"
                                     TextWrapping="Wrap"
 />
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"  
+                        <StackPanel Orientation="Horizontal"  
                        Margin="0,0,0,0">
-                        <TextBlock Text= "Заметки:" 
+                            <TextBlock Text= "Заметки:" 
                                    FontSize="14"
                                     Foreground="White"
                                     TextWrapping="Wrap" 
@@ -209,8 +217,8 @@
                                     Margin="0,0,20,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"/>
-                        <TextBlock Text="Подготовка к тесту по модулю" 
-                                    Width="258"
+                            <TextBlock Text="Подготовка к тесту по модулю" 
+                                    Width="202"
                                     VerticalAlignment="Top"
                                     Foreground="White"
                                     FontSize="14"   
@@ -218,15 +226,83 @@
                                     TextWrapping="Wrap"
 />
 
+                        </StackPanel>
+
+
                     </StackPanel>
 
+                    <Border  Margin="25,0,0,50"
+                             BorderBrush="#A5CCE4"
+                             BorderThickness="2" 
+                             Width="180"
+                             Height="233"
+                             VerticalAlignment="Top">
 
+                        <StackPanel>
+                            <TextBlock Text= "Добавить занятие:" 
+                                       Foreground="White"
+                                       TextWrapping="Wrap" 
+                                       Width="180"
+                                       FontWeight="Bold"
+                                       Margin="5"/>
+
+                            <TextBlock Text= "Дата" 
+                                          Foreground="White"
+                                          Width="180"
+                                          Margin="5"/>
+                            <TextBox Text="2025/12/31" 
+                                     Width="160"
+                                     Height="20"
+                                     Margin="0"/>
+
+                            <TextBlock Text= "Время" 
+                                          Foreground="White"
+                                          Width="180"
+                                          Margin="5"/>
+                            <TextBox Text="16:00" 
+                                     Margin="0"
+                                     Width="160"
+                                     Height="20"/>
+
+                            <TextBlock Text="Группа" 
+                                          Foreground="White"
+                                          Margin="5"/>
+
+                            <ComboBox Width="160"
+                                         Height="20">
+
+                            </ComboBox>
+
+                            <Button x:Name="SaveNewLesson"
+                                       Content="Сохранить изменения"
+                                       Margin="0,30,0,0"
+                                    Width="160"
+                                    Height="25"
+                                       Background="#A5CCE4">
+
+                            </Button>
+
+
+
+
+
+
+
+
+                        </StackPanel>
+                        
+                        
+                        
+                        
+                        
+                    </Border>
                 </StackPanel>
-                
-                
-                
+
+
+
+
             </Grid>
-            
+
 
 
 
@@ -237,14 +313,14 @@
 
 
         <!--//тестовый лэйбл для проверки возвращаемой даты//-->
-        <Label Name="tester"
+        <!--<Label Name="tester"
          Height="35"
          Width="180"
          Margin="380,238,21,298"
          Foreground="white"
          FontSize="20" Grid.Column="1">
             <TextBlock Text="{Binding ForTester, Mode=OneWay}" />
-        </Label>
+        </Label>-->
 
     </Grid>
 

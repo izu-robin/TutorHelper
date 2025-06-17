@@ -41,29 +41,84 @@
 
             <Grid Height="200"
                   VerticalAlignment="Top">
-                <ListView ItemsSource="{Binding StudentsList}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="ID" 
+                <StackPanel Orientation="Horizontal">
+                    <ListView ItemsSource="{Binding StudentsList}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" 
                                             DisplayMemberBinding="{Binding Id}"
                                             Width="42"/>
-                            <GridViewColumn Header="Имя" 
+                                <GridViewColumn Header="Имя" 
                                             DisplayMemberBinding="{Binding Name}"
                                             Width="100"/>
-                            <GridViewColumn Header="Фамилия" 
+                                <GridViewColumn Header="Фамилия" 
                                             DisplayMemberBinding="{Binding Surname}"
                                             Width="110"/>
-                            <GridViewColumn Header="Группы" 
+                                <GridViewColumn Header="Группы" 
                                             DisplayMemberBinding="{Binding группы}"
-                                            Width="150"/>
-                            <GridViewColumn Header="Неопл. занятия" 
-                                            DisplayMemberBinding="{Binding долги}"
-                                            Width="150"/>
+                                            Width="73"/>
 
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
+                    <Border  Height="200"
+                             Width="206"
+                             Margin="20,0,0,0"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Top" 
+                             BorderBrush="#A5CCE4"
+                             BorderThickness="2"
+                             Padding="10">
+
+                        <StackPanel>
+                            <TextBlock Text= "Добавить ученика:" 
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="180"
+                                    FontWeight="Bold"
+                                    Margin="0,0,0,0"/>
+
+                            <TextBlock Text= "Имя" 
+                                       Foreground="White"
+                                       Width="180"
+                                       Margin="4"/>
+                            <TextBox Text="Имя" 
+                                     Margin="0"/>
+                            
+                            <TextBlock Text= "Фамилия" 
+                                       Foreground="White"
+                                       Width="180"
+                                       Margin="4"/>
+                            <TextBox Text="Фамилия" 
+                                     Margin="0"/>
+
+                            <TextBlock Text="Добавить в группу" 
+                                       Foreground="White"
+                                       Margin="4"/>
+                            
+                            <ComboBox Width="180"
+                                      Height="20">
+                                
+                            </ComboBox>
+
+                            <Button x:Name="SaveNewStudent"
+                                    Content="Сохранить изменения"
+                                    Margin="0,10,0,0"
+                                    Background="#A5CCE4">
+
+                            </Button>
+
+
+
+                        </StackPanel>
+
+                    </Border>
+                    
+                    
+
+
+                </StackPanel>
             </Grid>
 
             
@@ -174,7 +229,7 @@
                 <StackPanel>
                     <StackPanel>
                         
-                        <TextBlock Text= "Добавить/редактировать ученика:" 
+                        <TextBlock Text= "Редактировать ученика:" 
                                    Foreground="White"
                                    TextWrapping="Wrap" 
                                    Width="180"
@@ -193,23 +248,32 @@
                         <TextBlock Text= "Фамилия" 
                                    Foreground="White"
                                    Width="180"
-                                   Margin="5,7"/>
+                                   Margin="5"/>
                         
                         <TextBox    Text="Фамилия" 
                                     Margin="0"/>
 
-                        <TextBlock Text= "Добавить в группу или создать новую"
+                        <TextBlock Text= "Добавить в группу"
                                    TextWrapping="Wrap"
                                    Foreground="White"
                                    Width="180"
-                                   Margin="5,10"/>
+                                   Margin="5"/>
                         <ComboBox x:Name="GroupNumberOrNew"
+                                  Height="20"
+                                  SelectedItem="0"/>
+
+                        <TextBlock Text= "Удалить из группы"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"
+                                   Width="180"
+                                   Margin="5"/>
+                        <ComboBox x:Name="GrNuerOrNew"
                                   Height="20"
                                   SelectedItem="0"/>
 
                         <Button x:Name="SaveChanges"
                                 Content="Сохранить изменения"
-                                Margin="0,15,0,0"
+                                Margin="0,20,0,0"
                                 Background="#A5CCE4">
 
                         </Button>
