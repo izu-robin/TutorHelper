@@ -11,7 +11,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\MainWindow.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Groups.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Home.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Lessons.g.cs
-L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricing.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Settings.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Students.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Textbooks.g.cs
@@ -25,7 +24,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\Utilities\DataTempl
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Groups.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Home.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Lessons.baml
-L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricing.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Settings.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Students.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Textbooks.baml
@@ -69,3 +67,5 @@ L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\runtimes\win-x64\na
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHel.FAC657B0.Up2Date
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\DataAccess\DataAccess.cs
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricings.g.cs
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricings.baml

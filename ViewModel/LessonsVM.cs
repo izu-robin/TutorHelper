@@ -59,7 +59,7 @@ namespace TutorHelper.ViewModel
                 LoadDataToggleBtn();
             }
         }
-        public ICommand LoadDataToggleCommand => new RelayCommand((parameter)  =>
+        public ICommand LoadDataToggleCommand => new RelayCommand(() => //(parameter)
         {
             IsDataToggled = !IsDataToggled;
         });

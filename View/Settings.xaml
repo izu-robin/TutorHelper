@@ -173,11 +173,16 @@
 
 
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox Width="300"
-                                    HorizontalAlignment="Left"
-                                    Margin="15,10,0,0"/>
+                        <ComboBox ItemsSource="{Binding AllRatesList}"
+                                  SelectedItem="{Binding SelectedRate}"
+                                  DisplayMemberPath="Title"
+                                  SelectedValuePath="Id"
+                                  Width="300"
+                                  HorizontalAlignment="Left"
+                                  Margin="15,10,0,0" />
 
                         <Button Content="Удалить"
+                                Command="{Binding DeleteRateCommand}"
                                 Background="#A5CCE4" 
                                 Width="200"
                                 Margin="15,10,0,0"

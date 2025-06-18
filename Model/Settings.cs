@@ -8,5 +8,14 @@ namespace TutorHelper.Model
 {
     class Settings
     {
+
+
+
+
+
+
+
+
+
     }
 }

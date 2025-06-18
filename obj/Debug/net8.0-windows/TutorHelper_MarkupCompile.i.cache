@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 L:\Programming\Codin\C#\TutorHelper\App.xaml
-1369286381
+13-1450313292
 
-36-2108011356
+36191536831
 202-89752898
-MainWindow.xaml;Styles\Button.xaml;Styles\Image.xaml;Styles\Page.xaml;Styles\Text.xaml;Utilities\DataTemplate.xaml;View\Groups.xaml;View\Home.xaml;View\Lessons.xaml;View\Pricing.xaml;View\Settings.xaml;View\Students.xaml;View\Textbooks.xaml;
+MainWindow.xaml;Styles\Button.xaml;Styles\Image.xaml;Styles\Page.xaml;Styles\Text.xaml;Utilities\DataTemplate.xaml;View\Groups.xaml;View\Home.xaml;View\Lessons.xaml;View\Pricings.xaml;View\Settings.xaml;View\Students.xaml;View\Textbooks.xaml;
 
-False
+True
 

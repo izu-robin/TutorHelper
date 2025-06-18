@@ -46,22 +46,31 @@
                         VerticalAlignment="Top"
                         Margin="0,0,0,10">
 
-                    <ListView ItemsSource="{Binding GroupsList}">
+                    <ListView ItemsSource="{Binding TextbooksList}"
+                              SelectionMode="Single"
+                              SelectedItem="{Binding SelectedTextbook}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="TextBlock.TextWrapping" Value="NoWrap"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" 
                                     DisplayMemberBinding="{Binding Id}"
-                                    Width="42"/>
+                                    Width="90"/>
                                 <GridViewColumn Header="Название УМК" 
-                                DisplayMemberBinding="{Binding Name}"
-                                Width="220"/>
+                                DisplayMemberBinding="{Binding Title}"
+                                Width="230"/>
 
+
+                                <!--DisplayMemberBinding="{Binding Values}"-->
+                                
+                                
                                 <GridViewColumn Header="Уровень" 
-                                DisplayMemberBinding="{Binding группы}"
-                                Width="150"/>
-                                <GridViewColumn Header="Работающие группы" 
-                                DisplayMemberBinding="{Binding долги}"
-                                Width="150"/>
+                                DisplayMemberBinding="{Binding Level}"
+                                Width="230"/>
+ 
 
                             </GridView>
                         </ListView.View>
@@ -99,10 +108,10 @@
                                            VerticalAlignment="Center" 
                                            Margin="0,8,0,10"/>
 
-                                    <TextBox    Text="Spotlight" 
-                                        Margin="0"
-                                        Height="20"
-                                        Width="171"/>
+                                    <TextBox    Text="{Binding CurrentEditableTextbook.Title, Mode=TwoWay}" 
+                                                Margin="0"
+                                                Height="20"
+                                                Width="171"/>
 
                                 </StackPanel>
 
@@ -116,7 +125,7 @@
                                        VerticalAlignment="Center" 
                                        Margin="0,8,0,10"/>
 
-                                    <TextBox    Text="Pre-Intermediate" 
+                                    <TextBox    Text="{Binding CurrentEditableTextbook.Level, Mode=TwoWay}" 
                                         Margin="0"
                                         Height="20"
                                         Width="171"/>
@@ -124,6 +133,7 @@
                                 </StackPanel>
 
                                 <Button x:Name="SaveRedactedTextbook"
+                                        Command="{Binding SaveEditedTextbookCommand}"
                                 Content="Сохранить редактированный УМК"
                                 Width="258"
                                 Height="20"
@@ -161,7 +171,7 @@
                                                VerticalAlignment="Center" 
                                                Margin="0,8,0,10"/>
 
-                                    <TextBox    Text="Spotlight" 
+                                    <TextBox    Text="{Binding NewTextbook.Title, Mode=TwoWay}"
                                                 Margin="0"
                                                 Height="20"
                                                 Width="171"/>
@@ -178,7 +188,7 @@
                                                VerticalAlignment="Center" 
                                                Margin="0,8,0,10"/>
 
-                                    <TextBox    Text="Pre-Intermediate" 
+                                    <TextBox    Text="{Binding NewTextbook.Level, Mode=TwoWay}" 
                                                 Margin="0"
                                                 Height="20"
                                                 Width="171"/>
@@ -186,6 +196,7 @@
                                 </StackPanel>
 
                                 <Button x:Name="SaveNewTextbook"
+                                        Command="{Binding CreateNewTextbookCommand}"
                                         Content="Сохранить новый УМК"
                                         Width="258"
                                         Height="20"

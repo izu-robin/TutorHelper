@@ -8,10 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using TutorHelper.View;
 using TutorHelper.ViewModel;
+using TutorHelper.Model;
 using TutorHelper.Model.Core;
 using static TutorHelper.ViewModel.StudentsVM;
 using System.IO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Web;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Windows.Controls.Primitives;
+using System.Security.Cryptography;
 
 
 namespace TutorHelper.DataAccess
@@ -22,27 +28,27 @@ namespace TutorHelper.DataAccess
 
         //public static string ConnectionString = "Data Source=L:\\Programming\\Codin\\C#\\TutorHelper\\DataAccess\\TutorHelperDB.db";
         public static string ConnectionString = "Data Source=DataAccess\\TutorHelperDB.db";
-                                                //Solved - Debug directory set to project folder, what should I do in release though?
+        //Solved - Debug directory set to project folder, what should I do in release though?
 
         //get all students - for (Students View)
         public static List<Student> GetStudents()
         {
-                var students = new List<Student>();
+            var students = new List<Student>();
 
-                using var connection = new SqliteConnection(ConnectionString);
-                connection.Open();
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
 
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Student";
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Student";
 
-                using var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    students.Add(new Student { Id = reader.GetInt32(0), 
-                                               Name = reader.GetString(1), 
-                                               Surname = reader.GetString(2) });
-                }
-                return students;
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                students.Add(new Student { Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    Surname = reader.GetString(2) });
+            }
+            return students;
         }
 
         //get all future (not yet) lessons for (Lessons View)
@@ -58,7 +64,7 @@ namespace TutorHelper.DataAccess
             command.CommandText = "SELECT * FROM Lesson";
 
             using var reader = command.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
                 Lesson mid = new Lesson();
                 mid.Id = reader.GetInt32(0);
@@ -75,7 +81,7 @@ namespace TutorHelper.DataAccess
                 else
                     mid.Duration = 60;
 
-                    lessons.Add(mid);
+                lessons.Add(mid);
             }
             return lessons;
         }
@@ -95,7 +101,7 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate +"'"+ " ORDER BY Lesson.Time ASC";
+            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate + "'" + " ORDER BY Lesson.Time ASC";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
@@ -130,6 +136,132 @@ namespace TutorHelper.DataAccess
             return answ;
         }
 
+        //загрузка списка учебников для PricingVM
+        public static List<Rate> LoadPricings()
+        {
+            var pricings = new List<Rate>();
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Pricing";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                pricings.Add(new Rate { Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Price = reader.GetInt32(2) });
+            }
+            return pricings;
+
+
+        }
+
+        public static List<TBook> LoadTextbooks()
+        {
+            var textbooks = new List<TBook>();
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "Select Textbook.TextbookID, Textbook.Title, Textbook.Level, GROUP_CONCAT(Groups.GroupID, '___') FROM Textbook left join Groups on Textbook.TextbookID = Groups.TextbookID GROUP by Textbook.TextbookID";
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                TBook mid = new TBook();
+
+                mid.Id = reader.GetInt32(0);
+                mid.Title = reader.GetString(1);
+                mid.Level = reader.GetString(2);
+
+                textbooks.Add(mid);
+            }
+
+            return textbooks;
+        }
+
+
+
+
+
+        public static void UpdateRate(Rate r)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "UPDATE Pricing SET Title = @Title, HourRate = @Price WHERE PricingID = @Id";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Title", r.Title);
+                    cmd.Parameters.AddWithValue("@Price", r.Price);
+                    cmd.Parameters.AddWithValue("@Id", r.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void UpdateTextbook(TBook t)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "UPDATE Textbook SET Title = @Title, Level = @Level WHERE TextbookID = @Id";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Title", t.Title);
+                    cmd.Parameters.AddWithValue("@Level", t.Level);
+                    cmd.Parameters.AddWithValue("@Id", t.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static int AddTextbook(TBook newTBook)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "INSERT INTO Textbook (Title, Level) VALUES (@Title, @Level); "
+                           + "SELECT last_insert_rowid();";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Title", newTBook.Title);
+                    cmd.Parameters.AddWithValue("@Level", newTBook.Level);
+
+                    //выполнит и вернет айдишник нового учебника
+                    //почему ExecuteScalar а не NonQuery???
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        public static int AddRate(Rate r)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "INSERT INTO Pricing (Title, HourRate) VALUES (@Title, @HourRate); "
+                           + "SELECT last_insert_rowid();";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Title", r.Title);
+                    cmd.Parameters.AddWithValue("@HourRate", r.Price);
+
+
+                    //выполнит и вернет айдишник нового тарифа 
+                    //почему ExecuteScalar а не NonQuery???
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
 
 
 
@@ -140,7 +272,33 @@ namespace TutorHelper.DataAccess
 
 
 
+        }
 
+
+
+
+
+        // -----------------территория Settings--------------------------------
+        public static  void RemoveRate(int Id)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+
+                string sql = "DELETE FROM Pricing WHERE PricingID = @Id";
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+
+        }
+
+
+
+        
 
 
 

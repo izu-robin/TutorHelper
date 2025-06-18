@@ -11,7 +11,7 @@
     <Compile Update="View\Lessons.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Pricing.xaml.cs">
+    <Compile Update="View\Pricings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Settings.xaml.cs">
