@@ -8,24 +8,25 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using TutorHelper.View;
 using System.Diagnostics.CodeAnalysis;
-using TutorHelper.Model;
+//using TutorHelper.Model;
 using System.Xml.Linq;
 using TutorHelper.DataAccess;
+using TutorHelper.Model;
 using TutorHelper.Model.Core;
+using TutorHelper.Utilities;
+using System.Security.Cryptography;
 // using TutorHelper.Model; //почему здесь не надо? Может потому что он пустой? 
 
 namespace TutorHelper.ViewModel
 {
-
-
     public class HomeVM : Utilities.ViewModelBase 
     {
         //список уроков в выбранную дату
         public ObservableCollection<Lesson> DatesLessonsList { get; } = new();
+        public ObservableCollection<Student> StudentsList { get; } = new();
    
+        public static string SelectedDashDate { get; set; }
         public static string? DateToday { get; set; }
-
-
 
 
         public string? _forTester ="empty";
@@ -46,43 +47,46 @@ namespace TutorHelper.ViewModel
                 if(SetField( ref _selectedDate, value)) //если удачно сохранилась новая дата
                 {
                     DatesLessonsList.Clear();
+
                     // здесь с этой датой что-то происходит
                     OnDateSelected();
                 }
             }
         }
 
+
         // и что с этой датой делается
         private void OnDateSelected()
         {
             //вспомогательное для дебага
             ForTester = SelectedDate.ToString();
-            
-            foreach(var dLes in DataBase.LoadDatesLessons(ForTester))
+
+            string[] arr = ForTester.Split(' ');
+            NewLesson.Date = DataBase.DateCorrector(arr[0]);
+            OnPropertyChanged(nameof(NewLesson.Date));
+
+            foreach (var dLes in DataBase.LoadDatesLessons(ForTester))
             {
                 DatesLessonsList.Add(dLes);
             }
             
-            
-            
-            
-            
-            
             //LoadDatesLessons(ForTester);
+        }
+        private void LoadingStudents()
+        {
+            foreach (var stud in DataBase.GetStudents())
+                StudentsList.Add(stud);
         }
 
 
 
-
-
-        private readonly PageModel _pageModel;
 
         public HomeVM()
         {
             DateToday = DateTime.Now.ToString("d") + ", " + RussianDayOfWeek(DateTime.Now.DayOfWeek.ToString());
             OnDateSelected();
 
-
+            LoadingStudents();
 
 
 
@@ -139,19 +143,73 @@ namespace TutorHelper.ViewModel
         }
 
 
+        // ---------------Выбор занятия из списка----------------------------
+        private Lesson _selectedLesson;
+        public Lesson SelectedLesson
+        {
+            get => _selectedLesson;
+            set
+            {
+                _selectedLesson = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        public Lesson NewLesson { get; set; } = new Lesson();
+
+        private RelayCommand _saveNewLessonCommand;
+        public RelayCommand SaveNewLessonCommand => _saveNewLessonCommand ??
+                            (_saveNewLessonCommand = new RelayCommand(SaveNewLesson));
+ 
+
+        private void SaveNewLesson()
+        {
+            if (string.IsNullOrWhiteSpace(NewLesson.Time) || string.IsNullOrWhiteSpace(NewLesson.Date) ||
+                string.IsNullOrWhiteSpace((NewLesson.StudentID).ToString()))
+                return; //проверка незаполненных полей и отсутствующего id
+
+            int newId = DataBase.AddLesson(NewLesson);
+
+            //перезагружаем список
+            DatesLessonsList.Clear();
+            OnDateSelected();
+        }
+
+        //загружаем учеников для комбобокса нового урока. 
+
+        private Student _selectedStudent;
+        public Student SelectedStudent
+        {
+            get => _selectedStudent;
+            set
+            {
+                _selectedStudent = value;
+                OnPropertyChanged();
+                //вот это красиво. То есть чекбокс закидывает ID выбранному студенту, а у него мы отбираем
+                //и закидываем в новый урок. 
+                NewLesson.StudentID = value?.Id ?? 0;
+            }
+        }
+
+
+
+
+
+
+
     }
 
 
+       
+    //public class ShortLessons //: ObservableObject и без него отображается, пусть будет в комменте пока
+    //{
+    //    // [ObservableProperty] doesn't work for whatever reason
+    //    public string? _time { get; set; }
+    //    public string? _student { get; set; }
+    //    public string? _note { get; set; }
 
-
-    public class ShortLessons //: ObservableObject и без него отображается, пусть будет в комменте пока
-    {
-        // [ObservableProperty] doesn't work for whatever reason
-        public string? _time { get; set; }
-        public string? _student { get; set; }
-        public string? _note { get; set; }
-
-    };
+    //};
 
 
 

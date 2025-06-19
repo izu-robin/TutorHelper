@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace TutorHelper.Utilities
 {
-    class RelayCommand : ICommand 
+     public class RelayCommand : ICommand 
     {
         private readonly Action _execute; //<object>
         private readonly Func<object, bool> _canExecute;

@@ -1,18 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace TutorHelper.Model.Core
 {
-    public class Lesson
+    public class Lesson : INotifyPropertyChanged 
     {
         public int Id { get; set; } 
 
-        public int GroupID { get; set; }
+        public int StudentID { get; set; }
 
-        public string Date { get; set; } = "01.01.2001";
+        public string? Name { get; set; } = "-";
+        public string? Surname { get; set; } = "-";
+
+        public string StudentFullName 
+            {
+                get => $"{Name} {Surname}";
+            }
+
+
+        private string _date;
+        public string Date 
+        {
+            get => _date; 
+            set
+            {
+                if (_date != value)
+                {
+                    _date = value;
+                    OnPropertyChanged(nameof(Date));
+                }
+            }
+        } 
 
         public string Time { get; set; } = "00:00";
 
@@ -20,12 +45,34 @@ namespace TutorHelper.Model.Core
 
         public int Duration { get; set; } = 0;
 
-        public List<Student> GroupStudents = new List<Student>();
+        public bool Attended { get; set; } = false;
+        public bool Paid { get; set; } = false;
 
+
+        public Lesson() { } //по умолчанию
+        public Lesson(Lesson a) //от копирования
+        {
+            Id = a.Id;
+            StudentID = a.StudentID;
+            Name = a.Name;
+            Surname = a.Surname;
+            Date = a.Date;
+            Time = a.Time;
+            Notes = a.Notes;
+            Duration = a.Duration;
+            Attended = a.Attended;
+            Paid = a.Paid;
+        }
 
         //navigation properties
 
-        public List<Lesson> LessonsList { get; set; } = new();
-        
+        //public List<Lesson> LessonsList { get; set; } = new();
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

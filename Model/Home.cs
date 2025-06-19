@@ -8,12 +8,7 @@ namespace TutorHelper.Model
 {
     class Home
     {
-        //класс для загрузки занятий по дате
-        //public class DatesLesson
-        //{
-        //    public int Id { get; set; }
-
-        //}
+        
     }
 
 }

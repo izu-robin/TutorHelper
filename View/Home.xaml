@@ -32,14 +32,14 @@
                    VerticalAlignment="Top" 
                    Margin="15,15,0,0" Width="254" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2" />
 
-        <Grid Margin="15,40,15,15" >
+        <Grid Margin="15,40,15,5" >
             <Calendar Name="HomeViewCalendar" 
                       HorizontalAlignment="Left" 
                       Margin="374,17,0,0" 
                       VerticalAlignment="Top" 
                       IsTodayHighlighted="True"
                       SelectedDate="{Binding SelectedDate, Mode=TwoWay}">
-                <!--SelectedDatesChanged="NewSelectedDate"-->
+                <!--SelectedDatesChanged="NewSelectedDate" >-->
 
                 <Calendar.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -61,6 +61,8 @@
 
                 <ListView Name="DatesLessonsTable" 
                           ItemsSource="{Binding DatesLessonsList}"
+                          SelectedItem="{Binding SelectedLesson}"
+                          SelectionMode="Single"
                           HorizontalAlignment="Center"
                           Width="350"
                           >
@@ -69,15 +71,15 @@
 
                         <GridView >
 
-                            <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding GroupID}"
-                                            Width="60"
-                                            >
-                            </GridViewColumn>
                             <GridViewColumn Header="Время" DisplayMemberBinding="{Binding Time}"
-                                            Width="70"
+                                            Width="60"
                                             TextBlock.TextAlignment="Center"/>
-                            <GridViewColumn Header="Заметки" DisplayMemberBinding="{Binding Notes}"
-                                            Width="215"
+                            <GridViewColumn Header="Ученик" DisplayMemberBinding="{Binding StudentFullName}"
+                                            Width="200"
+                                            />
+                            
+                            <GridViewColumn Header="Длительность" DisplayMemberBinding="{Binding Duration}"
+                                            Width="85"
                                             />
                             <!--<GridViewColumn Header="Длит." DisplayMemberBinding="{Binding Duration}"
                                             Width="55"
@@ -123,6 +125,28 @@
                                  Margin="5,5,0,5"
                                  Width="342"
                                  HorizontalAlignment="Left">
+
+                        <StackPanel Orientation="Horizontal"  
+                       Margin="0,0,0,0">
+                            <TextBlock Text= "Ученик: "
+                                   FontSize="14"
+                                    Foreground="White"
+                                    TextWrapping="Wrap" 
+                                    Width="102"
+                                    FontWeight="Bold"
+                                    Margin="0,0,20,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding SelectedLesson.StudentFullName}" 
+                                    Width="202"
+                                    VerticalAlignment="Top"
+                                    Foreground="White"
+                                    FontSize="14" Height="31"
+                                    TextWrapping="Wrap"
+/>
+
+                        </StackPanel>
+
                         <StackPanel Orientation="Horizontal" >
                             <TextBlock Text= "Время:" 
                                    FontSize="14"
@@ -134,7 +158,7 @@
                                     HorizontalAlignment="Left"
                                    VerticalAlignment="Center"/>
 
-                            <TextBlock Text="12:00" 
+                            <TextBlock Text="{Binding SelectedLesson.Time}" 
                                  Width="130"
                                  Height="20"
                                  VerticalAlignment="Top"
@@ -155,7 +179,7 @@
                                 Margin="0,0,20,10"
                                 HorizontalAlignment="Left"
                                    VerticalAlignment="Top"/>
-                            <TextBlock Text="2025/07/18" 
+                            <TextBlock Text="{Binding SelectedLesson.Date}" 
                                     Width="130"
                                     Height="20"
                                     VerticalAlignment="Top"
@@ -175,7 +199,7 @@
                                     Margin="0,0,20,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"/>
-                            <TextBlock Text="60" 
+                            <TextBlock Text="{Binding SelectedLesson.Duration}" 
                                     Width="130"
                                     Height="20"
                                     VerticalAlignment="Top"
@@ -185,27 +209,7 @@
 
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal"  
-                       Margin="0,0,0,0">
-                            <TextBlock Text= "Состав группы:"
-                                   FontSize="14"
-                                    Foreground="White"
-                                    TextWrapping="Wrap" 
-                                    Width="102"
-                                    FontWeight="Bold"
-                                    Margin="0,0,20,10"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"/>
-                            <TextBlock Text="Хиханькин, Хаханькин" 
-                                    Width="202"
-                                    VerticalAlignment="Top"
-                                    Foreground="White"
-                                    FontSize="14" Height="47"
-                                    TextWrapping="Wrap"
-/>
-
-                        </StackPanel>
-
+                     
                         <StackPanel Orientation="Horizontal"  
                        Margin="0,0,0,0">
                             <TextBlock Text= "Заметки:" 
@@ -217,12 +221,12 @@
                                     Margin="0,0,20,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"/>
-                            <TextBlock Text="Подготовка к тесту по модулю" 
+                            <TextBlock Text="{Binding SelectedLesson.Notes}" 
                                     Width="202"
                                     VerticalAlignment="Top"
                                     Foreground="White"
                                     FontSize="14"   
-                                    Height="58"
+                                    Height="100"
                                     TextWrapping="Wrap"
 />
 
@@ -235,7 +239,7 @@
                              BorderBrush="#A5CCE4"
                              BorderThickness="2" 
                              Width="180"
-                             Height="233"
+                             Height="265"
                              VerticalAlignment="Top">
 
                         <StackPanel>
@@ -250,41 +254,60 @@
                                           Foreground="White"
                                           Width="180"
                                           Margin="5"/>
-                            <TextBox Text="2025/12/31" 
+                            <TextBox Text="{Binding NewLesson.Date, Mode=TwoWay}" 
                                      Width="160"
                                      Height="20"
                                      Margin="0"/>
+
+
+                            <!--ItemsSource="{Binding StudentsList}"
+                                      SelectedItem="{Binding SelectedStudent}"
+                                      DisplayMemberPath="FullName"
+                                      SelectedValuePath="Id"-->
+                            
+                            
 
                             <TextBlock Text= "Время" 
                                           Foreground="White"
                                           Width="180"
                                           Margin="5"/>
-                            <TextBox Text="16:00" 
+                            <TextBox Text="{Binding NewLesson.Time, Mode=TwoWay}" 
                                      Margin="0"
                                      Width="160"
                                      Height="20"/>
 
-                            <TextBlock Text="Группа" 
+                            <TextBlock Text="Ученик" 
                                           Foreground="White"
                                           Margin="5"/>
 
-                            <ComboBox Width="160"
-                                         Height="20">
+                            <ComboBox ItemsSource="{Binding StudentsList}"
+                                      SelectedItem="{Binding SelectedStudent}"
+                                      DisplayMemberPath="FullName"
+                                      SelectedValuePath="Id"
+                                Width="160"
+                                      Height="20">
 
                             </ComboBox>
 
+                            <TextBlock Text="Длительность: " 
+                                       Foreground="White"
+                                       Margin="5"/>
+
+                            <TextBox Text="{Binding NewLesson.Duration, Mode=TwoWay}" 
+                                     Margin="0"
+                                     Width="160"
+                                     Height="20"/>
+
+
                             <Button x:Name="SaveNewLesson"
+                                    Command="{Binding SaveNewLessonCommand}"
                                        Content="Сохранить изменения"
-                                       Margin="0,30,0,0"
-                                    Width="160"
-                                    Height="25"
+                                       Margin="0,15,0,0"
+                                       Width="160"
+                                       Height="25"
                                        Background="#A5CCE4">
 
                             </Button>
-
-
-
-
 
 
 

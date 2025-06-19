@@ -14,9 +14,9 @@
     </UserControl.DataContext>
 
 
+
+
     <Grid Margin="15">
-
-
         
         <Border CornerRadius="0,20,20,0">
             <Border.Background>
@@ -42,21 +42,21 @@
             <Grid Height="200"
                   VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
-                    <ListView ItemsSource="{Binding StudentsList}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="ID" 
-                                            DisplayMemberBinding="{Binding Id}"
-                                            Width="42"/>
-                                <GridViewColumn Header="Имя" 
-                                            DisplayMemberBinding="{Binding Name}"
-                                            Width="100"/>
+                    <ListView ItemsSource="{Binding StudentsList}"
+                              SelectedItem="{Binding SelectedStudent}"
+                              SelectionMode="Single"
+           >
+                        <ListView.View >
+                            <GridView > 
+                                
                                 <GridViewColumn Header="Фамилия" 
-                                            DisplayMemberBinding="{Binding Surname}"
-                                            Width="110"/>
-                                <GridViewColumn Header="Группы" 
-                                            DisplayMemberBinding="{Binding группы}"
-                                            Width="73"/>
+                                                DisplayMemberBinding="{Binding FullName}"
+                                                Width="180"/>
+
+                                <GridViewColumn Header="УМК" 
+                                                DisplayMemberBinding="{Binding TextbookTitle}"
+                                                Width="145"/>
+
 
                             </GridView>
                         </ListView.View>
@@ -64,7 +64,7 @@
 
                     <Border  Height="200"
                              Width="206"
-                             Margin="20,0,0,0"
+                             Margin="21,0,0,0"
                              HorizontalAlignment="Right"
                              VerticalAlignment="Top" 
                              BorderBrush="#A5CCE4"
@@ -93,7 +93,7 @@
                             <TextBox Text="Фамилия" 
                                      Margin="0"/>
 
-                            <TextBlock Text="Добавить в группу" 
+                            <TextBlock Text="Тариф" 
                                        Foreground="White"
                                        Margin="4"/>
                             
@@ -234,12 +234,12 @@
                                    TextWrapping="Wrap" 
                                    Width="180"
                                    FontWeight="Bold"
-                                   Margin="0,0,0,10"/>
+                                   Margin="0,0,0,5"/>
                         <TextBlock Text= "Имя" 
                                    Foreground="White"
                                    Width="180"
-                                   Margin="5"/>
-                        <TextBox Text="Имя" 
+                                   Margin="5,8"/>
+                        <TextBox Text="{Binding CurrentEditableStudent.Name, Mode=TwoWay}" 
                                  Margin="0"/>
                         
                         <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
@@ -248,32 +248,35 @@
                         <TextBlock Text= "Фамилия" 
                                    Foreground="White"
                                    Width="180"
-                                   Margin="5"/>
+                                   Margin="5,8"/>
                         
-                        <TextBox    Text="Фамилия" 
+                        <TextBox    Text="{Binding CurrentEditableStudent.Surname}" 
                                     Margin="0"/>
 
-                        <TextBlock Text= "Добавить в группу"
+                        <TextBlock Text= "Тариф"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"
+                                   Width="180"
+                                   Margin="5,8"/>
+                        <ComboBox ItemsSource="{Binding RatesList}"
+                                  SelectedItem="{Binding SelectedRating}"
+                                  DisplayMemberPath="Title"
+                                  SelectedValuePath="Id"
+                                  Height="20"/>
+
+                        <!--<TextBlock Text= "УМК"
                                    TextWrapping="Wrap"
                                    Foreground="White"
                                    Width="180"
                                    Margin="5"/>
-                        <ComboBox x:Name="GroupNumberOrNew"
+                        <ComboBox x:Name="textbook"
                                   Height="20"
-                                  SelectedItem="0"/>
+                                  SelectedItem="0"/>-->
 
-                        <TextBlock Text= "Удалить из группы"
-                                   TextWrapping="Wrap"
-                                   Foreground="White"
-                                   Width="180"
-                                   Margin="5"/>
-                        <ComboBox x:Name="GrNuerOrNew"
-                                  Height="20"
-                                  SelectedItem="0"/>
 
-                        <Button x:Name="SaveChanges"
+                        <Button Command="{Binding SaveEditedStudent}"
                                 Content="Сохранить изменения"
-                                Margin="0,20,0,0"
+                                Margin="0,15,0,0"
                                 Background="#A5CCE4">
 
                         </Button>

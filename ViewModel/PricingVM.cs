@@ -14,7 +14,7 @@ namespace TutorHelper.ViewModel
     {
         public ObservableCollection<Rate> PricingsList { get; } = new();
 
-        private void GetPricings() //заполняет список тарифов строками из дб
+        protected void GetPricings() //заполняет список тарифов строками из дб
         {
             foreach(var rate in DataBase.LoadPricings())
             {
@@ -102,39 +102,25 @@ namespace TutorHelper.ViewModel
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public PricingVM()
         {
             GetPricings();
 
         }
+    
+        
+
+
+
+        // вот где-то ут всё покатилось в пизду. Редактировать ученика - меняем тариф - почему-то сбивается умк. 
+       // где-то косяк с передачей id тарифа в id умк. 
+       //дай господь сил разобраться и не поехать кукухой
 
 
 
 
 
 
-
-
-
-
-
-        //private readonly PageModel _pageModel;
 
     }
 }

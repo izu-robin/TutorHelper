@@ -39,14 +39,39 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Student";
+            command.CommandText = "SELECT Student.StudentID, Student.Name, Student.Surname, Student.TextbookID, Textbook.Title, Student.PricingID, Pricing.Title FROM Student left join Textbook ON Student.TextbookID=Textbook.TextbookID join Pricing on Student.PricingID = Pricing.PricingID";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                students.Add(new Student { Id = reader.GetInt32(0),
-                    Name = reader.GetString(1),
-                    Surname = reader.GetString(2) });
+                Student stud = new Student();
+
+                stud.Id = reader.GetInt32(0);
+                stud.Name = reader.GetString(1);
+                stud.Surname = reader.GetString(2);
+
+                if (!reader.IsDBNull(3))
+                    stud.TextbookId = reader.GetInt32(3);
+                else
+                    stud.TextbookId = 0;
+
+                if (!reader.IsDBNull(4))
+                    stud.TextbookTitle = reader.GetString(4);
+                else
+                    stud.TextbookTitle = " - ";
+
+                if (!reader.IsDBNull(5))
+                    stud.TextbookId = reader.GetInt32(5);
+                else
+                    stud.RateID = 0;
+
+                if (!reader.IsDBNull(6))
+                    stud.RateTitle = reader.GetString(6);
+                else
+                    stud.RateTitle = " - ";
+
+
+                students.Add(stud);
             }
             return students;
         }
@@ -68,7 +93,7 @@ namespace TutorHelper.DataAccess
             {
                 Lesson mid = new Lesson();
                 mid.Id = reader.GetInt32(0);
-                mid.GroupID = reader.GetInt32(1);
+                mid.StudentID = reader.GetInt32(1);
                 mid.Date = reader.GetString(2);
                 mid.Time = reader.GetString(3);
 
@@ -101,14 +126,14 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Lesson WHERE Lesson.Date ='" + dashDate + "'" + " ORDER BY Lesson.Time ASC";
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student ON Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate = '" + dashDate + "'" + " ORDER BY Lesson.StartTime ASC";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
                 Lesson mid = new Lesson();
                 mid.Id = reader.GetInt32(0);
-                mid.GroupID = reader.GetInt32(1);
+                mid.StudentID = reader.GetInt32(1);
                 mid.Date = reader.GetString(2);
                 mid.Time = reader.GetString(3);
 
@@ -120,6 +145,28 @@ namespace TutorHelper.DataAccess
                     mid.Duration = reader.GetInt32(5);
                 else
                     mid.Duration = 60;
+
+                //булевские поля
+                if (reader.GetInt32(6) == 1)
+                    mid.Attended = true;
+                else
+                    mid.Attended = false;
+
+                if (reader.GetInt32(7) == 1)
+                    mid.Paid = true;
+                else
+                    mid.Paid = false;
+
+                //имя-фамилия
+                if (!reader.IsDBNull(8))
+                    mid.Name = reader.GetString(8);
+                else
+                    mid.Notes = "-";
+
+                if (!reader.IsDBNull(9))
+                    mid.Surname = reader.GetString(9);
+                else
+                    mid.Surname = "-";
 
                 lessons.Add(mid);
             }
@@ -166,9 +213,9 @@ namespace TutorHelper.DataAccess
             using var connection = new SqliteConnection(ConnectionString);
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "Select Textbook.TextbookID, Textbook.Title, Textbook.Level, GROUP_CONCAT(Groups.GroupID, '___') FROM Textbook left join Groups on Textbook.TextbookID = Groups.TextbookID GROUP by Textbook.TextbookID";
+            command.CommandText = "Select Textbook.TextbookID, Textbook.Title, Textbook.Level  FROM Textbook ORDER BY Textbook.TextbookID";
             using var reader = command.ExecuteReader();
-
+                            ///-------------------------------------ОШИБКА ВОТ ТУТ ВЫШЕ - НАДО ПОЧИСТИТЬ GROUP 
             while (reader.Read())
             {
                 TBook mid = new TBook();
@@ -264,18 +311,9 @@ namespace TutorHelper.DataAccess
             }
 
 
-
-
-
-
-
-
-
-
         }
 
-
-
+       
 
 
         // -----------------территория Settings--------------------------------
@@ -298,11 +336,54 @@ namespace TutorHelper.DataAccess
 
 
 
-        
+        //----------------- Home -----------------------------------------------
+
+        public static int AddLesson(Lesson l)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "INSERT INTO Lesson (StudentID, LessonDate, StartTime, Duration) VALUES (@StudentID, @Date, @Time, @Duration); "
+                            + "SELECT last_insert_rowid();";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", l.StudentID);
+                    cmd.Parameters.AddWithValue("@Date", l.Date);
+                    cmd.Parameters.AddWithValue("@Time", l.Time);
+                    cmd.Parameters.AddWithValue("@Duration", l.Duration);
+
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+
+        }
 
 
 
+        //-----------------Students---------------------------------------------
 
+        public static void UpdateStudent(Student s)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql= "UPDATE Student SET Name = @Name, Surname = @Surname, TextbookID = @TextbookID, PricingID = @PricingID  WHERE StudentID = @Id";
+                 using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Name", s.Name);
+                    cmd.Parameters.AddWithValue("@Surname", s.Surname);
+                    cmd.Parameters.AddWithValue("@TextbookID", s.TextbookId);
+                    cmd.Parameters.AddWithValue("@PricingID", s.RateID);
+                    cmd.Parameters.AddWithValue("@Id", s.Id);
+
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
 
 
         /*
@@ -393,7 +474,6 @@ namespace TutorHelper.DataAccess
 
     //};
     */
-
 
 
     }

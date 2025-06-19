@@ -14,24 +14,34 @@ namespace TutorHelper.Model.Core
 
         public string? Surname { get; set; }
 
-        //для списка учеников на занятии
-        public bool Paid { get; set; } = false;
-        public bool Present { get; set; } = false;
+        public string FullName
+        {
+            get => $"{Name} {Surname}";
+        }
+  
+        public int TextbookId { get; set; }
+        public string? TextbookTitle { get; set; }
+
+        public int RateID { get; set; }
+
+        public string RateTitle { get; set; }
+
+        public Student() { }
+
+        public Student(Student a)
+        {
+            Id = a.Id;
+            Name = a.Name;
+            Surname = a.Surname;
+            TextbookId = a.TextbookId;
+            TextbookTitle = a.TextbookTitle;
+            RateID = a.RateID;
+            RateTitle = a.RateTitle;
+        }
 
 
 
 
-
-
-
-
-        //method searching for student's lessons (not finished!!!)
-        //public List<Lesson> StudentsLessons(Student A)
-        //{
-        //    List<Lesson> result = new List<Lesson>();
-        //    //...
-        //    return result;
-        //}
 
     }
 }

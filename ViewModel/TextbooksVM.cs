@@ -25,7 +25,6 @@ namespace TutorHelper.ViewModel
 
             
         }
-
         public ObservableCollection<TBook> TextbooksList { get; } = new();
 
         private void GetTextbooks()
