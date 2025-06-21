@@ -169,7 +169,8 @@ namespace TutorHelper.ViewModel
                 string.IsNullOrWhiteSpace((NewLesson.StudentID).ToString()))
                 return; //проверка незаполненных полей и отсутствующего id
 
-            int newId = DataBase.AddLesson(NewLesson);
+            //int newId =
+            DataBase.AddLesson(NewLesson);
 
             //перезагружаем список
             DatesLessonsList.Clear();

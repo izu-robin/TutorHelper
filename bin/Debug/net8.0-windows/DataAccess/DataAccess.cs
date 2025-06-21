@@ -77,7 +77,7 @@ namespace TutorHelper.DataAccess
         }
 
         //get all future (not yet) lessons for (Lessons View)
-        public static List<Lesson> GetFutureLessons()
+        public static List<Lesson> GetFutureLessons(string date)
         {
             var lessons = new List<Lesson>();
             //Lesson mid = new Lesson();
@@ -86,7 +86,7 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Lesson";
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student on Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate >= '"+ DateCorrector(date) + "' ORDER BY Lesson.LessonDate, Lesson.StartTime";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
@@ -105,6 +105,84 @@ namespace TutorHelper.DataAccess
                     mid.Duration = reader.GetInt32(5);
                 else
                     mid.Duration = 60;
+
+                //булевские поля
+                if (reader.GetInt32(6) == 1)
+                    mid.Attended = true;
+                else
+                    mid.Attended = false;
+
+                if (reader.GetInt32(7) == 1)
+                    mid.Paid = true;
+                else
+                    mid.Paid = false;
+
+                //имя-фамилия
+                if (!reader.IsDBNull(8))
+                    mid.Name = reader.GetString(8);
+                else
+                    mid.Notes = "-";
+
+                if (!reader.IsDBNull(9))
+                    mid.Surname = reader.GetString(9);
+                else
+                    mid.Surname = "-";
+
+                lessons.Add(mid);
+            }
+            return lessons;
+        }
+
+        public static List<Lesson> GetPastLessons(string date)
+        {
+            var lessons = new List<Lesson>();
+            //Lesson mid = new Lesson();
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student on Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate < '" + DateCorrector(date) + "' ORDER BY Lesson.LessonDate, Lesson.StartTime";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Lesson mid = new Lesson();
+                mid.Id = reader.GetInt32(0);
+                mid.StudentID = reader.GetInt32(1);
+                mid.Date = reader.GetString(2);
+                mid.Time = reader.GetString(3);
+
+                if (!reader.IsDBNull(4))
+                    mid.Notes = reader.GetString(4);
+                else
+                    mid.Notes = "-";
+                if (!reader.IsDBNull(5))
+                    mid.Duration = reader.GetInt32(5);
+                else
+                    mid.Duration = 60;
+
+                //булевские поля
+                if (reader.GetInt32(6) == 1)
+                    mid.Attended = true;
+                else
+                    mid.Attended = false;
+
+                if (reader.GetInt32(7) == 1)
+                    mid.Paid = true;
+                else
+                    mid.Paid = false;
+
+                //имя-фамилия
+                if (!reader.IsDBNull(8))
+                    mid.Name = reader.GetString(8);
+                else
+                    mid.Notes = "-";
+
+                if (!reader.IsDBNull(9))
+                    mid.Surname = reader.GetString(9);
+                else
+                    mid.Surname = "-";
 
                 lessons.Add(mid);
             }
@@ -270,6 +348,8 @@ namespace TutorHelper.DataAccess
             }
         }
 
+        
+
         public static int AddTextbook(TBook newTBook)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -330,21 +410,19 @@ namespace TutorHelper.DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-
-
         }
 
 
 
         //----------------- Home -----------------------------------------------
 
-        public static int AddLesson(Lesson l)
+        public static void AddLesson(Lesson l)
         {
             using var con = new SqliteConnection(ConnectionString);
             {
                 con.Open();
                 string sql = "INSERT INTO Lesson (StudentID, LessonDate, StartTime, Duration) VALUES (@StudentID, @Date, @Time, @Duration); "
-                            + "SELECT last_insert_rowid();";
+                            ;
 
                 using (var cmd = new SqliteCommand(sql, con))
                 {
@@ -353,7 +431,8 @@ namespace TutorHelper.DataAccess
                     cmd.Parameters.AddWithValue("@Time", l.Time);
                     cmd.Parameters.AddWithValue("@Duration", l.Duration);
 
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    //return Convert.ToInt32(
+                    cmd.ExecuteNonQuery();
                 }
             }
 
@@ -384,6 +463,63 @@ namespace TutorHelper.DataAccess
                 }
             }
         }
+
+        // --------------------------------- Lessons----------------------------
+        public static void UpdateLesson(Lesson l)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "UPDATE Lesson SET StartTime = @StartTime, Notes = @Notes, LessonDate = @LessonDate, StudentID = @StudentID, Duration = @Duration, Attended = @Attended, Paid = @Paid  WHERE LessonID = @LessonID";
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@StartTime", l.Time);
+                    cmd.Parameters.AddWithValue("@LessonDate", l.Date);
+                    cmd.Parameters.AddWithValue("@Notes", l.Notes);
+
+                    cmd.Parameters.AddWithValue("@StudentID", l.StudentID);
+                    cmd.Parameters.AddWithValue("@Duration", l.Duration);
+                    //cmd.Parameters.AddWithValue("@StudentID", l.StudentID);
+                    cmd.Parameters.AddWithValue("@LessonID", l.Id);
+
+                    if (l.Attended)
+                        cmd.Parameters.AddWithValue("@Attended", 1);
+                    else
+                        cmd.Parameters.AddWithValue("@Attended", 0);
+
+                    if (l.Paid)
+                        cmd.Parameters.AddWithValue("@Paid", 1);
+                    else
+                        cmd.Parameters.AddWithValue("@Paid", 0);
+
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void RemoveLesson(int Id)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+
+                string sql = "DELETE FROM Lesson WHERE LessonID = @Id";
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+
+        }
+
+
+
+
 
 
         /*

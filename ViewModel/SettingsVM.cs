@@ -27,8 +27,6 @@ namespace TutorHelper.ViewModel
                 _selectedRate = value;
                 OnPropertyChanged();
 
-                //активирует кнопку удаления, но не запускает 
-                //DeleteCommand.RaiseCanExecuteChanged();
             }
         }
 

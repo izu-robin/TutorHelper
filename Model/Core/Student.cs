@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TutorHelper.Model.Core
 {
-    public class Student
+    public class Student  
     {
+ 
         public int Id { get; set; }
+ 
 
+        private string? _name;
         public string? Name { get; set; }
+
 
         public string? Surname { get; set; }
 
@@ -38,10 +45,6 @@ namespace TutorHelper.Model.Core
             RateID = a.RateID;
             RateTitle = a.RateTitle;
         }
-
-
-
-
 
     }
 }

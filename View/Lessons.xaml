@@ -77,12 +77,11 @@
 
                 <ListView ItemsSource="{Binding FutureLessonsList}" 
                           SelectedItem="{Binding SelectedLesson}"
+                          SelectionMode="Single"
                           Margin="0,32,0,-32"  >
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="№ группы" 
-                                            DisplayMemberBinding="{Binding GroupID}"
-                                            Width="70"/>
+                            
 
                             <GridViewColumn Header="Дата" 
                                             DisplayMemberBinding="{Binding Date}"
@@ -90,7 +89,10 @@
 
                             <GridViewColumn Header="Время" 
                                             DisplayMemberBinding="{Binding Time}"
-                                            Width="80"/>
+                                            Width="50"/>
+                            <GridViewColumn Header="Ученик" 
+                                            DisplayMemberBinding="{Binding StudentFullName}"
+                                            Width="100"/>
 
                             <GridViewColumn Header="Детали" 
                                             DisplayMemberBinding="{Binding Notes}"
@@ -108,19 +110,11 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-
-                <!--<ListView Height="250"
-                          Width="130"
-                          HorizontalAlignment="Left"
-                          Grid.Column="0"
-                          VerticalAlignment="Bottom"
-                          />-->
 
                 <Border Grid.Column="0"
                         Height="200"
-                        Width="125"
+                        Width="266"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom"
                          
@@ -128,67 +122,47 @@
                         BorderBrush="#A5CCE4"
                         BorderThickness="2" Margin="5,0,0,50">
                     <StackPanel>
-                        <!--редактор ID-->
-                        <Label Content="ID занятия:" 
-                               Foreground="White"
-                               />
-                        <TextBox Text="3" 
-                                 Margin="0,0,0,10"
-                                 IsEnabled="False"/>
-                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
-                        <!--редактор группы-->
-                        <Label Content="ID группы:" 
+                        <Label Content="Время:"
+                               FontSize="14"
                                Foreground="White"/>
-                        <TextBox Text="6" 
-                                 Margin="0,0,0,10"/>
-
-                        <!--редактор длительности-->
-                        <Label Content="Длительность:" 
-                               Foreground="White"/>
-                        <TextBox Text="60" 
-                                 Margin="0,0,0,10"/>
-
-                    </StackPanel>
-                </Border>
-
-                <Border
-                        Grid.Column="1"
-                        Height="200"
-                        Width="130"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom"
- 
-                        Padding="10"
-                        BorderBrush="#A5CCE4"
-                        BorderThickness="2" Margin="0,0,0,50" 
-                        >
-
-                    <StackPanel>
-                        <!--редактор времени-->
-                        <Label Content="Время:" 
-                               Foreground="White"/>
-                        <TextBox Text="0:00" 
-                                 Margin="0,0,0,10"/>
-                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+                        <TextBox Text="{Binding CurrentEditableLesson.Time, Mode=TwoWay}" 
+                                 Height="20"
+                                 Margin="10,0,10,0"/>
+                       <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
                         <!--редактор даты-->
+
                         <Label Content="Дата:" 
+                               FontSize="14"
                                Foreground="White"/>
-                        <TextBox Text="2025/12/31" 
-                                 Margin="0,0,0,10"/>
+
+                        <TextBox Text="{Binding CurrentEditableLesson.Date, Mode=TwoWay}"
+                                 Height="20"
+                                 Margin="10,0,10,0"/>
+ 
                         <!--редактор заметок-->
-                        <Label Content="Заметки:" 
+
+                        <Label Content="Заметки:"
+                               FontSize="14"
                                Foreground="White"/>
-                        <TextBox Text="60" 
-                                 Margin="0,0,0,10"
-                                 TextWrapping="Wrap" 
-                                 Height="40"/>
+
+                        <TextBox Text="{Binding CurrentEditableLesson.Notes, Mode=TwoWay}" 
+                                 Margin="10,0,10,10" Height="51"
+                                 TextWrapping="Wrap"/>
+
+
+
 
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Column="2"
+                
+
+                     
+                
+
+                <Border Grid.Column="1"
                         Height="199"
                         Width="268"
                         HorizontalAlignment="Center"
@@ -198,25 +172,41 @@
                         BorderThickness="2" Margin="0,252,0,0">
 
                     <StackPanel>
-                        <Label Content="Присутствие: "
-                               Foreground="White"/>
-                        <ListView Height="150" >
-                            <ListView.View>
-                                <GridView >
-                                    <!--DisplayMemberBinding="{Binding Date}"-->
-                                    <GridViewColumn Header="Ученик"
-                                                    Width="110"/>
-                                    <GridViewColumn Header="Присутст."
-                                                    Width="70"
-                                                    />
-                                    <GridViewColumn Header="Оплачено"
-                                                    Width="60"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
 
+                        <Label Content="Ученик:" 
+                               Foreground="White"
+                               FontSize="14"/>
+                        <ComboBox  ItemsSource="{Binding StudentsList}"
+                                   SelectedItem="{Binding SelectedStudent}"
+                                   DisplayMemberPath="FullName"
+                                   SelectedValuePath="Id"
+                                   Margin="10,0,10,0" 
+                                   Height="20"/>
+ 
 
+                        <Label Content="Длительность:" 
+                               Foreground="White"
+                               FontSize="14"/>
+                        <TextBox Text="{Binding CurrentEditableLesson.Duration, Mode=TwoWay}" 
+                                 Height="20"
+                                 Margin="10,0,10,0"/>
 
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="15,30">
+
+                            <CheckBox IsChecked="{Binding CurrentEditableLesson.Attended, Mode=TwoWay}"
+                                      Content="Проведено"
+                                      Margin="10"
+                                      FontSize="14"
+                                      Foreground="White"/>
+                            <CheckBox IsChecked="{Binding CurrentEditableLesson.Paid, Mode=TwoWay}"
+                                      Content="Оплачено"
+                                      Margin="10"
+                                      FontSize="14"
+                                      Foreground="White"/>
+
+                        </StackPanel>
+                        
                     </StackPanel>
                 </Border>
 
@@ -228,6 +218,7 @@
 
 
                 <Button Content="Сохранить изменения"
+                        Command="{Binding SaveUpdatedLessonCommand}"
                         Padding="10,5"
                         Height="30"
                         Width="268" 
@@ -238,6 +229,7 @@
 
 
                 <Button Content="Удалить занятие"
+                        Command="{Binding DeleteLessonCommand}"
                         Padding="10,5"
                         Height="30"
                         Width="268" 

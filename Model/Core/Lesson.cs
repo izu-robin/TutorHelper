@@ -39,11 +39,11 @@ namespace TutorHelper.Model.Core
             }
         } 
 
-        public string Time { get; set; } = "00:00";
+        public string Time { get; set; } = " ";
 
-        public string? Notes { get; set; } = "-";
+        public string? Notes { get; set; } = " ";
 
-        public int Duration { get; set; } = 0;
+        public int Duration { get; set; }
 
         public bool Attended { get; set; } = false;
         public bool Paid { get; set; } = false;
