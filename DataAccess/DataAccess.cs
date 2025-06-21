@@ -18,6 +18,8 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows.Controls.Primitives;
 using System.Security.Cryptography;
+using System.Reflection.PortableExecutable;
+using System.Collections.ObjectModel;
 
 
 namespace TutorHelper.DataAccess
@@ -86,7 +88,7 @@ namespace TutorHelper.DataAccess
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student on Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate >= '"+ DateCorrector(date) + "' ORDER BY Lesson.LessonDate, Lesson.StartTime";
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student on Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate >= '" + DateCorrector(date) + "' ORDER BY Lesson.LessonDate, Lesson.StartTime";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
@@ -275,9 +277,12 @@ namespace TutorHelper.DataAccess
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                pricings.Add(new Rate { Id = reader.GetInt32(0),
+                pricings.Add(new Rate
+                {
+                    Id = reader.GetInt32(0),
                     Title = reader.GetString(1),
-                    Price = reader.GetInt32(2) });
+                    Price = reader.GetInt32(2)
+                });
             }
             return pricings;
 
@@ -293,7 +298,7 @@ namespace TutorHelper.DataAccess
             var command = connection.CreateCommand();
             command.CommandText = "Select Textbook.TextbookID, Textbook.Title, Textbook.Level  FROM Textbook ORDER BY Textbook.TextbookID";
             using var reader = command.ExecuteReader();
-                            ///-------------------------------------ОШИБКА ВОТ ТУТ ВЫШЕ - НАДО ПОЧИСТИТЬ GROUP 
+
             while (reader.Read())
             {
                 TBook mid = new TBook();
@@ -348,7 +353,7 @@ namespace TutorHelper.DataAccess
             }
         }
 
-        
+
 
         public static int AddTextbook(TBook newTBook)
         {
@@ -393,11 +398,11 @@ namespace TutorHelper.DataAccess
 
         }
 
-       
+
 
 
         // -----------------территория Settings--------------------------------
-        public static  void RemoveRate(int Id)
+        public static void RemoveRate(int Id)
         {
             using var con = new SqliteConnection(ConnectionString);
             {
@@ -448,8 +453,8 @@ namespace TutorHelper.DataAccess
             using var con = new SqliteConnection(ConnectionString);
             {
                 con.Open();
-                string sql= "UPDATE Student SET Name = @Name, Surname = @Surname, TextbookID = @TextbookID, PricingID = @PricingID  WHERE StudentID = @Id";
-                 using (var cmd = new SqliteCommand(sql, con))
+                string sql = "UPDATE Student SET Name = @Name, Surname = @Surname, TextbookID = @TextbookID, PricingID = @PricingID  WHERE StudentID = @Id";
+                using (var cmd = new SqliteCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@Name", s.Name);
                     cmd.Parameters.AddWithValue("@Surname", s.Surname);
@@ -517,101 +522,104 @@ namespace TutorHelper.DataAccess
 
         }
 
+        //----------------------------Reports--------------------------------------
+
+        public static Report LoadReport(string start, string finish, ObservableCollection<Lesson> list)
+        {
+            Report rep = new Report();
+
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+
+                var command = con.CreateCommand();
+                command.CommandText = $"SELECT Lesson.LessonDate, Lesson.StartTime, Student.Name, Student.Surname, Lesson.Duration, Lesson.Paid From Lesson join Student on Lesson.StudentID = Student.StudentID WHERE Lesson.LessonDate >= '{start}' AND Lesson.LessonDate < '{finish}' AND Lesson.Attended=1";
+
+                using var reader = command.ExecuteReader();
+                {
+                    while (reader.Read())
+                    {
+                        Lesson mid = new Lesson();
+                        mid.Date = reader.GetString(0);
+                        mid.Time = reader.GetString(1);
+                        mid.Name = reader.GetString(2);
+                        mid.Surname = reader.GetString(3);
+                        mid.Duration = reader.GetInt32(4);
+
+                        if (reader.GetInt32(5) == 1)
+                            mid.Paid = true;
+                        else
+                            mid.Paid = false;
+
+                        list.Add(mid);
+            
+                    }
+                    
+                }reader.Close();
 
 
 
 
 
-        /*
-        //{
-        //string _connectionString;
 
 
-        //public DBDataAccess(string dbName)
-        //{
-        //    _connectionString = ConfigurationManager.ConnectionStrings[dbName].ConnectionString;
-        //}
-
-        //public void TestConnection()
-        //{
-        //    try
-        //    {
-        //        var con = new SqliteConnection(_connectionString);
-        //        con.Open();
-        //        con.Close();
-
-        //        //Console.WriteLine("Connection buit!");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Connection failed.");
-        //    }
-        //}
-
-        //public void AddStudent(Student student)
-        //{
-            //var sql = "INSERT INTO Student (Name, Surname) " +
-            //          "VALUES (@name, @surname)";
-
-            //try
-            //{
-            //    int result = 0;
-            //    using (var con = new SqliteConnection(_connectionString))
-            //    {
-            //        con.Open();
-            //        using (var cmd = new SqliteCommand(sql, con))
-            //        {
-            //            cmd.Parameters.AddWithValue("@name", student.Name);
-            //            cmd.Parameters.AddWithValue("@surname", student.Surname);
-
-            //            result = cmd.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-        //}
 
 
-        //public List<Student>GetAllStudents()
-        //{
-        //    List<Student> result = new List<Student>();
-        //    var sql = "SELECT * FROM Student";
-        //    try
-        //    {
-        //        using (var con = new SqliteConnection(_connectionString))
-        //        {
-        //            con.Open();
-        //            using (var cmd = new SqliteCommand(sql, con))
-        //            {
-        //                using (var rdr = cmd.ExecuteReader())
-        //                {
-        //                    if (rdr.HasRows)
-        //                    {
-        //                        while(rdr.Read())
-        //                        {
-        //                            var p = new Student();
-        //                            p.Name = Convert.ToString(rdr["Name"]);
-        //                            p.Surname = Convert.ToString(rdr["Surname"]);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        Console.WriteLine("Failure");
-        //    }
-        //    return result;
-        //}
-
-    //};
-    */
 
 
+
+
+
+
+
+
+
+                var command1 = con.CreateCommand();
+                command1.CommandText = $"Select Count(Lesson.LessonID) From Lesson Where Lesson.LessonDate>='" + start + "' AND Lesson.LessonDate<'" + finish +"' AND Lesson.Attended=1";
+                using var reader1 = command1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    if (!reader1.IsDBNull(0))
+                        rep.TotalLessons = reader1.GetInt32(0);
+                    else
+                        rep.TotalLessons = 0;
+                }
+                // reader1.Close();
+
+
+                var command2 = con.CreateCommand();
+                command2.CommandText = $"Select Count(Lesson.LessonID) From Lesson  WHERE Lesson.LessonDate >= '{start}' AND Lesson.LessonDate < '{finish}' AND Lesson.Paid=1 AND Lesson.Attended=1";                
+                using var reader2 = command2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    if (!reader2.IsDBNull(0))
+                        rep.PaidLessons = reader2.GetInt32(0);
+                    else
+                        rep.PaidLessons = 0;
+                }
+
+                var command3 = con.CreateCommand();
+                command3.CommandText = $"Select sum(Pricing.HourRate) From Lesson join Student on Lesson.StudentID=Student.StudentID join Pricing on Student.PricingID=Pricing.PricingID WHERE Lesson.LessonDate >= '{start}' AND Lesson.LessonDate < '{finish}' AND Lesson.Paid=1";
+                using var reader3 = command3.ExecuteReader();
+                while (reader3.Read())
+                {
+                    if (!reader3.IsDBNull(0))
+                        rep.TotalSum = reader3.GetInt32(0);
+                    else
+                        rep.TotalSum = 0;
+                }
+
+                //reader3.Close();
+
+                //загнать данные об суммарных часах в rep
+
+                //надо ли вообще бд тут трогать????
+
+
+
+                return rep;
+            }
+        }
     }
 }
 

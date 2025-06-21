@@ -22,7 +22,7 @@ namespace TutorHelper.ViewModel
         }
 
         public ICommand HomeCommand { get; set; }
-        public ICommand GroupsCommand { get; set; }
+        public ICommand ReportCommand { get; set; }
         public ICommand LessonsCommand { get; set; }
         public ICommand PricingCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
@@ -30,7 +30,7 @@ namespace TutorHelper.ViewModel
         public ICommand TextbooksCommand { get; set; }
 
         private void Home() => CurrentView = new HomeVM(); //(object obj)
-        private void Groups() => CurrentView = new GroupsVM(); //object obj
+        private void Report() => CurrentView = new ReportVM(); //object obj
         private void Lessons() => CurrentView = new LessonsVM(); //object obj
         private void Pricing() => CurrentView = new PricingVM(); //у остальных 4 так же
         private void Settings() => CurrentView = new SettingsVM();
@@ -40,7 +40,7 @@ namespace TutorHelper.ViewModel
         public NavigationVM()
         {
             HomeCommand = new RelayCommand(Home);
-            GroupsCommand = new RelayCommand(Groups);
+            ReportCommand = new RelayCommand(Report);
             LessonsCommand = new RelayCommand(Lessons);
             PricingCommand = new RelayCommand(Pricing);
             SettingsCommand = new RelayCommand(Settings);

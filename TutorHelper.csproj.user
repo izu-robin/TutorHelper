@@ -4,7 +4,7 @@
     <_LastSelectedProfileId>L:\Programming\Codin\C#\TutorHelper\Properties\PublishProfiles\FolderProfile1.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="View\Groups.xaml.cs">
+    <Compile Update="View\Report.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Home.xaml.cs">

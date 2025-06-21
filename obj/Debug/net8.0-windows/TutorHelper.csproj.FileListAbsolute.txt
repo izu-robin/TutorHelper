@@ -476,7 +476,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\Styles\Image.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\Styles\Page.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\Styles\Text.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\MainWindow.g.cs
-L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Groups.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Home.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Lessons.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricings.g.cs
@@ -491,7 +490,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper_MarkupC
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\App.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\MainWindow.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\Utilities\DataTemplate.baml
-L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Groups.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Home.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Lessons.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Pricings.baml
@@ -510,3 +508,5 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\refint\TutorHelper.
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.pdb
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.genruntimeconfig.cache
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\ref\TutorHelper.dll
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Report.g.cs
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Report.baml

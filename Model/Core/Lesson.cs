@@ -48,6 +48,18 @@ namespace TutorHelper.Model.Core
         public bool Attended { get; set; } = false;
         public bool Paid { get; set; } = false;
 
+        private char _signPaid;
+        public char SignPaid
+        {
+            get
+            {
+                if (Paid)
+                    return '+';
+                else
+                    return '-';
+            }
+        }
+
 
         public Lesson() { } //по умолчанию
         public Lesson(Lesson a) //от копирования

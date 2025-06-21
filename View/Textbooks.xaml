@@ -84,7 +84,8 @@
                     <StackPanel Orientation="Horizontal">
                         <Border Padding="5"
                                 BorderBrush="#A5CCE4"
-                                BorderThickness="2" Width="277" >
+                                BorderThickness="2" Width="277" 
+                                CornerRadius="0,0,0,15">
                             <StackPanel Width="270">
 
 
@@ -150,7 +151,8 @@
                                 BorderBrush="#A5CCE4"
                                 BorderThickness="2" 
                                 Width="275" 
-                                Margin="10,0,0,0">
+                                Margin="10,0,0,0"
+                                CornerRadius="0,0,15,0">
                             <StackPanel Width="270">
 
                                 <TextBlock Text= "Добавить УМК:" 

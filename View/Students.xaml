@@ -69,7 +69,8 @@
                              VerticalAlignment="Top" 
                              BorderBrush="#A5CCE4"
                              BorderThickness="2"
-                             Padding="10">
+                             Padding="10"
+                             CornerRadius="0,15,0,0">
 
                         <StackPanel>
                             <TextBlock Text= "Добавить ученика:" 
@@ -225,7 +226,8 @@
                         VerticalAlignment="Bottom" 
                         BorderBrush="#A5CCE4"
                         BorderThickness="2"
-                        Padding="10">
+                        Padding="10"
+                CornerRadius="0,0,15,0">
                 <StackPanel>
                     <StackPanel>
                         

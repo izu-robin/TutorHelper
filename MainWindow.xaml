@@ -100,22 +100,6 @@
 
                     </Menu:Btn>
 
-                    <!--// Группы //-->
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding GroupsCommand}">
-
-                        <Grid>
-
-                            <Image Source="/Images/icon-group.png"
-                                   Style="{StaticResource Image_Style}" />
-
-                            <TextBlock Text="Группы"
-                                       Style="{StaticResource Text_Style}" />
-
-                        </Grid>
-
-                    </Menu:Btn>
 
                     <!--// Тарифы //-->
 
@@ -133,6 +117,23 @@
                         </Grid>
 
                     </Menu:Btn>
+
+                    <!--// Группы //-->
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ReportCommand}">
+
+                        <Grid>
+
+                            <Image Source="/Images/icon-group.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Отчеты"
+                                       Style="{StaticResource Text_Style}" />
+
+                        </Grid>
+
+                    </Menu:Btn>
+
 
                     <!--// УМК //-->
 
