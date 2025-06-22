@@ -1,6 +1,5 @@
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\DataAccess\DataAccess.cs
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.exe
-L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelperDB.db
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.dll.config
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.deps.json
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.runtimeconfig.json
@@ -483,7 +482,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Settings.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Students.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Textbooks.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\App.g.cs
-L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper_Content.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper_MarkupCompile.cache
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper_MarkupCompile.lref
@@ -510,3 +508,5 @@ L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper.genrunt
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\ref\TutorHelper.dll
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Report.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\View\Report.baml
+L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Images\appIcon.png
+L:\Programming\Codin\C#\TutorHelper\obj\Debug\net8.0-windows\TutorHelper_Content.g.cs

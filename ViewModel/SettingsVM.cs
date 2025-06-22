@@ -20,9 +20,12 @@ namespace TutorHelper.ViewModel
         {
             GetPricings();
             GetStudents();
+            GetLessons();
+            GetTextbooks();
             DeleteWithLessons = new bool();
         }
 
+        //--------------удаление ученика--------------------------
         public ObservableCollection<Student> AllStudentsList { get; } = new();
         public bool DeleteWithLessons { get; set; } = false; 
 
@@ -79,10 +82,55 @@ namespace TutorHelper.ViewModel
             }
         }
 
+        //--------------------------удаление занятия-----------------------------
 
+        public ObservableCollection<Lesson> AllLessonsList { get; } = new();
 
+        private void GetLessons()
+        {
+            foreach (var les in DataBase.GetAllLessons())
+            {
+                AllLessonsList.Add(les);
+            }
+            AllLessonsList.RemoveAt(0);
+        }
 
+        private Lesson _selectedLesson;
+        public Lesson SelectedLesson
+        {
+            get => _selectedLesson;
+            set
+            {
+                _selectedLesson = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private RelayCommand _deleteLessonCommand;
+        public RelayCommand DeleteLessonCommand => _deleteLessonCommand ?? (_deleteLessonCommand = new RelayCommand(DeleteLesson));
+        private void DeleteLesson()
+        {
+            if (SelectedLesson == null)
+                return;
+
+            try
+            {
+                DataBase.RemoveLesson(SelectedLesson.Id);
+                MessageBox.Show($"Удаление урока '{SelectedLesson.DateAndName}' прошло успешно. ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Удаление прервано: {ex.Message}");
+            }
+            finally
+            {
+                SelectedLesson = new Lesson();
+                AllLessonsList.Clear();
+                GetLessons();
+            }
+        }
+
+        //--------------------------удаление тарифа--------------------------------
         public ObservableCollection<Rate> AllRatesList { get; } = new();
 
         private void GetPricings()   //загрузка всех тарифов в комбобокс 
@@ -124,14 +172,62 @@ namespace TutorHelper.ViewModel
             }
             finally
             {
-                SelectedRate = null;
+                SelectedRate = new Rate();
 
                 AllRatesList.Clear();
                 GetPricings();
             }
         }
 
-       
+        //--------------------------------- удаление УМК ------------------------------
+
+        public ObservableCollection<TBook> AllTextbooksList { get; } = new();
+
+        private void GetTextbooks()
+        {
+            foreach (var tb in DataBase.LoadTextbooks())
+            {
+                AllTextbooksList.Add(tb);
+            }
+        }
+
+        private TBook _selectedTextbook;
+        public TBook SelectedTextbook
+        {
+            get => _selectedTextbook;
+            set
+            {
+                _selectedTextbook = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RelayCommand _deleteTextbookCommand;
+        public RelayCommand DeleteTextbookCommand => _deleteTextbookCommand ??
+                            (_deleteTextbookCommand = new RelayCommand(DeleteTextbook));
+
+        private void DeleteTextbook()
+        {
+            if (SelectedTextbook == null)
+                return;
+
+            try
+            {
+                DataBase.RemoveTextbook(SelectedTextbook.Id);
+                MessageBox.Show($"Удаление учебника '{SelectedTextbook.Title}' прошло успешно. ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Удаление прервано: {ex.Message}");
+            }
+            finally
+            {
+                SelectedTextbook = new TBook();
+                AllTextbooksList.Clear();
+                GetTextbooks();
+            }
+        }
+
 
 
 

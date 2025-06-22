@@ -446,6 +446,37 @@ namespace TutorHelper.DataAccess
 
             }
         }
+
+
+        public static List<Lesson> GetAllLessons()
+        {
+
+            List<Lesson> list = new List<Lesson>();
+
+            using var connection = new SqliteConnection(ConnectionString);
+            { connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT Lesson.LessonDate, Student.Name, Student.Surname, Lesson.LessonID FROM Lesson join Student on Student.StudentID=Lesson.StudentID ORDER BY Lesson.LessonDate";
+
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Lesson mid = new Lesson();
+                    mid.Date = reader.GetString(0);
+                    mid.Name = reader.GetString(1);
+                    mid.Surname = reader.GetString(2);
+                    mid.Id = reader.GetInt32(3);
+
+                    list.Add(mid);
+                }
+            }
+
+            return list;
+
+
+        }
+
         public static void RemoveRate(int Id)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -460,23 +491,22 @@ namespace TutorHelper.DataAccess
                 }
             }
         }
-        //public static void RemoveLesson(int Id)
-        //{
-        //    using var con = new SqliteConnection(ConnectionString);
-        //    {
-        //        con.Open();
 
-        //        string sql = "DELETE FROM Lesson WHERE LessonID = @Id";
-        //        using (var cmd = new SqliteCommand(sql, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@Id", Id);
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
+        public static void RemoveTextbook(int id)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
 
-
-        //}
-
+                string sql = $"DELETE FROM Textbook WHERE TextbookID = @TextbookID";
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@TextbookID", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        
 
         //----------------- Home -----------------------------------------------
 

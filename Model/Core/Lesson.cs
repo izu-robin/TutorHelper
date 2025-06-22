@@ -39,6 +39,11 @@ namespace TutorHelper.Model.Core
             }
         } 
 
+        public string DateAndName
+        {
+            get => $"{Date} {StudentFullName}";
+        }
+
         public string Time { get; set; } = " ";
 
         public string? Notes { get; set; } = " ";
@@ -72,6 +77,7 @@ namespace TutorHelper.Model.Core
             }
         }
 
+       
         public Lesson() { } //по умолчанию
         public Lesson(Lesson a) //от копирования
         {

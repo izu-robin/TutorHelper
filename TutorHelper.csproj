@@ -22,6 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\appIcon.png" />
     <None Remove="Images\icon-group.png" />
     <None Remove="Images\icon-lesson.png" />
     <None Remove="Images\icon-overview.png" />
@@ -43,12 +44,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.6" />
-	  <Content Include="TutorHelperDB.db">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
   </ItemGroup>
 
   <ItemGroup>
+	  <Content Include="Images\appIcon.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
     <Resource Include="Images\icon-group.png" />
     <Resource Include="Images\icon-lesson.png" />
     <Resource Include="Images\icon-overview.png" />

@@ -110,6 +110,7 @@ namespace TutorHelper.ViewModel
             {
                 FutureLessonsList.Add(les);
             }
+            FutureLessonsList.RemoveAt(0);
         }
         public static string? DateToday { get; set; }
 
