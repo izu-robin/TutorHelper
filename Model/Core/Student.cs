@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,17 +10,34 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TutorHelper.Model.Core
 {
-    public class Student  
+    public class Student : INotifyPropertyChanged
     {
  
         public int Id { get; set; }
- 
 
         private string? _name;
-        public string? Name { get; set; }
+        public string? Name 
+        {
+            get => _name; 
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _surname;
+        public string? Surname  
+        {
+            get => _surname;
+            set
+            {
+                _surname = value;
+                OnPropertyChanged();
+            }
+        }
 
 
-        public string? Surname { get; set; }
 
         public string FullName
         {
@@ -46,5 +64,13 @@ namespace TutorHelper.Model.Core
             RateTitle = a.RateTitle;
         }
 
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

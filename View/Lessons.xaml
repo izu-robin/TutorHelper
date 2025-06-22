@@ -245,17 +245,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         </Grid>
 
         <!--<TextBlock Text="{Binding ProductAvailability}"

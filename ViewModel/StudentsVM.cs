@@ -22,9 +22,38 @@ namespace TutorHelper.ViewModel
         {
             LoadStudents();
             GetRates();
+            LoadTextbooks();
+            SelectedRating = new Rate(RatesList[0]);
+            SelectedTextbook = new TBook(TextbooksList[0]);
+            studentsInfo = new StudentsInfo();
+            NewStudent = new Student();
         }
         public ObservableCollection<Student> StudentsList { get; } = new();
         public ObservableCollection<Rate> RatesList { get; } = new();
+        public ObservableCollection<TBook> TextbooksList { get; } = new();
+        public ObservableCollection<Lesson> StudentsLessonsList { get; } = new();
+
+        private  Student _newStudent;
+        public Student NewStudent
+        {
+            get => _newStudent;
+            set
+            {
+                _newStudent = value;
+                OnPropertyChanged();
+            }
+        }
+        private StudentsInfo _studentsInfo;
+        public StudentsInfo studentsInfo
+        {
+            get => _studentsInfo;
+            set
+            {
+                _studentsInfo = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private void LoadStudents()
         {
@@ -32,7 +61,24 @@ namespace TutorHelper.ViewModel
             {
                 StudentsList.Add(stud);
             }
+            StudentsList.RemoveAt(0);
         }
+
+        private void LoadTextbooks()
+        {
+            foreach (var tb in DataBase.LoadTextbooks())
+            {
+                TextbooksList.Add(tb);
+            }
+        }
+
+        //private void LoadStudentsLessons()
+        //{
+        //    foreach (var les in DataBase.GetStudentsLessons())
+        //    {
+        //        StudentsLessonsList.Add(les);
+        //    }
+        //}
 
         private Student _selectedStudent;
         public Student SelectedStudent
@@ -42,10 +88,11 @@ namespace TutorHelper.ViewModel
             {
                 _selectedStudent = value;
                 OnPropertyChanged();
+          
 
                 if (_selectedStudent!= null)
                 {
-                    CurrentEditableStudent = new Student(_selectedStudent);
+                    CurrentEditableStudent = new Student(_selectedStudent);                
                 }
             }
         }
@@ -58,7 +105,26 @@ namespace TutorHelper.ViewModel
             {
                 _currentEditableStudent = value;
                 OnPropertyChanged();
+                if (SelectedRating != null && CurrentEditableStudent!=null)
+                {
+                    RatesList.Clear();
+                    GetRates();
+                    TextbooksList.Clear();
+                    LoadTextbooks();
+                    SelectedRating = FindRate(CurrentEditableStudent.RateID);
+                    SelectedTextbook = FindTextbook(CurrentEditableStudent.TextbookId);
+                }
             }
+        }
+
+        private Rate FindRate(int id)
+        {
+            for(int i=0; i<RatesList.Count; i++)
+            {
+                if (RatesList[i].Id == id)
+                    return RatesList[i];
+            }
+            return new Rate();
         }
 
         private RelayCommand _saveEditedStudentCommand;
@@ -73,8 +139,10 @@ namespace TutorHelper.ViewModel
             SelectedStudent.Name = CurrentEditableStudent.Name;
             SelectedStudent.Surname = CurrentEditableStudent.Surname;
             SelectedStudent.TextbookId = CurrentEditableStudent.TextbookId;
-            SelectedStudent.RateID = CurrentEditableStudent.RateID;
-
+            SelectedStudent.RateID = SelectedRating.Id;
+            SelectedStudent.TextbookId = SelectedTextbook.Id;
+             
+            //SelectedStudent = CurrentEditableStudent;
             DataBase.UpdateStudent(SelectedStudent);
             StudentsList.Clear();
             LoadStudents();
@@ -97,20 +165,64 @@ namespace TutorHelper.ViewModel
                 _selectedRating = value;
                 OnPropertyChanged();
 
-                CurrentEditableStudent.RateID = value?.Id ?? 0;
             }
         }
 
+        private TBook _selectedTextbook;
+        public TBook SelectedTextbook
+        {
+            get => _selectedTextbook;
+            set
+            {
+                _selectedTextbook = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private TBook FindTextbook(int id)
+        {
+            for (int i = 0; i < TextbooksList.Count; i++)
+            {
+                if (TextbooksList[i].Id == id)
+                    return TextbooksList[i];
+            }
+            return new TBook();
+        }
+
+        private RelayCommand _getSelectedLessonsCommand;
+        public RelayCommand GetSelectedLessonsCommand => (_getSelectedLessonsCommand ??
+           (_getSelectedLessonsCommand = new RelayCommand(GetSelectedLessons)));
+
+        private void GetSelectedLessons()
+        {
+
+            if (SelectedStudent == null)
+                return;
+
+            StudentsLessonsList.Clear();
+
+            studentsInfo.ID = SelectedStudent.Id;
+
+            foreach (var les in DataBase.GetStudentsLessons(studentsInfo))
+             { StudentsLessonsList.Add(les); }
+             
+        }
 
 
+        private RelayCommand _saveNewStudentCommand;
+        public RelayCommand SaveNewStudentCommand => _saveNewStudentCommand ??  
+                            (_saveNewStudentCommand = new RelayCommand(SaveNewStudent));
 
+        private void SaveNewStudent()
+        {
+            NewStudent.RateID = SelectedRating.Id;
+            DataBase.AddNewStudent(NewStudent);
+            StudentsList.Clear();
+            LoadStudents();
 
-
-
-
-
-
-
+            NewStudent.Name = "";
+            NewStudent.Surname = "";
+        }
 
 
     }

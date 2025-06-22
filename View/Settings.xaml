@@ -37,7 +37,7 @@
             <Grid Margin="0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="2*"/>
@@ -57,11 +57,16 @@
 
 
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox Width="200"
-                             HorizontalAlignment="Left"
-                             Margin="15,15,0,0"/>
+                        <ComboBox ItemsSource="{Binding AllStudentsList}"
+                                  SelectedItem="{Binding SelectedStudent}"
+                                  DisplayMemberPath="FullName"
+                                  SelectedValuePath="Id"
+                                   Width="200"
+                                   HorizontalAlignment="Left"
+                                   Margin="15,15,0,0"/>
 
                         <CheckBox Content="Удалить вместе с занятиями"
+                                  IsChecked="{Binding DeleteWithLessons, Mode=TwoWay}"
                                   Margin="15,18,0,0"
                                   Foreground="White"
                                   FontSize="14"/>
@@ -69,12 +74,13 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Button Content="Удалить"
+                                Command="{Binding DeleteStudentCommand}"
                             Background="#A5CCE4" 
                             Width="200"
                             Margin="15,18,0,0"
                             HorizontalAlignment="Left" />
                     
-                    <TextBlock Text="(повлияет на финансовый отчет, если он еще не сформирован) "
+                    <TextBlock Text="(повлияет на финансовый отчет) "
                                    FontSize="14"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Top" 
@@ -86,9 +92,9 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1">
+                <!--<StackPanel Grid.Row="1">
 
-                    <!--// ГРУППА //-->
+                    --><!--// ГРУППА //--><!--
                     <TextBlock Text="Удаление отчета: "
                                 FontSize="16"
                                 HorizontalAlignment="Left"
@@ -126,9 +132,9 @@
                                    TextWrapping="Wrap"/>
                     </StackPanel>
 
-                </StackPanel>
+                </StackPanel>-->
 
-                <StackPanel Grid.Row="2">
+                <StackPanel Grid.Row="1">
 
                     <!--// ЗАНЯТИЕ //-->
                     <TextBlock Text="Удаление занятия: "
@@ -158,7 +164,7 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="3">
+                <StackPanel Grid.Row="2">
 
                     <!--// ЗАНЯТИЕ //-->
                     <TextBlock Text="Удаление тарифа: "
@@ -193,7 +199,7 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="4">
+                <StackPanel Grid.Row="3">
 
                     <!--// ЗАНЯТИЕ //-->
                     <TextBlock Text="Удаление УМК: "

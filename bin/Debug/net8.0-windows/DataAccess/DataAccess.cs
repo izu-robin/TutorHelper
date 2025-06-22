@@ -63,7 +63,7 @@ namespace TutorHelper.DataAccess
                     stud.TextbookTitle = " - ";
 
                 if (!reader.IsDBNull(5))
-                    stud.TextbookId = reader.GetInt32(5);
+                    stud.RateID = reader.GetInt32(5);
                 else
                     stud.RateID = 0;
 
@@ -401,7 +401,51 @@ namespace TutorHelper.DataAccess
 
 
 
-        // -----------------территория Settings--------------------------------
+        // ----------------- Settings--------------------------------
+        public static void RemoveStudentOnly(Student s)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+
+                string sql = "UPDATE Lesson SET StudentID = 0 WHERE StudentID = @StudentID";
+                using (var cmd= new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", s.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                sql = "DELETE FROM Student WHERE StudentID = @Id";
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", s.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static void RemoveStudentWithLessons(Student s)
+        {
+
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+
+                string sql = "DELETE FROM Lesson WHERE StudentID = @Id";
+                using (var cmd= new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", s.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+                sql = "DELETE FROM Student WHERE StudentID = @Id";
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Id", s.Id);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
         public static void RemoveRate(int Id)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -416,7 +460,22 @@ namespace TutorHelper.DataAccess
                 }
             }
         }
+        //public static void RemoveLesson(int Id)
+        //{
+        //    using var con = new SqliteConnection(ConnectionString);
+        //    {
+        //        con.Open();
 
+        //        string sql = "DELETE FROM Lesson WHERE LessonID = @Id";
+        //        using (var cmd = new SqliteCommand(sql, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Id", Id);
+        //            cmd.ExecuteNonQuery();
+        //        }
+        //    }
+
+
+        //}
 
 
         //----------------- Home -----------------------------------------------
@@ -440,10 +499,25 @@ namespace TutorHelper.DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-
-
         }
 
+        public static void AddNewStudent(Student s)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = $"INSERT INTO Student (Name, Surname, PricingID, TextbookID) VALUES (@Name, @Surname, @PricingID, @TextbookID)";
+                using (var cmd= new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Name", s.Name);
+                    cmd.Parameters.AddWithValue("@Surname", s.Surname);
+                    cmd.Parameters.AddWithValue("@PricingID", s.RateID);
+                    cmd.Parameters.AddWithValue("@TextbookID", 0);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
 
         //-----------------Students---------------------------------------------
@@ -468,6 +542,84 @@ namespace TutorHelper.DataAccess
                 }
             }
         }
+
+
+
+        public static List<Lesson> GetStudentsLessons(StudentsInfo s)
+        {
+            List<Lesson> list = new List<Lesson>();
+            //базовый запрос, общая часть для всех
+            string sql = $"SELECT Lesson.StudentID, Lesson.LessonDate, Lesson.StartTime, Lesson.Attended, Lesson.Paid  FROM Lesson Where Lesson.StudentID={s.ID}";
+
+            if( (s.Paid && s.Unpaid && s.Attended) || (!s.Paid && !s.Unpaid && s.Attended) )
+             {
+                //все оплаченные и неоплаченные посещенные
+                sql += "  AND Lesson.Attended=1 ORDER BY Lesson.LessonDate";
+             }
+            else if ((s.Paid && s.Unpaid && !s.Attended) || (!s.Paid && !s.Unpaid && !s.Attended))
+            {
+                //оплаченные+неоплаченные не важно посещенные или нет
+                //так и остается
+                sql += " ORDER BY Lesson.LessonDate";
+            }
+            else if (s.Paid && !s.Unpaid && !s.Attended)
+            {
+                //оплаченные 
+                sql += " AND Lesson.Paid=1 ORDER BY Lesson.LessonDate";
+            }
+            else if (!s.Paid && s.Unpaid && !s.Attended)
+            {
+                //все неоплаченные
+                sql += " AND Lesson.Paid=0 ORDER BY Lesson.LessonDate";
+            }
+            else if (s.Paid && !s.Unpaid && s.Attended)
+            {
+                //оплачено и посещено
+                sql += " AND Lesson.Paid=1 AND Lesson.Attended=1 ORDER BY Lesson.LessonDate";
+            }
+            else if (!s.Paid && s.Unpaid && s.Attended)
+            {
+                //неоплачены посещены
+                sql += " AND Lesson.Paid=0 AND Lesson.Attended=1 ORDER BY Lesson.LessonDate";
+            }
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = sql;
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Lesson mid = new Lesson();
+                mid.StudentID = reader.GetInt32(0);
+                mid.Date = reader.GetString(1);
+                mid.Time = reader.GetString(2);
+
+                //булевские поля
+                if (reader.GetInt32(3) == 1)
+                    mid.Attended = true;
+                else
+                    mid.Attended = false;
+
+                if (reader.GetInt32(4) == 1)
+                    mid.Paid = true;
+                else
+                    mid.Paid = false;
+
+                list.Add(mid);
+            }
+
+            return list;
+
+        }
+
+
+
+
+
+
 
         // --------------------------------- Lessons----------------------------
         public static void UpdateLesson(Lesson l)
@@ -557,23 +709,6 @@ namespace TutorHelper.DataAccess
                     
                 }reader.Close();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 var command1 = con.CreateCommand();
                 command1.CommandText = $"Select Count(Lesson.LessonID) From Lesson Where Lesson.LessonDate>='" + start + "' AND Lesson.LessonDate<'" + finish +"' AND Lesson.Attended=1";
                 using var reader1 = command1.ExecuteReader();
@@ -584,8 +719,6 @@ namespace TutorHelper.DataAccess
                     else
                         rep.TotalLessons = 0;
                 }
-                // reader1.Close();
-
 
                 var command2 = con.CreateCommand();
                 command2.CommandText = $"Select Count(Lesson.LessonID) From Lesson  WHERE Lesson.LessonDate >= '{start}' AND Lesson.LessonDate < '{finish}' AND Lesson.Paid=1 AND Lesson.Attended=1";                
@@ -608,14 +741,6 @@ namespace TutorHelper.DataAccess
                     else
                         rep.TotalSum = 0;
                 }
-
-                //reader3.Close();
-
-                //загнать данные об суммарных часах в rep
-
-                //надо ли вообще бд тут трогать????
-
-
 
                 return rep;
             }

@@ -8,15 +8,90 @@ using System.Threading.Tasks;
 using System.Windows;
 using TutorHelper.DataAccess;
 using TutorHelper.Model;
+using TutorHelper.Model.Core;
 using TutorHelper.Utilities;
+
 
 namespace TutorHelper.ViewModel
 {
     class SettingsVM : Utilities.ViewModelBase
     {
-        //private readonly PageModel _pageModel;
-        
+        public SettingsVM()
+        {
+            GetPricings();
+            GetStudents();
+            DeleteWithLessons = new bool();
+        }
+
+        public ObservableCollection<Student> AllStudentsList { get; } = new();
+        public bool DeleteWithLessons { get; set; } = false; 
+
+        private void GetStudents()
+        {
+            foreach (var stud in DataBase.GetStudents())
+            {
+                AllStudentsList.Add(stud);
+            }
+
+            AllStudentsList.RemoveAt(0);
+        }
+
+        private Student _selectedStudent;
+        public Student SelectedStudent
+        {
+            get => _selectedStudent;
+            set
+            {
+                _selectedStudent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RelayCommand _deleteStudentCommand;
+        public RelayCommand DeleteStudentCommand => _deleteStudentCommand ?? (_deleteStudentCommand = new RelayCommand(DeleteStudent));
+
+        private void DeleteStudent()
+        {
+            try
+            {
+                if (DeleteWithLessons)
+                {
+                    DataBase.RemoveStudentWithLessons(SelectedStudent);
+                    MessageBox.Show($"Удаление ученика {SelectedStudent.FullName} вместе с занятиями прошло успешно.");
+
+                }
+                else
+                {
+                    DataBase.RemoveStudentOnly(SelectedStudent);
+                    MessageBox.Show($"Удаление ученика {SelectedStudent.FullName} прошло успешно.");
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Удаление прервано: {ex.Message}");
+            }
+            finally
+            {
+                AllStudentsList.Clear();
+                GetStudents();
+                SelectedStudent = new Student();
+            }
+        }
+
+
+
+
+
         public ObservableCollection<Rate> AllRatesList { get; } = new();
+
+        private void GetPricings()   //загрузка всех тарифов в комбобокс 
+        {
+            foreach (var rate in DataBase.LoadPricings())
+            {
+                AllRatesList.Add(rate);
+            }
+        }
 
         private Rate _selectedRate;
         public Rate SelectedRate
@@ -26,7 +101,6 @@ namespace TutorHelper.ViewModel
             {
                 _selectedRate = value;
                 OnPropertyChanged();
-
             }
         }
 
@@ -39,7 +113,6 @@ namespace TutorHelper.ViewModel
             if (SelectedRate == null)
                 return; //проверка на пустоту
 
-
             try
             {
                 DataBase.RemoveRate(SelectedRate.Id);
@@ -47,7 +120,7 @@ namespace TutorHelper.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Delete failed: {ex.Message}");
+                MessageBox.Show($"Удаление прервано: {ex.Message}");
             }
             finally
             {
@@ -58,29 +131,9 @@ namespace TutorHelper.ViewModel
             }
         }
 
+       
 
 
-
-
-
-
-
-
-        //загрузка всех тарифов в комбобокс 
-        private void GetPricings() //заполняет список тарифов строками из дб
-        {
-            foreach (var rate in DataBase.LoadPricings())
-            {
-                AllRatesList.Add(rate);
-            }
-        }
-
-
-        public SettingsVM()
-        {
-            GetPricings();
-             
-        }
 
     }
 }

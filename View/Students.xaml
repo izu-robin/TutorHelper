@@ -44,18 +44,18 @@
                 <StackPanel Orientation="Horizontal">
                     <ListView ItemsSource="{Binding StudentsList}"
                               SelectedItem="{Binding SelectedStudent}"
-                              SelectionMode="Single"
+                              SelectionMode="Single" Width="334"
            >
                         <ListView.View >
                             <GridView > 
                                 
                                 <GridViewColumn Header="Фамилия" 
                                                 DisplayMemberBinding="{Binding FullName}"
-                                                Width="180"/>
+                                                Width="160"/>
 
                                 <GridViewColumn Header="УМК" 
                                                 DisplayMemberBinding="{Binding TextbookTitle}"
-                                                Width="145"/>
+                                                Width="150"/>
 
 
                             </GridView>
@@ -84,26 +84,31 @@
                                        Foreground="White"
                                        Width="180"
                                        Margin="4"/>
-                            <TextBox Text="Имя" 
+                            <TextBox Text="{Binding NewStudent.Name, Mode=TwoWay}" 
                                      Margin="0"/>
                             
                             <TextBlock Text= "Фамилия" 
                                        Foreground="White"
                                        Width="180"
                                        Margin="4"/>
-                            <TextBox Text="Фамилия" 
+                            <TextBox Text="{Binding NewStudent.Surname, Mode=TwoWay}" 
                                      Margin="0"/>
 
                             <TextBlock Text="Тариф" 
                                        Foreground="White"
                                        Margin="4"/>
-                            
-                            <ComboBox Width="180"
-                                      Height="20">
+
+                            <ComboBox ItemsSource="{Binding RatesList}"
+                                      SelectedItem="{Binding SelectedRating, Mode=TwoWay}"
+                                      DisplayMemberPath="Title"
+                                      SelectedValuePath="Id"
+                                      Width="180"
+                                      Height="23">
                                 
                             </ComboBox>
 
                             <Button x:Name="SaveNewStudent"
+                                    Command="{Binding SaveNewStudentCommand}"
                                     Content="Сохранить изменения"
                                     Margin="0,10,0,0"
                                     Background="#A5CCE4">
@@ -148,13 +153,15 @@
                 <StackPanel Orientation="Horizontal">
 
                     <CheckBox Content="Оплаченные"
+                              IsChecked="{Binding studentsInfo.Paid, Mode=TwoWay}"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="10,0,0,0"
                               Foreground="White"
                               FontSize="12"/>
 
-                    <CheckBox Content="Оплаченные"
+                    <CheckBox Content="Неоплаченные"
+                              IsChecked="{Binding studentsInfo.Unpaid, Mode=TwoWay}"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="10,0,0,0"
@@ -162,6 +169,7 @@
                               FontSize="12"/>
 
                     <CheckBox Content="Посещенные"
+                              IsChecked="{Binding studentsInfo.Attended, Mode=TwoWay}"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
                               Margin="10,0,0,0"
@@ -171,6 +179,7 @@
                 </StackPanel>
 
                 <Button Content="Найти"
+                        Command="{Binding GetSelectedLessonsCommand}"
                         Height="20"
                         Margin="10,60,10,10"
                         Background="#A5CCE4"/>
@@ -188,30 +197,24 @@
 
                 <!--//  Нижняя таблица //-->
                 <ListView x:Name="StudentsLessonsView"
-                          ItemsSource="{Binding Lessons}"
+                          ItemsSource="{Binding StudentsLessonsList}"
                           SelectionMode="Single">
 
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="ID зан."
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="42">
-                            </GridViewColumn>
+                             
                             <GridViewColumn Header="Дата"
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="47"/>
+                                        DisplayMemberBinding="{Binding Date}"
+                                        Width="83"/>
                             <GridViewColumn Header="Время"
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="47"/>
-                            <GridViewColumn Header="Группа"
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="50"/>
+                                        DisplayMemberBinding="{Binding Time}"
+                                        Width="83"/>
                             <GridViewColumn Header="Присутствие"
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="75"/>
+                                        DisplayMemberBinding="{Binding SignAttended}"
+                                        Width="83"/>
                             <GridViewColumn Header="Оплачено"
-                                        DisplayMemberBinding="{Binding Id}"
-                                        Width="70"/>
+                                        DisplayMemberBinding="{Binding SignPaid}"
+                                        Width="83"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -261,19 +264,22 @@
                                    Width="180"
                                    Margin="5,8"/>
                         <ComboBox ItemsSource="{Binding RatesList}"
-                                  SelectedItem="{Binding SelectedRating}"
+                                  SelectedItem="{Binding SelectedRating, Mode=TwoWay}"
                                   DisplayMemberPath="Title"
                                   SelectedValuePath="Id"
                                   Height="20"/>
 
-                        <!--<TextBlock Text= "УМК"
+                        <TextBlock Text= "УМК"
                                    TextWrapping="Wrap"
                                    Foreground="White"
                                    Width="180"
-                                   Margin="5"/>
-                        <ComboBox x:Name="textbook"
-                                  Height="20"
-                                  SelectedItem="0"/>-->
+                                   Margin="5,6"/>
+                        
+                        <ComboBox ItemsSource="{Binding TextbooksList}"
+                                  SelectedItem="{Binding SelectedTextbook, Mode=TwoWay}"
+                                  DisplayMemberPath="Title"
+                                  SelectedValuePath="Id"
+                                  Height="22"/>
 
 
                         <Button Command="{Binding SaveEditedStudent}"

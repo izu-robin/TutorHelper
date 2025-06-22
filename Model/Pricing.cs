@@ -1,18 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
  
 
 namespace TutorHelper.Model
 {
-    public class Rate
+    public class Rate : INotifyPropertyChanged
     {
-       
-        public int Id { get; set; }
 
-        public string? Title { get; set; }
+        private int _id;
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _title;
+        public string? Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public int Price { get; set; }
 
@@ -31,7 +53,11 @@ namespace TutorHelper.Model
 
 
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 
 

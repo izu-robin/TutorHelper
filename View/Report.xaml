@@ -101,7 +101,7 @@
                                     Padding="5,5,0,5"
                                     BorderBrush="#A5CCE4"
                                     BorderThickness="2" 
-                                    Margin="5,10,5,8"
+                                    Margin="4,10,5,8"
                                         CornerRadius="0,0,0,15">
 
                                     <StackPanel>
@@ -156,13 +156,13 @@
                                 </Border>
 
                                 <Border Height="90"
-                                        Width="168"
+                                        Width="169"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Padding="5,5,0,5"
                                         BorderBrush="#A5CCE4"
                                         BorderThickness="2" 
-                                        Margin="8,10,10,8"
+                                        Margin="6,10,10,8"
                                         CornerRadius="0,0,15,0">
 
                                     <StackPanel>
@@ -184,11 +184,8 @@
                                     </StackPanel>
 
                                 </Border>
-
-
-
+                                
                             </StackPanel>
-
 
                         </StackPanel>
 
@@ -207,11 +204,8 @@
                                           HorizontalAlignment="Left"
                                           Padding="0" 
                                           Width="700"
-                                          
-                                          
+                                        
                                            >
-
-
                     <FlowDocument Name="docReport"
                                   MinPageWidth="700"
                                   PageWidth="550"
@@ -222,8 +216,6 @@
                        
                         
                         PageHeight="600"-->
-
-
 
                         <BlockUIContainer  >
                             <StackPanel>
@@ -403,7 +395,6 @@
                 </FlowDocumentScrollViewer>
 
 
-
                 <Button Content="Распечатать/сохранить отчет в PDF"
                         Click="Button_Click"
                         Background="#A5CCE4"
@@ -413,34 +404,9 @@
                         Height="25" 
                         >
 
-
                 </Button>
 
-
-
-
-
-
-
             </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </Grid>
 

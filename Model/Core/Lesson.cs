@@ -60,6 +60,17 @@ namespace TutorHelper.Model.Core
             }
         }
 
+        private char _signAttended;
+        public char SignAttended
+        {
+            get
+            {
+                if (Attended)
+                    return '+';
+                else
+                    return '-';
+            }
+        }
 
         public Lesson() { } //по умолчанию
         public Lesson(Lesson a) //от копирования
