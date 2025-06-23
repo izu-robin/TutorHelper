@@ -131,6 +131,7 @@ namespace TutorHelper.ViewModel
             {
                 StudentsList.Add(stud);
             }
+            
         }
 
         private Student _selectedStudent;

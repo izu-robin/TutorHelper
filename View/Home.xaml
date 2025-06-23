@@ -38,7 +38,7 @@
                       Margin="374,17,0,0" 
                       VerticalAlignment="Top" 
                       IsTodayHighlighted="True"
-                      SelectedDate="{Binding SelectedDate, Mode=TwoWay}">
+                      SelectedDate="{Binding SelectedDate, Mode=TwoWay}" >
                 <!--SelectedDatesChanged="NewSelectedDate" >-->
 
                 <Calendar.BorderBrush>
@@ -65,6 +65,7 @@
                           SelectionMode="Single"
                           HorizontalAlignment="Center"
                           Width="350"
+                          
                           >
 
                     <ListView.View>
@@ -75,7 +76,7 @@
                                             Width="60"
                                             TextBlock.TextAlignment="Center"/>
                             <GridViewColumn Header="Ученик" DisplayMemberBinding="{Binding StudentFullName}"
-                                            Width="200"
+                                            Width="180"
                                             />
                             
                             <GridViewColumn Header="Длительность" DisplayMemberBinding="{Binding Duration}"
@@ -275,7 +276,9 @@
                             <TextBox Text="{Binding NewLesson.Time, Mode=TwoWay}" 
                                      Margin="0"
                                      Width="160"
-                                     Height="20"/>
+                                     Height="20"
+                                     MaxLength="5"/>
+                             
 
                             <TextBlock Text="Ученик" 
                                           Foreground="White"
@@ -286,7 +289,7 @@
                                       DisplayMemberPath="FullName"
                                       SelectedValuePath="Id"
                                 Width="160"
-                                      Height="20">
+                                      Height="23">
 
                             </ComboBox>
 
@@ -297,7 +300,9 @@
                             <TextBox Text="{Binding NewLesson.Duration, Mode=TwoWay}" 
                                      Margin="0"
                                      Width="160"
-                                     Height="20"/>
+                                     Height="20"
+                                     MaxLength="5"
+                                     />
 
 
                             <Button x:Name="SaveNewLesson"

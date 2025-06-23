@@ -44,7 +44,7 @@ namespace TutorHelper.Model.Core
             get => $"{Date} {StudentFullName}";
         }
 
-        public string Time { get; set; } = " ";
+        public string Time { get; set; } = "";
 
         public string? Notes { get; set; } = " ";
 

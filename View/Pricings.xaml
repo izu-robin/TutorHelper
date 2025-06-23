@@ -49,7 +49,8 @@
 
                 <ListView ItemsSource="{Binding PricingsList}"
                           SelectedItem="{Binding SelectedRating}"
-                          SelectionMode="Single">
+                          SelectionMode="Single"
+                          >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="ID" 
@@ -59,9 +60,10 @@
                                             DisplayMemberBinding="{Binding Title}"
                                             Width="280"/>
 
-                            <GridViewColumn Header="Стоимость 1 академического часа" 
+                            <GridViewColumn Header="Стоимость занятия" 
                                             DisplayMemberBinding="{Binding Price}"
-                                            Width="200"/> 
+                                            Width="200"
+                                            /> 
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -110,7 +112,7 @@
 
                             <StackPanel Orientation="Horizontal" >
 
-                                <TextBlock Text= "Стоимость академ. часа: " 
+                                <TextBlock Text= "Стоимость занятия: " 
                                            Foreground="White"
                                            TextWrapping="Wrap" 
                                            Width="85"
@@ -172,7 +174,7 @@
 
                             <StackPanel Orientation="Horizontal" >
 
-                                <TextBlock Text= "Стоимость академ.часа: " 
+                                <TextBlock Text= "Стоимость занятия: " 
                                            Foreground="White"
                                            TextWrapping="Wrap" 
                                            Width="85"
@@ -183,7 +185,8 @@
                                 <TextBox    Text="{Binding NewRate.Price, Mode=TwoWay}" 
                                             Margin="0"
                                             Height="20"
-                                            Width="160"/>
+                                            Width="160" 
+                                            MaxLength="5"/>
 
                             </StackPanel>
 

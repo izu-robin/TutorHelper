@@ -10,6 +10,7 @@ using TutorHelper.DataAccess;
 using TutorHelper.Model;
 using TutorHelper.Model.Core;
 using TutorHelper.Utilities;
+using System.ComponentModel;
 
 
 namespace TutorHelper.ViewModel
@@ -55,6 +56,9 @@ namespace TutorHelper.ViewModel
 
         private void DeleteStudent()
         {
+            if (SelectedStudent == null)
+                return;
+
             try
             {
                 if (DeleteWithLessons)
@@ -139,6 +143,7 @@ namespace TutorHelper.ViewModel
             {
                 AllRatesList.Add(rate);
             }
+            AllRatesList.RemoveAt(0);
         }
 
         private Rate _selectedRate;
@@ -189,6 +194,7 @@ namespace TutorHelper.ViewModel
             {
                 AllTextbooksList.Add(tb);
             }
+            AllTextbooksList.RemoveAt(0); 
         }
 
         private TBook _selectedTextbook;

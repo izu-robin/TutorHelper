@@ -20,6 +20,8 @@ namespace TutorHelper.ViewModel
             {
                 PricingsList.Add(rate);
             }
+
+            PricingsList.RemoveAt(0);
         }
 
         private Rate _selectedRating;

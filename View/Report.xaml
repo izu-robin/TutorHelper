@@ -200,12 +200,11 @@
                 <FlowDocumentScrollViewer Height="288"
                                           VerticalAlignment="Top"
                                           HorizontalScrollBarVisibility="Disabled"
-                                          VerticalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="Visible"
                                           HorizontalAlignment="Left"
                                           Padding="0" 
-                                          Width="700"
-                                        
-                                           >
+                                          Width="700">
+                    
                     <FlowDocument Name="docReport"
                                   MinPageWidth="700"
                                   PageWidth="550"
@@ -225,8 +224,10 @@
                                           ItemsSource="{Binding LessonsList}"
                                           Height="700"
                                           VerticalAlignment="Top"
-                                          Width="514">
-                                    <!-- //  Поменять Height на 1000 для нормального размера!!!!   -->
+                                          Width="514"
+                                          HorizontalContentAlignment="Center"
+                                          >
+                                    <!-- //  Поменять Height на 700 для нормального размера!!!!   -->
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Дата"

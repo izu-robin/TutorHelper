@@ -457,7 +457,7 @@ namespace TutorHelper.DataAccess
             { connection.Open();
 
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT Lesson.LessonDate, Student.Name, Student.Surname, Lesson.LessonID FROM Lesson join Student on Student.StudentID=Lesson.StudentID ORDER BY Lesson.LessonDate";
+                command.CommandText = "SELECT Lesson.LessonDate, Student.Name, Student.Surname, Lesson.LessonID FROM Lesson join Student on Student.StudentID=Lesson.StudentID ORDER BY Lesson.LessonDate ASC, Lesson.StartTime ASC";
 
                 using var reader = command.ExecuteReader();
                 while (reader.Read())

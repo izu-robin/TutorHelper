@@ -476,7 +476,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\Styles\Image.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\Styles\Page.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\Styles\Text.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\MainWindow.g.cs
-L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Groups.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Home.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Lessons.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Pricings.g.cs
@@ -491,7 +490,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\TutorHelper_Marku
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\App.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\MainWindow.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\Utilities\DataTemplate.baml
-L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Groups.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Home.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Lessons.baml
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Pricings.baml
@@ -512,7 +510,6 @@ L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\TutorHelper.genru
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\ref\TutorHelper.dll
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\DataAccess\DataAccess.cs
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.exe
-L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelperDB.db
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.dll.config
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.deps.json
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\TutorHelper.runtimeconfig.json
@@ -980,5 +977,8 @@ L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\zh-Hant\UIAutomatio
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\zh-Hant\UIAutomationTypes.resources.dll
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\zh-Hant\WindowsBase.resources.dll
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\zh-Hant\WindowsFormsIntegration.resources.dll
+L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Images\appIcon.png
+L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Report.g.cs
+L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Report.baml
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Microsoft.DiaSymReader.Native.x86.dll
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\mscordaccore_x86_x86_8.0.1325.6609.dll

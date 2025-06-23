@@ -76,6 +76,8 @@ namespace TutorHelper.ViewModel
         {
             foreach (var stud in DataBase.GetStudents())
                 StudentsList.Add(stud);
+
+            StudentsList.RemoveAt(0);
         }
 
 

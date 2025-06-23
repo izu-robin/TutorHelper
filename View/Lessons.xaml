@@ -78,7 +78,8 @@
                 <ListView ItemsSource="{Binding FutureLessonsList}" 
                           SelectedItem="{Binding SelectedLesson}"
                           SelectionMode="Single"
-                          Margin="0,32,0,-32"  >
+                          Margin="0,32,0,-32" 
+                          >
                     <ListView.View>
                         <GridView>
                             
@@ -127,8 +128,9 @@
                                FontSize="14"
                                Foreground="White"/>
                         <TextBox Text="{Binding CurrentEditableLesson.Time, Mode=TwoWay}" 
-                                 Height="20"
-                                 Margin="10,0,10,0"/>
+                                 Height="23"
+                                 Margin="10,0,3,0"
+                                 MaxLength="5"/>
                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
                         <!--редактор даты-->
@@ -138,8 +140,9 @@
                                Foreground="White"/>
 
                         <TextBox Text="{Binding CurrentEditableLesson.Date, Mode=TwoWay}"
-                                 Height="20"
-                                 Margin="10,0,10,0"/>
+                                 Height="23"
+                                 Margin="10,0,3,0"
+                                 MaxLength="10"/>
  
                         <!--редактор заметок-->
 
@@ -148,7 +151,7 @@
                                Foreground="White"/>
 
                         <TextBox Text="{Binding CurrentEditableLesson.Notes, Mode=TwoWay}" 
-                                 Margin="10,0,10,10" Height="40"
+                                 Margin="10,0,3,10" Height="40"
                                  TextWrapping="Wrap"/>
 
 
@@ -178,19 +181,20 @@
                                Foreground="White"
                                FontSize="14"/>
                         <ComboBox  ItemsSource="{Binding StudentsList}"
-                                   SelectedItem="{Binding SelectedStudent}"
+                                   SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
                                    DisplayMemberPath="FullName"
                                    SelectedValuePath="Id"
                                    Margin="10,0,10,0" 
-                                   Height="20"/>
+                                   Height="23"/> 
  
 
                         <Label Content="Длительность:" 
                                Foreground="White"
                                FontSize="14"/>
                         <TextBox Text="{Binding CurrentEditableLesson.Duration, Mode=TwoWay}" 
-                                 Height="20"
-                                 Margin="10,0,10,0"/>
+                                 Height="23"
+                                 Margin="10,0,10,0"
+                                 MaxLength="3"/>
 
                         <StackPanel Orientation="Horizontal"
                                     Margin="15,30">

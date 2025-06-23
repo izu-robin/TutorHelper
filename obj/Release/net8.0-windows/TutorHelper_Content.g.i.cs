@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tutorhelperdb.db")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/appicon.png")]
 
 
