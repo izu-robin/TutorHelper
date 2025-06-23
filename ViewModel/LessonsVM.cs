@@ -185,14 +185,6 @@ namespace TutorHelper.ViewModel
             if (SelectedLesson==null || CurrentEditableLesson == null)
                 return;
 
-            //SelectedLesson.StudentID = CurrentEditableLesson.StudentID;
-            //SelectedLesson.Time = CurrentEditableLesson.Time;
-            //SelectedLesson.Date = CurrentEditableLesson.Date;
-            //SelectedLesson.StudentID = CurrentEditableLesson.StudentID;
-            //SelectedLesson.Notes = CurrentEditableLesson.Notes;
-            //SelectedLesson.Duration = CurrentEditableLesson.Duration;
-            //SelectedLesson.Attended = CurrentEditableLesson.Attended;
-            //SelectedLesson.Paid = CurrentEditableLesson.Paid;
 
             SelectedLesson = CurrentEditableLesson;
 

@@ -201,12 +201,13 @@ namespace TutorHelper.DataAccess
 
             var lessons = new List<Lesson>();
 
-
             using var connection = new SqliteConnection(ConnectionString);
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname FROM Lesson join Student ON Lesson.StudentID=Student.StudentID WHERE Lesson.LessonDate = '" + dashDate + "'" + " ORDER BY Lesson.StartTime ASC";
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname " +
+                                    "FROM Lesson join Student ON Lesson.StudentID=Student.StudentID " +
+                                    "WHERE Lesson.LessonDate = '" + dashDate + "'" + " ORDER BY Lesson.StartTime ASC";
 
             using var reader = command.ExecuteReader();
             while (reader.Read())

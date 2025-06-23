@@ -41,6 +41,7 @@
 
             <Grid Height="200"
                   VerticalAlignment="Top">
+                
                 <StackPanel Orientation="Horizontal">
                     <ListView ItemsSource="{Binding StudentsList}"
                               SelectedItem="{Binding SelectedStudent}"

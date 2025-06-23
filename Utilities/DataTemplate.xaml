@@ -7,7 +7,6 @@
         <view:Home />
     </DataTemplate>
 
-
     <DataTemplate DataType="{x:Type vm:ReportVM}">
         <view:Groups />
     </DataTemplate>

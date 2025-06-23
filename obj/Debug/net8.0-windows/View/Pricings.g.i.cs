@@ -69,7 +69,7 @@ namespace TutorHelper.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TutorHelper;V1.0.0.0;component/view/pricings.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TutorHelper;component/view/pricings.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\Pricings.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

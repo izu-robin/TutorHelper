@@ -195,39 +195,27 @@
             </Grid>
 
             <Grid Grid.Row="1">
-
-
                 <FlowDocumentScrollViewer Height="288"
                                           VerticalAlignment="Top"
                                           HorizontalScrollBarVisibility="Disabled"
                                           VerticalScrollBarVisibility="Visible"
                                           HorizontalAlignment="Left"
-                                          Padding="0" 
-                                          Width="700">
-                    
+                                          Padding="0" Width="700">
+
                     <FlowDocument Name="docReport"
                                   MinPageWidth="700"
-                                  PageWidth="550"
-                                  
-                                  >
-                        <!--ColumnWidth="550"
-                        MaxPageWidth="550"
-                       
+                                  PageWidth="550">
                         
-                        PageHeight="600"-->
+                        <BlockUIContainer>
 
-                        <BlockUIContainer  >
                             <StackPanel>
-                                
-
                                 <ListView Name="hehe"
                                           ItemsSource="{Binding LessonsList}"
                                           Height="700"
                                           VerticalAlignment="Top"
                                           Width="514"
-                                          HorizontalContentAlignment="Center"
-                                          >
-                                    <!-- //  Поменять Height на 700 для нормального размера!!!!   -->
+                                          HorizontalContentAlignment="Center" >
+                                    
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Дата"

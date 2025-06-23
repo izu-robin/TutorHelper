@@ -1,23 +1,23 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v8.0/win-x86",
+    "name": ".NETCoreApp,Version=v8.0/win-x64",
     "signature": ""
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {},
-    ".NETCoreApp,Version=v8.0/win-x86": {
+    ".NETCoreApp,Version=v8.0/win-x64": {
       "TutorHelper/1.0.0": {
         "dependencies": {
           "Microsoft.Data.Sqlite": "9.0.6",
-          "runtimepack.Microsoft.NETCore.App.Runtime.win-x86": "8.0.13",
-          "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x86": "8.0.13"
+          "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "8.0.13",
+          "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64": "8.0.13"
         },
         "runtime": {
           "TutorHelper.dll": {}
         }
       },
-      "runtimepack.Microsoft.NETCore.App.Runtime.win-x86/8.0.13": {
+      "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/8.0.13": {
         "runtime": {
           "Microsoft.CSharp.dll": {
             "assemblyVersion": "8.0.0.0",
@@ -681,7 +681,7 @@
           }
         },
         "native": {
-          "Microsoft.DiaSymReader.Native.x86.dll": {
+          "Microsoft.DiaSymReader.Native.amd64.dll": {
             "fileVersion": "14.42.34436.0"
           },
           "System.IO.Compression.Native.dll": {
@@ -711,7 +711,7 @@
           "mscordaccore.dll": {
             "fileVersion": "8.0.1325.6609"
           },
-          "mscordaccore_x86_x86_8.0.1325.6609.dll": {
+          "mscordaccore_amd64_amd64_8.0.1325.6609.dll": {
             "fileVersion": "8.0.1325.6609"
           },
           "mscordbi.dll": {
@@ -725,7 +725,7 @@
           }
         }
       },
-      "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x86/8.0.13": {
+      "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64/8.0.13": {
         "runtime": {
           "Accessibility.dll": {
             "assemblyVersion": "4.0.0.0",
@@ -1005,7 +1005,7 @@
       },
       "SQLitePCLRaw.lib.e_sqlite3/2.1.10": {
         "native": {
-          "runtimes/win-x86/native/e_sqlite3.dll": {
+          "runtimes/win-x64/native/e_sqlite3.dll": {
             "fileVersion": "0.0.0.0"
           }
         }
@@ -1030,12 +1030,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "runtimepack.Microsoft.NETCore.App.Runtime.win-x86/8.0.13": {
+    "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/8.0.13": {
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
     },
-    "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x86/8.0.13": {
+    "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64/8.0.13": {
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
@@ -1091,7 +1091,7 @@
     }
   },
   "runtimes": {
-    "win-x86": [
+    "win-x64": [
       "win",
       "any",
       "base"

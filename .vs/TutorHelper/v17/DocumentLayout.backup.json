@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "L:\\Programming\\Codin\\C#\\TutorHelper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|l:\\programming\\codin\\c#\\tutorhelper\\tutorhelper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|solutionrelative:tutorhelper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|l:\\programming\\codin\\c#\\tutorhelper\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|solutionrelative:view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|l:\\programming\\codin\\c#\\tutorhelper\\model\\core\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|solutionrelative:model\\core\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|l:\\programming\\codin\\c#\\tutorhelper\\dataaccess\\dataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|solutionrelative:dataaccess\\dataaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|l:\\programming\\codin\\c#\\tutorhelper\\view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4A0244AA-3E2B-4635-B0DA-FC073754797B}|TutorHelper.csproj|solutionrelative:view\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,27 +45,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TutorHelper.csproj",
-              "DocumentMoniker": "L:\\Programming\\Codin\\C#\\TutorHelper\\TutorHelper.csproj",
-              "RelativeDocumentMoniker": "TutorHelper.csproj",
-              "ToolTip": "L:\\Programming\\Codin\\C#\\TutorHelper\\TutorHelper.csproj",
-              "RelativeToolTip": "TutorHelper.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-23T12:14:09.609Z",
+              "Title": "Home.xaml",
+              "DocumentMoniker": "L:\\Programming\\Codin\\C#\\TutorHelper\\View\\Home.xaml",
+              "RelativeDocumentMoniker": "View\\Home.xaml",
+              "ToolTip": "L:\\Programming\\Codin\\C#\\TutorHelper\\View\\Home.xaml",
+              "RelativeToolTip": "View\\Home.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-23T22:42:25.764Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Lesson.cs",
-              "DocumentMoniker": "L:\\Programming\\Codin\\C#\\TutorHelper\\Model\\Core\\Lesson.cs",
-              "RelativeDocumentMoniker": "Model\\Core\\Lesson.cs",
-              "ToolTip": "L:\\Programming\\Codin\\C#\\TutorHelper\\Model\\Core\\Lesson.cs",
-              "RelativeToolTip": "Model\\Core\\Lesson.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAxwB8AAAAPAAAAAAAAAA==",
+              "Title": "DataAccess.cs",
+              "DocumentMoniker": "L:\\Programming\\Codin\\C#\\TutorHelper\\DataAccess\\DataAccess.cs",
+              "RelativeDocumentMoniker": "DataAccess\\DataAccess.cs",
+              "ToolTip": "L:\\Programming\\Codin\\C#\\TutorHelper\\DataAccess\\DataAccess.cs",
+              "RelativeToolTip": "DataAccess\\DataAccess.cs",
+              "ViewState": "AgIAALkAAAAAAAAAAAAwwMkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T19:28:30.922Z"
+              "WhenOpened": "2025-06-23T22:37:49.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Settings.xaml",
+              "DocumentMoniker": "L:\\Programming\\Codin\\C#\\TutorHelper\\View\\Settings.xaml",
+              "RelativeDocumentMoniker": "View\\Settings.xaml",
+              "ToolTip": "L:\\Programming\\Codin\\C#\\TutorHelper\\View\\Settings.xaml",
+              "RelativeToolTip": "View\\Settings.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-23T21:19:11.923Z",
+              "EditorCaption": ""
             }
           ]
         }

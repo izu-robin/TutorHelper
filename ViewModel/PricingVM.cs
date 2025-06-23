@@ -14,7 +14,7 @@ namespace TutorHelper.ViewModel
     {
         public ObservableCollection<Rate> PricingsList { get; } = new();
 
-        protected void GetPricings() //заполняет список тарифов строками из дб
+        protected void GetPricings() //заполняем список тарифов строками из дб
         {
             foreach(var rate in DataBase.LoadPricings())
             {
