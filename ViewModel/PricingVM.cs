@@ -51,7 +51,6 @@ namespace TutorHelper.ViewModel
             }
         }
 
-
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand => _saveCommand ?? (_saveCommand = new RelayCommand(SaveRatingChanges));
         private void SaveRatingChanges()
@@ -73,13 +72,11 @@ namespace TutorHelper.ViewModel
             GetPricings();
 
         }
-
         public Rate NewRate { get; set; } = new Rate();
 
         private RelayCommand _saveNewRateCommand;
         public RelayCommand SaveNewRateCommand => _saveNewRateCommand ?? 
                             (_saveNewRateCommand = new RelayCommand(SaveNewRating));
-
         private void SaveNewRating()
         {
             if( string.IsNullOrWhiteSpace(NewRate.Title) || string.IsNullOrWhiteSpace((NewRate.Price).ToString()))
@@ -96,33 +93,12 @@ namespace TutorHelper.ViewModel
             NewRate = new Rate();
             OnPropertyChanged();
 
-
-
-
-
-
         }
-
 
         public PricingVM()
         {
             GetPricings();
 
         }
-    
-        
-
-
-
-        // вот где-то ут всё покатилось в пизду. Редактировать ученика - меняем тариф - почему-то сбивается умк. 
-       // где-то косяк с передачей id тарифа в id умк. 
-       //дай господь сил разобраться и не поехать кукухой
-
-
-
-
-
-
-
     }
 }

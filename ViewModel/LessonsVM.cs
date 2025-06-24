@@ -28,17 +28,8 @@ namespace TutorHelper.ViewModel
             GetStudents();
             SelectedStudent = new Student();
             SelectedStudent = StudentsList[0];
-            
-            //все что на старте надо сделать - всё сюда
 
         }
-        /*
-        //private readonly PageModel _pageModel;
-        //public string ProductAvailability
-        //{
-        //    get { return _pageModel.ProductStatus; }
-        //    set { _pageModel.ProductStatus = value; OnPropertyChanged(); }
-        //} */
 
         //текущий список будущих/прошлых уроков
         public ObservableCollection<Lesson> FutureLessonsList { get; } = new(); 
@@ -93,8 +84,6 @@ namespace TutorHelper.ViewModel
             }
         }
 
-
-
         //загрузка будущих уроков
         private void LoadFutureLessons()
         {
@@ -123,8 +112,6 @@ namespace TutorHelper.ViewModel
             return answ;
         }
 
-        
-
         private void GetStudents()
         {
             foreach ( var stud in DataBase.GetStudents())
@@ -146,7 +133,6 @@ namespace TutorHelper.ViewModel
             }
         }
 
-
         private Lesson _selectedLesson;
         public Lesson SelectedLesson
         {
@@ -163,7 +149,6 @@ namespace TutorHelper.ViewModel
             }
         }
 
-
         private Lesson _currentEditableLesson;
         public Lesson CurrentEditableLesson
         {
@@ -179,12 +164,10 @@ namespace TutorHelper.ViewModel
         public RelayCommand SaveUpdatedLessonCommand => _saveUpdatedLessonCommand ??
                             (_saveUpdatedLessonCommand = new RelayCommand(SaveUpdatedLesson));
 
- 
         private void SaveUpdatedLesson()
         {
             if (SelectedLesson==null || CurrentEditableLesson == null)
                 return;
-
 
             SelectedLesson = CurrentEditableLesson;
 
@@ -208,7 +191,6 @@ namespace TutorHelper.ViewModel
             CurrentEditableLesson = new Lesson();
 
         }
-
 
         private RelayCommand _deleteLessonCommand;
         public RelayCommand DeleteLessonCommand => _deleteLessonCommand ??
@@ -247,9 +229,7 @@ namespace TutorHelper.ViewModel
 
                     //TableStatus = "Прошедшие занятия: ";
                 }
-
             }
         }
-
     }
 }

@@ -18,7 +18,7 @@ namespace TutorHelper.ViewModel
 {
     class StudentsVM : Utilities.ViewModelBase
     {
-        public StudentsVM() //конструктор 
+        public StudentsVM()  
         {
             LoadStudents();
             GetRates();
@@ -43,6 +43,7 @@ namespace TutorHelper.ViewModel
                 OnPropertyChanged();
             }
         }
+
         private StudentsInfo _studentsInfo;
         public StudentsInfo studentsInfo
         {
@@ -53,7 +54,6 @@ namespace TutorHelper.ViewModel
                 OnPropertyChanged();
             }
         }
-
 
         private void LoadStudents()
         {
@@ -71,14 +71,6 @@ namespace TutorHelper.ViewModel
                 TextbooksList.Add(tb);
             }
         }
-
-        //private void LoadStudentsLessons()
-        //{
-        //    foreach (var les in DataBase.GetStudentsLessons())
-        //    {
-        //        StudentsLessonsList.Add(les);
-        //    }
-        //}
 
         private Student _selectedStudent;
         public Student SelectedStudent
@@ -116,7 +108,6 @@ namespace TutorHelper.ViewModel
                 }
             }
         }
-
         private Rate FindRate(int id)
         {
             for(int i=0; i<RatesList.Count; i++)
@@ -130,7 +121,6 @@ namespace TutorHelper.ViewModel
         private RelayCommand _saveEditedStudentCommand;
         public RelayCommand SaveEditedStudent => (_saveEditedStudentCommand ?? 
            (_saveEditedStudentCommand = new RelayCommand(SaveEditedStudentLessonsVM)));
-
         private void SaveEditedStudentLessonsVM()
         {
             if (SelectedStudent == null || CurrentEditableStudent == null)
@@ -178,7 +168,6 @@ namespace TutorHelper.ViewModel
                 OnPropertyChanged();
             }
         }
-
         private TBook FindTextbook(int id)
         {
             for (int i = 0; i < TextbooksList.Count; i++)
@@ -208,11 +197,9 @@ namespace TutorHelper.ViewModel
              
         }
 
-
         private RelayCommand _saveNewStudentCommand;
         public RelayCommand SaveNewStudentCommand => _saveNewStudentCommand ??  
                             (_saveNewStudentCommand = new RelayCommand(SaveNewStudent));
-
         private void SaveNewStudent()
         {
             NewStudent.RateID = SelectedRating.Id;
@@ -223,7 +210,6 @@ namespace TutorHelper.ViewModel
             NewStudent.Name = "";
             NewStudent.Surname = "";
         }
-
 
     }
 

@@ -22,7 +22,6 @@
             </Border.Background>
         </Border>
 
-
         <TextBlock Text="Доступные отчеты: "
            FontSize="20"
            HorizontalAlignment="Left"
@@ -184,7 +183,7 @@
                                     </StackPanel>
 
                                 </Border>
-                                
+
                             </StackPanel>
 
                         </StackPanel>
@@ -205,7 +204,7 @@
                     <FlowDocument Name="docReport"
                                   MinPageWidth="700"
                                   PageWidth="550">
-                        
+
                         <BlockUIContainer>
 
                             <StackPanel>
@@ -215,7 +214,7 @@
                                           VerticalAlignment="Top"
                                           Width="514"
                                           HorizontalContentAlignment="Center" >
-                                    
+
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Дата"
@@ -240,6 +239,7 @@
                                                              Width="85"
                                             />
                                         </GridView>
+
                                     </ListView.View>
 
                                 </ListView>
@@ -278,7 +278,6 @@
 
                                     </Border>
 
-
                                     <Border Height="90"
                                              Width="148"
                                              HorizontalAlignment="Left"
@@ -286,8 +285,7 @@
                                              Padding="0,5"
                                              BorderBrush="#A5CCE4"
                                              BorderThickness="2" 
-                                             Margin="13,10,10,8"
-                                             >
+                                             Margin="13,10,10,8">
 
                                         <StackPanel>
 
@@ -339,11 +337,6 @@
 
                                     </Border>
 
-                                    
-                                    
-
-
-
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal"
@@ -372,9 +365,7 @@
 
                                 </StackPanel>
 
-
                             </StackPanel>
-
 
                         </BlockUIContainer>
 
@@ -382,7 +373,6 @@
 
 
                 </FlowDocumentScrollViewer>
-
 
                 <Button Content="Распечатать/сохранить отчет в PDF"
                         Click="Button_Click"
@@ -398,26 +388,6 @@
             </Grid>
 
         </Grid>
-
-        <!--<Grid>
-
-            <TextBlock Text="Дата следующего занятия  :"
-                       Foreground="#DBDBDB"
-                       FontSize="15"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,53,160,0" />
-
-            <TextBlock Text="{Binding DisplayOrderDate}"
-                       Foreground="White"
-                       FontSize="15"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontFamily="/Fonts/#Rubik Medium"
-                       Margin="0,53,90,0" />
-
-        </Grid>-->
 
     </Grid>
 

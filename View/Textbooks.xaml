@@ -35,7 +35,6 @@
 
             <Grid Margin="15,54,15,15">
 
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="4*"/>
@@ -49,11 +48,7 @@
                     <ListView ItemsSource="{Binding TextbooksList}"
                               SelectionMode="Single"
                               SelectedItem="{Binding SelectedTextbook}">
-                        <!--<ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="TextBlock.TextWrapping" Value="NoWrap"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>-->
+                        
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" 
@@ -63,18 +58,16 @@
                                 DisplayMemberBinding="{Binding Title}"
                                 Width="230"/>
 
-
-                                <!--DisplayMemberBinding="{Binding Values}"-->
-                                
-                                
                                 <GridViewColumn Header="Уровень" 
                                 DisplayMemberBinding="{Binding Level}"
                                 Width="230"/>
  
-
                             </GridView>
+                            
                         </ListView.View>
+                        
                     </ListView>
+                    
                 </Grid>
 
                 <Grid Grid.Row="1"
@@ -87,9 +80,6 @@
                                 BorderThickness="2" Width="277" 
                                 CornerRadius="0,0,0,15">
                             <StackPanel Width="270">
-
-
-
 
                                 <TextBlock Text= "Редактировать УМК:" 
                                    Foreground="White"
@@ -153,6 +143,7 @@
                                 Width="275" 
                                 Margin="10,0,0,0"
                                 CornerRadius="0,0,15,0">
+                            
                             <StackPanel Width="270">
 
                                 <TextBlock Text= "Добавить УМК:" 
@@ -206,23 +197,11 @@
                                         HorizontalAlignment="Left"
                                         Background="#A5CCE4"/>
 
-
-
-
-
-
-
                             </StackPanel>
+                            
                         </Border>
 
-
                     </StackPanel>
-
-
-
-
-
-
 
                 </Grid>
 

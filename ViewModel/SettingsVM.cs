@@ -53,7 +53,6 @@ namespace TutorHelper.ViewModel
 
         private RelayCommand _deleteStudentCommand;
         public RelayCommand DeleteStudentCommand => _deleteStudentCommand ?? (_deleteStudentCommand = new RelayCommand(DeleteStudent));
-
         private void DeleteStudent()
         {
             if (SelectedStudent == null)
@@ -160,7 +159,6 @@ namespace TutorHelper.ViewModel
         private RelayCommand _deleteRateCommand;
         public RelayCommand DeleteRateCommand => _deleteRateCommand ?? 
                             (_deleteRateCommand = new RelayCommand(DeleteRate));
- 
         private void DeleteRate()
         {
             if (SelectedRate == null)
@@ -185,7 +183,6 @@ namespace TutorHelper.ViewModel
         }
 
         //--------------------------------- удаление УМК ------------------------------
-
         public ObservableCollection<TBook> AllTextbooksList { get; } = new();
 
         private void GetTextbooks()
@@ -233,9 +230,5 @@ namespace TutorHelper.ViewModel
                 GetTextbooks();
             }
         }
-
-
-
-
     }
 }

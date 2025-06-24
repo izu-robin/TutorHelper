@@ -19,9 +19,6 @@ namespace TutorHelper.Model
 
         public string Level { get; set; }
 
-  
-         
-     
         public TBook() {} //по умолчанию
 
         public TBook(TBook t) //от копирования 

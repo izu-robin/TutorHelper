@@ -14,10 +14,6 @@
     </UserControl.DataContext>
 
     <Grid Margin="15">
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="139*"/>
-            <ColumnDefinition Width="453*"/>
-        </Grid.ColumnDefinitions>-->
 
         <Border CornerRadius="0,20,20,0" Grid.ColumnSpan="2" >
 
@@ -25,7 +21,6 @@
                    Stretch="Fill" />
         </Border>
 
-        <!--Дату конечно дорабатывать еще много и долго но пока пойдет-->
         <TextBlock Name="DateTextBlock" Text="{Binding DateToday}"
                    FontSize="20"
                    HorizontalAlignment="Left"
@@ -39,7 +34,6 @@
                       VerticalAlignment="Top" 
                       IsTodayHighlighted="True"
                       SelectedDate="{Binding SelectedDate, Mode=TwoWay}" >
-                <!--SelectedDatesChanged="NewSelectedDate" >-->
 
                 <Calendar.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -64,9 +58,7 @@
                           SelectedItem="{Binding SelectedLesson}"
                           SelectionMode="Single"
                           HorizontalAlignment="Center"
-                          Width="350"
-                          
-                          >
+                          Width="350">
 
                     <ListView.View>
 
@@ -89,24 +81,6 @@
                     </ListView.View>
                 </ListView>
 
-
-                <!--<DataGrid ItemsSource="{Binding Lessons}"  HorizontalAlignment="Left" 
-                      Margin="0, 20, 0, 0" 
-                      VerticalAlignment="Top" 
-                      Width="350" 
-                      Height="162" 
-                      Grid.IsSharedSizeScope="True" 
-                      MinWidth="350" 
-                      MinHeight="162"
-                      AutoGenerateColumns="True"
-                      HeadersVisibility="None"
-                      HorizontalGridLinesBrush="#549DC2"
-                      VerticalGridLinesBrush="#549DC2" Grid.ColumnSpan="2"
-                      >-->
-
-
-
-
             </Grid>
 
             <Grid >
@@ -114,9 +88,6 @@
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
-
-
-
 
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="1" >
@@ -164,9 +135,7 @@
                                  Height="20"
                                  VerticalAlignment="Top"
                                  Foreground="White"
-                                   FontSize="14"
-                                   
-                                 />
+                                   FontSize="14"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"
@@ -185,8 +154,7 @@
                                     Height="20"
                                     VerticalAlignment="Top"
                                     Foreground="White"
-                                    FontSize="14"
-         />
+                                    FontSize="14"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"  
@@ -205,8 +173,7 @@
                                     Height="20"
                                     VerticalAlignment="Top"
                                     Foreground="White"
-                                    FontSize="14"
-         />
+                                    FontSize="14"/>
 
                         </StackPanel>
 
@@ -261,14 +228,6 @@
                                      Height="20"
                                      Margin="0"/>
 
-
-                            <!--ItemsSource="{Binding StudentsList}"
-                                      SelectedItem="{Binding SelectedStudent}"
-                                      DisplayMemberPath="FullName"
-                                      SelectedValuePath="Id"-->
-                            
-                            
-
                             <TextBlock Text= "Время" 
                                           Foreground="White"
                                           Width="180"
@@ -315,41 +274,15 @@
 
                             </Button>
 
-
-
-
                         </StackPanel>
                         
-                        
-                        
-                        
-                        
                     </Border>
+                    
                 </StackPanel>
-
-
-
 
             </Grid>
 
-
-
-
-
-
-
         </Grid>
-
-
-        <!--//тестовый лэйбл для проверки возвращаемой даты//-->
-        <!--<Label Name="tester"
-         Height="35"
-         Width="180"
-         Margin="380,238,21,298"
-         Foreground="white"
-         FontSize="20" Grid.Column="1">
-            <TextBlock Text="{Binding ForTester, Mode=OneWay}" />
-        </Label>-->
 
     </Grid>
 

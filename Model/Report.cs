@@ -16,13 +16,13 @@ namespace TutorHelper.Model
 
         private int _totalLessons;
 
-        public int TotalLessons 
+        public int TotalLessons
         {
             get => _totalLessons;
             set
             {
                 _totalLessons = value;
-               OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -48,7 +48,6 @@ namespace TutorHelper.Model
             }
         }
 
-
         public Report() { }
 
         public Report(Report r)
@@ -60,7 +59,6 @@ namespace TutorHelper.Model
             TotalSum = r.TotalSum;
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -68,7 +66,6 @@ namespace TutorHelper.Model
         }
 
     }
-
     public class Month
     {
         public int Id { get; set; }
@@ -80,9 +77,5 @@ namespace TutorHelper.Model
             Name = n;
         }
 
-    } 
-
-  
-
-
     }
+}

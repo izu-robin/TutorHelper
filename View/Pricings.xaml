@@ -31,10 +31,6 @@
            Foreground="White" 
            FontWeight="Bold" />
         
-        
-        
-        
-        
         <Grid Margin="15,54,15,15">
 
             <Grid.RowDefinitions>
@@ -62,11 +58,14 @@
 
                             <GridViewColumn Header="Стоимость занятия" 
                                             DisplayMemberBinding="{Binding Price}"
-                                            Width="200"
-                                            /> 
+                                            Width="200"/> 
+                            
                         </GridView>
+                        
                     </ListView.View>
+                    
                 </ListView>
+                
             </Grid>
 
             <Grid Grid.Row="1"
@@ -81,9 +80,6 @@
                             Width="277" 
                             CornerRadius="0,0,0,15">
                         <StackPanel Width="270">
-
-
-
 
                             <TextBlock Text= "Редактировать тариф:" 
                                        Foreground="White"
@@ -199,58 +195,16 @@
                                     HorizontalAlignment="Left"
                                     Background="#A5CCE4"/>
 
-
-
-
-
-
-
                         </StackPanel>
+                        
                     </Border>
-
 
                 </StackPanel>
 
-
-
-
-
-
-
             </Grid>
-
-
-
-
-
-
-
-
-
 
         </Grid>
 
-
-        <!--<Grid>
-
-            <TextBlock Text="Стандартная стоимость академ.часа  :"
-                       Foreground="#DBDBDB"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       Margin="0,300,150,0" />
-
-            <TextBlock Text="{Binding TransactionAmount, StringFormat='{}{0:C}'}"
-                       Foreground="White"
-                       FontSize="12"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-
-                       Margin="0,300,82,0" />
-
-            --><!--FontFamily="/Fonts/#Rubik Medium" // внутри тэга выше отдельной строчкой чтобы задать шрифт--><!--
-
-        </Grid>-->
     </Grid>
     
 </UserControl>

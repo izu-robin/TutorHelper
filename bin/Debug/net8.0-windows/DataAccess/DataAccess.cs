@@ -30,9 +30,104 @@ namespace TutorHelper.DataAccess
 
         //public static string ConnectionString = "Data Source=L:\\Programming\\Codin\\C#\\TutorHelper\\DataAccess\\TutorHelperDB.db";
         public static string ConnectionString = "Data Source=DataAccess\\TutorHelperDB.db";
-        //Solved - Debug directory set to project folder, what should I do in release though?
+        //Solved - Debug directory set to project folder 
 
-        //get all students - for (Students View)
+        //----------------- Home -----------------------------------------------
+        public static void AddLesson(Lesson l)
+        {
+            using var con = new SqliteConnection(ConnectionString);
+            {
+                con.Open();
+                string sql = "INSERT INTO Lesson (StudentID, LessonDate, StartTime, Duration) VALUES (@StudentID, @Date, @Time, @Duration); "
+                            ;
+
+                using (var cmd = new SqliteCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", l.StudentID);
+                    cmd.Parameters.AddWithValue("@Date", l.Date);
+                    cmd.Parameters.AddWithValue("@Time", l.Time);
+                    cmd.Parameters.AddWithValue("@Duration", l.Duration);
+
+                    //return Convert.ToInt32(
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //загрузка занятий в конкретную дату
+        public static List<Lesson> LoadDatesLessons(string date)
+        {
+            string[] arr = date.Split(' ');
+            string shortRevDate = arr[0];
+
+            string dashDate = DateCorrector(shortRevDate);
+
+            var lessons = new List<Lesson>();
+
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname " +
+                                    "FROM Lesson join Student ON Lesson.StudentID=Student.StudentID " +
+                                    "WHERE Lesson.LessonDate = '" + dashDate + "'" + " ORDER BY Lesson.StartTime ASC";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Lesson mid = new Lesson();
+                mid.Id = reader.GetInt32(0);
+                mid.StudentID = reader.GetInt32(1);
+                mid.Date = reader.GetString(2);
+                mid.Time = reader.GetString(3);
+
+                if (!reader.IsDBNull(4))
+                    mid.Notes = reader.GetString(4);
+                else
+                    mid.Notes = "-";
+                if (!reader.IsDBNull(5))
+                    mid.Duration = reader.GetInt32(5);
+                else
+                    mid.Duration = 60;
+
+                //булевские поля
+                if (reader.GetInt32(6) == 1)
+                    mid.Attended = true;
+                else
+                    mid.Attended = false;
+
+                if (reader.GetInt32(7) == 1)
+                    mid.Paid = true;
+                else
+                    mid.Paid = false;
+
+                //имя-фамилия
+                if (!reader.IsDBNull(8))
+                    mid.Name = reader.GetString(8);
+                else
+                    mid.Notes = "-";
+
+                if (!reader.IsDBNull(9))
+                    mid.Surname = reader.GetString(9);
+                else
+                    mid.Surname = "-";
+
+                lessons.Add(mid);
+            }
+            return lessons;
+
+        }
+
+        public static string DateCorrector(string date)
+        {
+            // 06.05.2025 -> 2025/05/06
+
+            string[] arr = date.Split('.');
+            string answ = arr[2] + "/" + arr[1] + "/" + arr[0];
+            return answ;
+        }
+
+        //get all students - for (Students View)--------------------------------
         public static List<Student> GetStudents()
         {
             var students = new List<Student>();
@@ -78,7 +173,7 @@ namespace TutorHelper.DataAccess
             return students;
         }
 
-        //get all future (not yet) lessons for (Lessons View)
+        //get all future lessons for (Lessons View)
         public static List<Lesson> GetFutureLessons(string date)
         {
             var lessons = new List<Lesson>();
@@ -191,78 +286,7 @@ namespace TutorHelper.DataAccess
             return lessons;
         }
 
-        //загрузка занятий в конкретную дату
-        public static List<Lesson> LoadDatesLessons(string date)
-        {
-            string[] arr = date.Split(' ');
-            string shortRevDate = arr[0];
-
-            string dashDate = DateCorrector(shortRevDate);
-
-            var lessons = new List<Lesson>();
-
-            using var connection = new SqliteConnection(ConnectionString);
-            connection.Open();
-
-            var command = connection.CreateCommand();
-            command.CommandText = "SELECT Lesson.*, Student.Name, Student.Surname " +
-                                    "FROM Lesson join Student ON Lesson.StudentID=Student.StudentID " +
-                                    "WHERE Lesson.LessonDate = '" + dashDate + "'" + " ORDER BY Lesson.StartTime ASC";
-
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Lesson mid = new Lesson();
-                mid.Id = reader.GetInt32(0);
-                mid.StudentID = reader.GetInt32(1);
-                mid.Date = reader.GetString(2);
-                mid.Time = reader.GetString(3);
-
-                if (!reader.IsDBNull(4))
-                    mid.Notes = reader.GetString(4);
-                else
-                    mid.Notes = "-";
-                if (!reader.IsDBNull(5))
-                    mid.Duration = reader.GetInt32(5);
-                else
-                    mid.Duration = 60;
-
-                //булевские поля
-                if (reader.GetInt32(6) == 1)
-                    mid.Attended = true;
-                else
-                    mid.Attended = false;
-
-                if (reader.GetInt32(7) == 1)
-                    mid.Paid = true;
-                else
-                    mid.Paid = false;
-
-                //имя-фамилия
-                if (!reader.IsDBNull(8))
-                    mid.Name = reader.GetString(8);
-                else
-                    mid.Notes = "-";
-
-                if (!reader.IsDBNull(9))
-                    mid.Surname = reader.GetString(9);
-                else
-                    mid.Surname = "-";
-
-                lessons.Add(mid);
-            }
-            return lessons;
-
-        }
-
-        public static string DateCorrector(string date)
-        {
-            // 06.05.2025 -> 2025/05/06
-
-            string[] arr = date.Split('.');
-            string answ = arr[2] + "/" + arr[1] + "/" + arr[0];
-            return answ;
-        }
+        
 
         //загрузка списка учебников для PricingVM
         public static List<Rate> LoadPricings()
@@ -286,7 +310,6 @@ namespace TutorHelper.DataAccess
                 });
             }
             return pricings;
-
 
         }
 
@@ -313,9 +336,6 @@ namespace TutorHelper.DataAccess
 
             return textbooks;
         }
-
-
-
 
 
         public static void UpdateRate(Rate r)
@@ -354,8 +374,6 @@ namespace TutorHelper.DataAccess
             }
         }
 
-
-
         public static int AddTextbook(TBook newTBook)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -369,13 +387,10 @@ namespace TutorHelper.DataAccess
                     cmd.Parameters.AddWithValue("@Title", newTBook.Title);
                     cmd.Parameters.AddWithValue("@Level", newTBook.Level);
 
-                    //выполнит и вернет айдишник нового учебника
-                    //почему ExecuteScalar а не NonQuery???
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
-
         public static int AddRate(Rate r)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -389,18 +404,12 @@ namespace TutorHelper.DataAccess
                     cmd.Parameters.AddWithValue("@Title", r.Title);
                     cmd.Parameters.AddWithValue("@HourRate", r.Price);
 
-
-                    //выполнит и вернет айдишник нового тарифа 
-                    //почему ExecuteScalar а не NonQuery???
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
 
 
         }
-
-
-
 
         // ----------------- Settings--------------------------------
         public static void RemoveStudentOnly(Student s)
@@ -448,7 +457,6 @@ namespace TutorHelper.DataAccess
             }
         }
 
-
         public static List<Lesson> GetAllLessons()
         {
 
@@ -474,7 +482,6 @@ namespace TutorHelper.DataAccess
             }
 
             return list;
-
 
         }
 
@@ -503,30 +510,6 @@ namespace TutorHelper.DataAccess
                 using (var cmd = new SqliteCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@TextbookID", id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        
-
-        //----------------- Home -----------------------------------------------
-
-        public static void AddLesson(Lesson l)
-        {
-            using var con = new SqliteConnection(ConnectionString);
-            {
-                con.Open();
-                string sql = "INSERT INTO Lesson (StudentID, LessonDate, StartTime, Duration) VALUES (@StudentID, @Date, @Time, @Duration); "
-                            ;
-
-                using (var cmd = new SqliteCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@StudentID", l.StudentID);
-                    cmd.Parameters.AddWithValue("@Date", l.Date);
-                    cmd.Parameters.AddWithValue("@Time", l.Time);
-                    cmd.Parameters.AddWithValue("@Duration", l.Duration);
-
-                    //return Convert.ToInt32(
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -567,9 +550,7 @@ namespace TutorHelper.DataAccess
                     cmd.Parameters.AddWithValue("@PricingID", s.RateID);
                     cmd.Parameters.AddWithValue("@Id", s.Id);
 
-
                     cmd.ExecuteNonQuery();
-
                 }
             }
         }
@@ -646,12 +627,6 @@ namespace TutorHelper.DataAccess
 
         }
 
-
-
-
-
-
-
         // --------------------------------- Lessons----------------------------
         public static void UpdateLesson(Lesson l)
         {
@@ -687,7 +662,6 @@ namespace TutorHelper.DataAccess
                 }
             }
         }
-
         public static void RemoveLesson(int Id)
         {
             using var con = new SqliteConnection(ConnectionString);
@@ -701,8 +675,6 @@ namespace TutorHelper.DataAccess
                     cmd.ExecuteNonQuery();
                 }
             }
-
-
         }
 
         //----------------------------Reports--------------------------------------
@@ -772,7 +744,6 @@ namespace TutorHelper.DataAccess
                     else
                         rep.TotalSum = 0;
                 }
-
                 return rep;
             }
         }

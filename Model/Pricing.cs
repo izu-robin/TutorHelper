@@ -34,8 +34,6 @@ namespace TutorHelper.Model
             }
         }
 
-
-
         public int Price { get; set; }
 
         public Rate() { }  //базовый, нужен для работы с SQLite в данном случае
@@ -48,18 +46,11 @@ namespace TutorHelper.Model
         }
 
 
-
-
-
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
 
     };
     

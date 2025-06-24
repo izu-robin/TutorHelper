@@ -12,7 +12,6 @@ namespace TutorHelper.Model.Core
 {
     public class Student : INotifyPropertyChanged
     {
- 
         public int Id { get; set; }
 
         private string? _name;
@@ -36,9 +35,6 @@ namespace TutorHelper.Model.Core
                 OnPropertyChanged();
             }
         }
-
-
-
         public string FullName
         {
             get => $"{Name} {Surname}";
@@ -63,9 +59,6 @@ namespace TutorHelper.Model.Core
             RateID = a.RateID;
             RateTitle = a.RateTitle;
         }
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

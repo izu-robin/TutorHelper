@@ -13,9 +13,6 @@
         <vm:StudentsVM />
     </UserControl.DataContext>
 
-
-
-
     <Grid Margin="15">
         
         <Border CornerRadius="0,20,20,0">
@@ -41,15 +38,15 @@
 
             <Grid Height="200"
                   VerticalAlignment="Top">
-                
+
                 <StackPanel Orientation="Horizontal">
                     <ListView ItemsSource="{Binding StudentsList}"
                               SelectedItem="{Binding SelectedStudent}"
                               SelectionMode="Single" Width="334"
            >
                         <ListView.View >
-                            <GridView > 
-                                
+                            <GridView >
+
                                 <GridViewColumn Header="Фамилия" 
                                                 DisplayMemberBinding="{Binding FullName}"
                                                 Width="160"/>
@@ -87,7 +84,7 @@
                                        Margin="4"/>
                             <TextBox Text="{Binding NewStudent.Name, Mode=TwoWay}" 
                                      Margin="0"/>
-                            
+
                             <TextBlock Text= "Фамилия" 
                                        Foreground="White"
                                        Width="180"
@@ -105,7 +102,7 @@
                                       SelectedValuePath="Id"
                                       Width="180"
                                       Height="23">
-                                
+
                             </ComboBox>
 
                             <Button x:Name="SaveNewStudent"
@@ -116,19 +113,15 @@
 
                             </Button>
 
-
-
                         </StackPanel>
 
                     </Border>
-                    
-                    
-
 
                 </StackPanel>
+
             </Grid>
 
-            
+
             <!--//  Нижняя панель вся //-->
             <Grid Margin="0,220,0,187"
                   Width="335"
@@ -151,6 +144,7 @@
                                 HorizontalAlignment="Left"/>
 
                 </Border>
+
                 <StackPanel Orientation="Horizontal">
 
                     <CheckBox Content="Оплаченные"
@@ -185,10 +179,7 @@
                         Margin="10,60,10,10"
                         Background="#A5CCE4"/>
 
-
             </Grid>
-
-            
 
             <Grid Margin=" 0,330,0,0">
                 <Grid.ColumnDefinitions>
@@ -203,7 +194,7 @@
 
                     <ListView.View>
                         <GridView>
-                             
+
                             <GridViewColumn Header="Дата"
                                         DisplayMemberBinding="{Binding Date}"
                                         Width="83"/>
@@ -221,7 +212,6 @@
                 </ListView>
             </Grid>
 
-
             <!--// коробка с кнопками //-->
             <Border
                         Height="281"
@@ -234,7 +224,7 @@
                 CornerRadius="0,0,15,0">
                 <StackPanel>
                     <StackPanel>
-                        
+
                         <TextBlock Text= "Редактировать ученика:" 
                                    Foreground="White"
                                    TextWrapping="Wrap" 
@@ -247,15 +237,12 @@
                                    Margin="5,8"/>
                         <TextBox Text="{Binding CurrentEditableStudent.Name, Mode=TwoWay}" 
                                  Margin="0"/>
-                        
-                        <!--вот тут ="Binding SelectedLesson.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
-
 
                         <TextBlock Text= "Фамилия" 
                                    Foreground="White"
                                    Width="180"
                                    Margin="5,8"/>
-                        
+
                         <TextBox    Text="{Binding CurrentEditableStudent.Surname}" 
                                     Margin="0"/>
 
@@ -275,7 +262,7 @@
                                    Foreground="White"
                                    Width="180"
                                    Margin="5,6"/>
-                        
+
                         <ComboBox ItemsSource="{Binding TextbooksList}"
                                   SelectedItem="{Binding SelectedTextbook, Mode=TwoWay}"
                                   DisplayMemberPath="Title"
@@ -289,49 +276,14 @@
                                 Background="#A5CCE4">
 
                         </Button>
-                        
+
                     </StackPanel>
 
-
-
-                     
-
-                     
-
-
-                    
-
-                    
-                    
-
-
-                    <!--<Button x:Name="ShowAttended"
-                            Content="Показать посещенные"
-                            Margin="5,10,5,3"
-                            Background="#A5CCE4">
-
-                    </Button>-->
-
                 </StackPanel>
-                
+
             </Border>
 
         </Grid>
-
-
-        <!--<TextBlock Text="Номер ученика  :"
-                   Foreground="#DBDBDB"
-                   FontSize="12"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="70,138,0,0" />
-
-        <TextBlock Text="{Binding CustomerID}"
-                   Foreground="#DBDBDB"
-                   FontSize="12"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="160,138,0,0" />-->
 
     </Grid>
 

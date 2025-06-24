@@ -22,8 +22,6 @@ namespace TutorHelper.ViewModel
         {
             GetTextbooks();
             CreateNewTextbookCommand = new RelayCommand(CreateNewTextbook);
-
-            
         }
         public ObservableCollection<TBook> TextbooksList { get; } = new();
 
@@ -34,7 +32,6 @@ namespace TutorHelper.ViewModel
                 TextbooksList.Add(tbook);
             }
         }
-
 
         private TBook _selectedTextbook;
         public TBook SelectedTextbook
@@ -65,7 +62,6 @@ namespace TutorHelper.ViewModel
 
         private RelayCommand _saveEditedTextbookCommand;
         public RelayCommand SaveEditedTextbookCommand => (_saveEditedTextbookCommand ?? (_saveEditedTextbookCommand = new RelayCommand(SaveEditedTextbook)));
-
         private void SaveEditedTextbook()
         {
             if (SelectedTextbook == null || CurrentEditableTextbook == null)

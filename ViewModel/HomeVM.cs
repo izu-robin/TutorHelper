@@ -8,20 +8,17 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using TutorHelper.View;
 using System.Diagnostics.CodeAnalysis;
-//using TutorHelper.Model;
 using System.Xml.Linq;
 using TutorHelper.DataAccess;
 using TutorHelper.Model;
 using TutorHelper.Model.Core;
 using TutorHelper.Utilities;
 using System.Security.Cryptography;
-// using TutorHelper.Model; //почему здесь не надо? Может потому что он пустой? 
 
 namespace TutorHelper.ViewModel
 {
     public class HomeVM : Utilities.ViewModelBase 
     {
-        //список уроков в выбранную дату
         public ObservableCollection<Lesson> DatesLessonsList { get; } = new();
         public ObservableCollection<Student> StudentsList { get; } = new();
    
@@ -54,7 +51,6 @@ namespace TutorHelper.ViewModel
             }
         }
 
-
         // и что с этой датой делается
         private void OnDateSelected()
         {
@@ -69,8 +65,7 @@ namespace TutorHelper.ViewModel
             {
                 DatesLessonsList.Add(dLes);
             }
-            
-            //LoadDatesLessons(ForTester);
+
         }
         private void LoadingStudents()
         {
@@ -80,18 +75,12 @@ namespace TutorHelper.ViewModel
             StudentsList.RemoveAt(0);
         }
 
-
-
-
         public HomeVM()
         {
             DateToday = DateTime.Now.ToString("d") + ", " + RussianDayOfWeek(DateTime.Now.DayOfWeek.ToString());
             OnDateSelected();
 
             LoadingStudents();
-
-
-
 
             /*
             //а может надо подрубить дату из календаря???? Сейчас с системы читает просто 
@@ -138,10 +127,8 @@ namespace TutorHelper.ViewModel
         {
             //обновляет заглавную дату и запускает обновление списка уроков в таблице
 
-
             DateToday = selectedDate;
             ForTester = selectedDate;
-
         }
 
 
@@ -163,8 +150,6 @@ namespace TutorHelper.ViewModel
         private RelayCommand _saveNewLessonCommand;
         public RelayCommand SaveNewLessonCommand => _saveNewLessonCommand ??
                             (_saveNewLessonCommand = new RelayCommand(SaveNewLesson));
- 
-
         private void SaveNewLesson()
         {
             if (string.IsNullOrWhiteSpace(NewLesson.Time) || string.IsNullOrWhiteSpace(NewLesson.Date) ||
@@ -180,7 +165,6 @@ namespace TutorHelper.ViewModel
         }
 
         //загружаем учеников для комбобокса нового урока. 
-
         private Student _selectedStudent;
         public Student SelectedStudent
         {
@@ -189,8 +173,7 @@ namespace TutorHelper.ViewModel
             {
                 _selectedStudent = value;
                 OnPropertyChanged();
-                //вот это красиво. То есть чекбокс закидывает ID выбранному студенту, а у него мы отбираем
-                //и закидываем в новый урок. 
+
                 NewLesson.StudentID = value?.Id ?? 0;
             }
         }

@@ -23,6 +23,7 @@
             </Trigger>
 
             <EventTrigger RoutedEvent="Loaded">
+                
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -36,13 +37,10 @@
                                          DecelerationRatio="0.6" />
                     </Storyboard>
                 </BeginStoryboard>
+                
             </EventTrigger>
 
         </Style.Triggers>
-
-
-
-
 
     </Style>
     

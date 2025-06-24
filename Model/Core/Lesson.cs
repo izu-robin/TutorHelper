@@ -93,11 +93,6 @@ namespace TutorHelper.Model.Core
             Paid = a.Paid;
         }
 
-        //navigation properties
-
-        //public List<Lesson> LessonsList { get; set; } = new();
-
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

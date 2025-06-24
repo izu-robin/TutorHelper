@@ -19,7 +19,6 @@ namespace TutorHelper.ViewModel
         public ReportVM()
         {
             CurrentReport = new();
-            
 
             Years = new() { 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035 };
 
@@ -37,16 +36,8 @@ namespace TutorHelper.ViewModel
             Months.Add(new Month(11, "Ноябрь"));
             Months.Add(new Month(12, "Декабрь"));
 
-            
-           
-
-
         }
 
-        
-
-
-        
         private Month _selectedMonth;
         public Month SelectedMonth
         {
@@ -69,7 +60,6 @@ namespace TutorHelper.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public List<int> Years { get; } = new();
 
         public Report _currentReport;
@@ -82,9 +72,7 @@ namespace TutorHelper.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public ObservableCollection <Month> Months { get; } = new();
-
         public ObservableCollection<Lesson> LessonsList { get; } = new();
 
         private RelayCommand _getReportCommand;
@@ -110,16 +98,6 @@ namespace TutorHelper.ViewModel
             LessonsList.Clear();
             CurrentReport=DataBase.LoadReport(dateStart, dateFinish, LessonsList);
         }
-
-
-        //private RelayCommand _printCommand;
-        //public RelayCommand PrintCommand => _printCommand ?? (_printCommand = new RelayCommand(Print()));
-
-        
-       
-
-
-
     }
 
 

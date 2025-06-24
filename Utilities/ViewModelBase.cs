@@ -28,8 +28,5 @@ namespace TutorHelper.Utilities
 
         //INotifyPropertyChanged enables databinding, SetField reduces boilerplate (often repeated code with minor adjustments)
         //All ViewModels have to inherit this
-
-
-
     }
 }
