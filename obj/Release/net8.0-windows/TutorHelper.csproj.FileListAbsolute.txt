@@ -980,5 +980,5 @@ L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\zh-Hant\WindowsForm
 L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Images\appIcon.png
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Report.g.cs
 L:\Programming\Codin\C#\TutorHelper\obj\Release\net8.0-windows\View\Report.baml
-L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Microsoft.DiaSymReader.Native.x86.dll
-L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\mscordaccore_x86_x86_8.0.1325.6609.dll
+L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\Microsoft.DiaSymReader.Native.amd64.dll
+L:\Programming\Codin\C#\TutorHelper\bin\Debug\net8.0-windows\mscordaccore_amd64_amd64_8.0.1325.6609.dll

@@ -24,7 +24,9 @@ namespace TutorHelper.ViewModel
             TableStatus = "Предстоящие занятия:";
             DateToday = CorrectTodayDate(DateTime.Now) ?? "-";
             LoadFutureLessons();
-            SelectedLesson = FutureLessonsList[0];
+            //if(FutureLessonsList.Count!=0) // внесла эти строки в LoadFutureLessons()
+            //    SelectedLesson = FutureLessonsList[0];
+
             GetStudents();
             SelectedStudent = new Student();
             SelectedStudent = StudentsList[0];
@@ -91,6 +93,8 @@ namespace TutorHelper.ViewModel
             {
                 FutureLessonsList.Add(les);
             }
+            if (FutureLessonsList.Count != 0)
+                SelectedLesson = FutureLessonsList[0];
         }
 
         private void LoadPastLessons()
@@ -99,7 +103,11 @@ namespace TutorHelper.ViewModel
             {
                 FutureLessonsList.Add(les);
             }
-            FutureLessonsList.RemoveAt(0);
+            if (FutureLessonsList.Count != 0)
+            {
+                SelectedLesson = FutureLessonsList[0];
+                FutureLessonsList.RemoveAt(0);
+            }
         }
         public static string? DateToday { get; set; }
 
@@ -129,7 +137,19 @@ namespace TutorHelper.ViewModel
             {
                 _selectedStudent = value;
                 OnPropertyChanged();
-                CurrentEditableLesson.StudentID = value?.Id ?? 0;
+                if (value!= null )
+                {
+                    if (CurrentEditableLesson == null)
+                    { 
+                        CurrentEditableLesson = new Lesson();
+                    }
+                    CurrentEditableLesson = SelectedLesson;
+                    
+                    if(value.Id!=0)
+                    { 
+                        CurrentEditableLesson.StudentID = value?.Id ?? 0; 
+                    } 
+                }
             }
         }
 
@@ -142,10 +162,20 @@ namespace TutorHelper.ViewModel
                 _selectedLesson = value;
                 OnPropertyChanged();
 
-                if (_selectedLesson != null)
+
+                if (CurrentEditableLesson == null)
                 {
                     CurrentEditableLesson = new Lesson(_selectedLesson);
                 }
+
+                CurrentEditableLesson = SelectedLesson;
+
+
+
+                //if (_selectedLesson != null)
+                //{
+                //    CurrentEditableLesson = new Lesson(_selectedLesson);
+                //}
             }
         }
 
@@ -186,9 +216,9 @@ namespace TutorHelper.ViewModel
 
                 //TableStatus = "Прошедшие занятия: ";
             }
-            
-            SelectedStudent = new Student();
-            CurrentEditableLesson = new Lesson();
+
+            SelectedStudent = StudentsList[0];
+             
 
         }
 
